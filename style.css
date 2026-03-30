@@ -1,0 +1,389 @@
+/* ============================================
+   PARA REBECA ❤️  —  style.css
+   ============================================ */
+
+:root {
+    --rose:      #c9426a;
+    --rose-light:#e8758a;
+    --rose-pale: #fce8ee;
+    --rose-deep: #8b1a3a;
+    --cream:     #fdf6f0;
+    --gold:      #c4956a;
+    --text-dark: #3a1a2a;
+    --text-mid:  #7a4a5a;
+    --white:     #ffffff;
+    --shadow:    rgba(140, 40, 80, 0.18);
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans:  'Lato', sans-serif;
+}
+
+/* ─── Reset & Base ──────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--cream);
+    background-image:
+        radial-gradient(ellipse 80% 60% at 20% 10%, #f7d6e0 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 90%, #fce0ee 0%, transparent 55%),
+        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c9426a' fill-opacity='0.03'%3E%3Cpath d='M30 28.5C30 22.7 25.3 18 19.5 18S9 22.7 9 28.5c0 9.6 21 22.5 21 22.5s21-12.9 21-22.5C51 22.7 46.3 18 40.5 18S30 22.7 30 28.5z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    min-height: 100vh;
+    font-family: var(--font-sans);
+    color: var(--text-dark);
+    overflow-x: hidden;
+}
+
+/* ─── Background Particles ──────────────────── */
+.bg-particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* ─── Floating Phrases ──────────────────────── */
+.floating-phrases {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.float-phrase {
+    position: absolute;
+    font-family: var(--font-serif);
+    font-style: italic;
+    color: var(--rose);
+    opacity: 0;
+    white-space: nowrap;
+    font-size: clamp(0.65rem, 1.5vw, 0.9rem);
+    animation: driftUp linear forwards;
+    text-shadow: 0 0 20px rgba(201, 66, 106, 0.3);
+    letter-spacing: 0.03em;
+}
+
+@keyframes driftUp {
+    0%   { opacity: 0;   transform: translateY(0) rotate(var(--rot)); }
+    10%  { opacity: 0.6; }
+    85%  { opacity: 0.4; }
+    100% { opacity: 0;   transform: translateY(-110vh) rotate(calc(var(--rot) + 5deg)); }
+}
+
+/* ─── Main Wrapper ──────────────────────────── */
+.main-wrapper {
+    position: relative;
+    z-index: 10;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 28px 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+}
+
+/* ─── Header ────────────────────────────────── */
+.page-header {
+    text-align: center;
+    animation: fadeSlideDown 1.2s cubic-bezier(.22,1,.36,1) forwards;
+}
+
+@keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.subtitle-top {
+    display: block;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rose-light);
+    margin-bottom: 8px;
+}
+
+.main-title {
+    font-family: var(--font-serif);
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title-line {
+    font-size: clamp(2rem, 6vw, 3rem);
+    color: var(--text-mid);
+    font-weight: 400;
+}
+
+.title-name {
+    font-size: clamp(3.5rem, 12vw, 6rem);
+    color: var(--rose);
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--rose-deep), var(--rose), var(--rose-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.title-deco {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    color: var(--gold);
+    animation: spin 8s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─── Content Row (mensaje + carrusel lado a lado) ── */
+.content-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 28px;
+}
+
+/* ─── Message Card ──────────────────────────── */
+.message-section {
+    flex: 0 0 38%;
+    animation: fadeSlideUp 1.2s 0.4s cubic-bezier(.22,1,.36,1) both;
+    display: flex;
+}
+
+@keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.message-card {
+    background: var(--white);
+    border-radius: 24px;
+    padding: 44px 40px;
+    box-shadow:
+        0 4px 6px rgba(0,0,0,.04),
+        0 20px 60px var(--shadow),
+        inset 0 1px 0 rgba(255,255,255,.9);
+    position: relative;
+    text-align: center;
+    border: 1px solid rgba(201, 66, 106, 0.12);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-ornament {
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    line-height: 1;
+    color: var(--rose-pale);
+    position: absolute;
+    font-weight: 700;
+}
+
+.card-ornament.top-left    { top: -10px; left: 16px; }
+.card-ornament.bottom-right { bottom: -30px; right: 16px; transform: rotate(180deg); }
+
+.card-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    line-height: 1.8;
+    color: var(--text-dark);
+    position: relative;
+    z-index: 2;
+}
+
+.card-signature {
+    margin-top: 20px;
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: var(--rose-light);
+    letter-spacing: 0.05em;
+}
+
+/* ─── Carousel ──────────────────────────────── */
+.carousel-section {
+    flex: 1;
+    animation: fadeSlideUp 1.2s 0.7s cubic-bezier(.22,1,.36,1) both;
+    min-width: 0;
+}
+
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 28px;
+    box-shadow: 0 20px 70px var(--shadow), 0 4px 10px rgba(0,0,0,.06);
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.6s cubic-bezier(.77,0,.18,1);
+    will-change: transform;
+}
+
+/* ─── Slide ─────────────────────────────────── */
+.slide {
+    min-width: 100%;
+}
+
+.slide-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--white);
+    padding: 28px 24px 20px;
+    gap: 16px;
+}
+
+/* Photo Frame */
+.photo-frame {
+    flex: unset;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(135deg, var(--rose-pale), #f9dde6);
+    border: 2px solid rgba(201, 66, 106, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: relative;
+    z-index: 2;
+}
+
+.photo-placeholder {
+    position: absolute;
+    font-size: 4rem;
+    opacity: 0.35;
+    z-index: 1;
+}
+
+.photo-frame.no-photo .photo-placeholder {
+    opacity: 0.5;
+}
+
+/* Slide Phrase */
+.slide-phrase {
+    flex: unset;
+    text-align: center;
+    padding: 0 8px 4px;
+}
+
+.slide-phrase p {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+    color: var(--rose-deep);
+    line-height: 1.6;
+}
+
+/* ─── Responsive slide en móvil ── */
+@media (max-width: 580px) {
+    .slide-inner {
+        padding: 20px 16px 16px;
+    }
+}
+
+/* ─── Carousel Buttons ──────────────────────── */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--white);
+    border: none;
+    border-radius: 50%;
+    width: 46px;
+    height: 46px;
+    font-size: 1.8rem;
+    color: var(--rose);
+    cursor: pointer;
+    box-shadow: 0 4px 20px var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+    z-index: 20;
+    line-height: 1;
+    padding-bottom: 2px;
+    /* Keep buttons above photo frame */
+    top: calc(50% - 30px);
+}
+
+.carousel-btn:hover {
+    background: var(--rose);
+    color: var(--white);
+    box-shadow: 0 6px 28px var(--shadow);
+    transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-btn.prev { left: 12px; }
+.carousel-btn.next { right: 12px; }
+
+/* ─── Dots ──────────────────────────────────── */
+.carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px 0 8px;
+    background: var(--white);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--rose-pale);
+    border: 2px solid var(--rose-light);
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s, width 0.3s;
+}
+
+.dot.active {
+    background: var(--rose);
+    border-color: var(--rose);
+    width: 22px;
+    border-radius: 4px;
+}
+
+/* ─── Footer ────────────────────────────────── */
+.page-footer {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    letter-spacing: 0.08em;
+    text-align: center;
+    animation: fadeSlideUp 1.2s 1s cubic-bezier(.22,1,.36,1) both;
+}
+
+/* ─── Responsive ────────────────────────────── */
+@media (max-width: 700px) {
+    .main-wrapper { padding: 24px 14px 50px; gap: 32px; }
+
+    .content-row {
+        flex-direction: column;
+    }
+
+    .message-section { flex: unset; }
+
+    .carousel-btn { width: 38px; height: 38px; font-size: 1.4rem; }
+}
