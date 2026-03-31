@@ -27,14 +27,41 @@
             </div>
         </header>
 
+        <!-- ── Contador de relación ── -->
+        <section class="counter-section" id="counterSection">
+            <div class="counter-label">llevamos juntos</div>
+            <div class="counter-units">
+                <div class="counter-unit">
+                    <span class="counter-num" id="cntDays">000</span>
+                    <span class="counter-uname">días</span>
+                </div>
+                <div class="counter-sep">:</div>
+                <div class="counter-unit">
+                    <span class="counter-num" id="cntHours">00</span>
+                    <span class="counter-uname">horas</span>
+                </div>
+                <div class="counter-sep">:</div>
+                <div class="counter-unit">
+                    <span class="counter-num" id="cntMins">00</span>
+                    <span class="counter-uname">minutos</span>
+                </div>
+                <div class="counter-sep">:</div>
+                <div class="counter-unit">
+                    <span class="counter-num" id="cntSecs">00</span>
+                    <span class="counter-uname">segundos</span>
+                </div>
+            </div>
+            <div class="counter-since">y cada encuentro , cada mirada, cada beso y cada segundo vale la pena ❤️</div>
+        </section>
+
         <!-- Fila: mensaje izquierda + carrusel derecha -->
         <div class="content-row">
 
             <section class="message-section">
                 <div class="message-card">
                     <div class="card-ornament top-left">❝</div>
-                    <p class="card-text">Qué tengas un hermoso día tanto como lo lindo de tus ojos y lo espectacular de tu sonrisa 
-                         Recuerda que siempre estaré para ti mi princesa ♥️ siempre.</p>
+                    <p class="card-text">Cada dia que pasa me haces mas y mas feliz , creeme que el amor es un sentimiento inexplicable y eso lo hace especial
+                        sentir cosas por alguien es muy bonito y cuando la otra persona lo siente igual es maravilloso te quiero mi enojona ❤️.</p>
                     <div class="card-ornament bottom-right">❞</div>
                     <div class="card-signature">— Tu angelito</div>
                 </div>
@@ -93,6 +120,42 @@
             </section>
 
         </div><!-- /.content-row -->
+
+        <!-- ── Carta secreta ── -->
+        <section class="letter-section" id="letterSection">
+            <div class="letter-hint">Hay algo especial esperándote…</div>
+
+            <!-- Sobre -->
+            <div class="envelope-wrapper" id="envelopeWrapper">
+                <div class="envelope" id="envelope">
+                    <!-- Solapa trasera (fondo) -->
+                    <div class="env-back"></div>
+                    <!-- Cuerpo -->
+                    <div class="env-body">
+                        <div class="env-heart">❤️</div>
+                    </div>
+                    <!-- Solapa delantera superior (la que se abre) -->
+                    <div class="env-flap" id="envFlap"></div>
+                    <!-- Lados decorativos -->
+                    <div class="env-left"></div>
+                    <div class="env-right"></div>
+                    <!-- Sello -->
+                    <div class="env-stamp">✦</div>
+                    <!-- Texto "toca aquí" -->
+                    <div class="env-cta" id="envCta">toca para abrir</div>
+                </div>
+            </div>
+
+            <!-- Carta desplegada -->
+            <div class="letter-card" id="letterCard">
+                <div class="letter-deco-top">✦ ❤️ ✦</div>
+                <div class="letter-date" id="letterDate"></div>
+                <div class="letter-salute">Mi cielito,</div>
+                <div class="letter-body" id="letterBody"></div>
+                <div class="letter-closing">Con todo mi corazón,<br><em>Tu angelito</em> </div>
+                <button class="letter-close-btn" id="letterCloseBtn">× cerrar carta</button>
+            </div>
+        </section>
 
         <footer class="page-footer">
             <p>Con mucho amor de tu ingeniero ❤️</p>
