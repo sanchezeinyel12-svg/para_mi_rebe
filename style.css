@@ -684,6 +684,114 @@ body {
     color: var(--white);
 }
 
+/* ════════════════════════════════════════════
+   ── TEASER ROSA ───────────────────────────
+   ════════════════════════════════════════════ */
+.rose-teaser-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    animation: fadeSlideUp 1.2s 1.1s cubic-bezier(.22,1,.36,1) both;
+}
+
+.rose-teaser-card {
+    width: min(520px, 100%);
+    background: var(--white);
+    border-radius: 28px;
+    padding: 48px 44px;
+    box-shadow:
+        0 4px 6px rgba(0,0,0,.04),
+        0 24px 70px var(--shadow),
+        inset 0 1px 0 rgba(255,255,255,.9);
+    border: 1px solid rgba(201,66,106,0.14);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    text-align: center;
+    /* Sutil fondo con patrón de pétalos */
+    background-image:
+        radial-gradient(ellipse 70% 50% at 50% 0%, rgba(252,232,238,0.6) 0%, transparent 70%),
+        var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Decoración esquinas */
+.rose-teaser-card::before,
+.rose-teaser-card::after {
+    content: '🌹';
+    position: absolute;
+    font-size: 5rem;
+    opacity: 0.06;
+    pointer-events: none;
+}
+.rose-teaser-card::before { top: -16px; left: -12px; transform: rotate(-20deg); }
+.rose-teaser-card::after  { bottom: -16px; right: -12px; transform: rotate(20deg); }
+
+.rose-teaser-deco {
+    font-size: 3rem;
+    line-height: 1;
+    animation: rosePulse 2.4s ease-in-out infinite;
+}
+
+@keyframes rosePulse {
+    0%, 100% { transform: scale(1) rotate(-4deg); }
+    50%       { transform: scale(1.12) rotate(4deg); }
+}
+
+.rose-teaser-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.3rem, 4vw, 1.7rem);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--rose-deep), var(--rose), var(--rose-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1.2;
+}
+
+.rose-teaser-sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(0.9rem, 2vw, 1rem);
+    color: var(--text-mid);
+    line-height: 1.7;
+    max-width: 360px;
+}
+
+.rose-teaser-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 8px;
+    padding: 14px 36px;
+    background: linear-gradient(135deg, var(--rose-deep), var(--rose));
+    color: var(--white);
+    border-radius: 50px;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 0.95rem;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    box-shadow: 0 8px 30px rgba(201,66,106,0.35);
+    transition: transform 0.25s cubic-bezier(.22,1,.36,1), box-shadow 0.25s ease;
+}
+
+.rose-teaser-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 40px rgba(201,66,106,0.45);
+}
+
+.rose-btn-arrow {
+    font-size: 1.1rem;
+    transition: transform 0.2s ease;
+}
+
+.rose-teaser-btn:hover .rose-btn-arrow {
+    transform: translateX(4px);
+}
+
 /* ─── Footer ────────────────────────────────── */
 .page-footer {
     font-family: var(--font-sans);
@@ -711,5 +819,6 @@ body {
     .env-left  { border-width: 0 0 185px 135px; }
     .env-right { border-width: 185px 0 0 135px; }
 
-    .letter-card { padding: 30px 24px; }
+    .rose-teaser-card { padding: 36px 24px; }
+    .rose-teaser-btn  { padding: 12px 28px; font-size: 0.88rem; }
 }
