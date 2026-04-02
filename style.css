@@ -792,6 +792,208 @@ body {
     transform: translateX(4px);
 }
 
+
+/* ════════════════════════════════════════════
+   ── NUESTRA CANCIÓN ───────────────────────
+   ════════════════════════════════════════════ */
+.song-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    animation: fadeSlideUp 1.2s 1.2s cubic-bezier(.22,1,.36,1) both;
+}
+
+.song-label {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--rose-light);
+}
+
+.song-card {
+    width: min(540px, 100%);
+    background: var(--white);
+    border-radius: 28px;
+    padding: 36px 40px;
+    box-shadow:
+        0 4px 6px rgba(0,0,0,.04),
+        0 20px 60px var(--shadow),
+        inset 0 1px 0 rgba(255,255,255,.9);
+    border: 1px solid rgba(201,66,106,0.12);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.song-note {
+    position: absolute;
+    font-family: var(--font-serif);
+    font-size: 5rem;
+    color: var(--rose-pale);
+    line-height: 1;
+    pointer-events: none;
+    opacity: 0.5;
+}
+.song-note--left  { top: 4px; left: 12px; animation: noteFloat 4s ease-in-out infinite; }
+.song-note--right { bottom: 8px; right: 14px; animation: noteFloat 4s ease-in-out infinite 1.5s; }
+
+@keyframes noteFloat {
+    0%, 100% { transform: translateY(0) rotate(-8deg); }
+    50%       { transform: translateY(-8px) rotate(4deg); }
+}
+
+.song-intro {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(0.9rem, 2vw, 1.05rem);
+    color: var(--text-mid);
+    position: relative;
+    z-index: 2;
+}
+
+.song-embed-wrapper {
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(140,40,80,0.15);
+}
+
+.song-closing {
+    font-family: var(--font-serif);
+    font-size: 0.9rem;
+    color: var(--rose-light);
+    font-style: italic;
+    position: relative;
+    z-index: 2;
+}
+
+/* ════════════════════════════════════════════
+   ── CIELO ESTRELLADO ──────────────────────
+   ════════════════════════════════════════════ */
+.stars-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    animation: fadeSlideUp 1.2s 1.35s cubic-bezier(.22,1,.36,1) both;
+}
+
+.stars-label {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--rose-light);
+}
+
+.stars-intro {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(0.88rem, 2vw, 1rem);
+    color: var(--text-mid);
+    text-align: center;
+}
+
+.stars-sky {
+    width: 100%;
+    min-height: 340px;
+    border-radius: 28px;
+    background: linear-gradient(160deg, #1a0a14 0%, #2d0e22 40%, #1a0614 100%);
+    position: relative;
+    overflow: hidden;
+    box-shadow:
+        0 20px 70px var(--shadow),
+        inset 0 0 80px rgba(201,66,106,0.08);
+    border: 1px solid rgba(201,66,106,0.2);
+}
+
+/* Nebulosa decorativa de fondo */
+.stars-sky::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse 60% 40% at 30% 40%, rgba(201,66,106,0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 35% at 75% 60%, rgba(139,26,58,0.1) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.star-btn {
+    position: absolute;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    line-height: 1;
+    transition: transform 0.25s cubic-bezier(.22,1,.36,1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.star-btn:hover { transform: scale(1.5); }
+.star-btn.lit   { filter: brightness(1.4) drop-shadow(0 0 6px gold); }
+
+.star-shape {
+    display: block;
+    animation: starTwinkle var(--twinkle-dur, 2.5s) ease-in-out infinite;
+    animation-delay: var(--twinkle-delay, 0s);
+}
+
+@keyframes starTwinkle {
+    0%, 100% { opacity: 0.7; transform: scale(1); }
+    50%       { opacity: 1;   transform: scale(1.25); }
+}
+
+/* Panel de frase */
+.stars-phrase-panel {
+    width: min(560px, 100%);
+    min-height: 64px;
+    background: var(--white);
+    border-radius: 18px;
+    padding: 20px 32px;
+    box-shadow: 0 8px 40px var(--shadow);
+    border: 1px solid rgba(201,66,106,0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.45s cubic-bezier(.22,1,.36,1), transform 0.45s cubic-bezier(.22,1,.36,1);
+    text-align: center;
+}
+
+.stars-phrase-panel.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stars-phrase-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(0.95rem, 2.2vw, 1.1rem);
+    color: var(--text-dark);
+    line-height: 1.7;
+}
+
+@media (max-width: 700px) {
+    .song-card    { padding: 28px 20px; }
+    .stars-sky    { min-height: 260px; }
+    .stars-phrase-panel { padding: 16px 20px; }
+}
+
 /* ─── Footer ────────────────────────────────── */
 .page-footer {
     font-family: var(--font-sans);
