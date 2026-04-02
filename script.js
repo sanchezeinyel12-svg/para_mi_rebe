@@ -152,8 +152,9 @@ setInterval(spawnParticle, 2200);
 // ── CONTADOR DE RELACIÓN ─────────────────────
 // ════════════════════════════════════════════════
 (function initCounter() {
-
-        const START = new Date(2026, 1, 9, 0, 0, 0);
+    // ⬇️  CAMBIA esta fecha a la fecha real de inicio de su relación
+    //     Formato: año, mes-1 (enero=0), día, hora, minuto, segundo
+    const START = new Date(2026, 1, 9, 0, 0, 0); // Ejemplo: 15 de abril de 2023
 
     const elDays  = document.getElementById("cntDays");
     const elHours = document.getElementById("cntHours");
@@ -201,7 +202,19 @@ setInterval(spawnParticle, 2200);
 (function initLetter() {
     // Mensajes del día — se elige uno según el día del año para que siempre sea distinto
     const MENSAJES = [
-        `Mi niña linda hoy en este dia tan bonito quiero desearte lo mejor del mundo y soy un afortunado de compartirlo contigo.\nNo hay día en que no piense en esa sonrisa tuya que me tiene loquito.\nTe quiero como no te imaginas, haria cualquier cosa por mi psicologa y verla triunfar ami lado.`,
+        `Hoy quiero que sepas que eres lo más bonito que me ha pasado en la vida.\nNo hay día en que no piense en esa sonrisa tuya que lo ilumina todo.\nTe amo más de lo que las palabras pueden decir.`,
+
+        `Mi niña hermosa,\ncada vez que me miras así, con esos ojos llenos de luz, siento que tengo todo lo que necesito.\nGracias por existir y por dejarme ser parte de tu historia.`,
+
+        `Sé que a veces los días son difíciles,\npero quiero que recuerdes que yo estoy aquí,\nsiempre, en las risas y también en las tormentas.\nEres mi lugar favorito en el mundo.`,
+
+        `Hoy solo quiero decirte que estoy orgulloso de ti.\nDe tu fuerza, de tu inteligencia, de la persona tan increíble que eres.\nEl mundo no sabe todavía lo afortunado que es de tenerte.`,
+
+        `Mi princesa,\nsi pudiera darte una cosa en el mundo,\nte daría todos los días felices que te mereces,\nporque te lo mereces absolutamente todo.`,
+
+        `Eres mi calma cuando todo es caos,\nmi risa cuando el día se pone gris,\nmi hogar cuando estoy perdido.\nTe quiero muchísimo, mi amor.`,
+
+        `Oye tú, la de la sonrisa que me roba el aliento...\n¿ya sabes cuánto te adoro?\nPorque te adoro a morir, mi psicóloga preciosa.`,
     ];
 
     const envelope   = document.getElementById("envelope");
@@ -256,3 +269,91 @@ setInterval(spawnParticle, 2200);
 // ─── Año en footer ─────────────────────────────
 const yearEl = document.getElementById("currentYear");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+// ════════════════════════════════════════════════
+// ── CIELO ESTRELLADO ─────────────────────────
+// ════════════════════════════════════════════════
+(function initStars() {
+    const sky   = document.getElementById("starsSky");
+    const panel = document.getElementById("starsPhrasePanel");
+    const text  = document.getElementById("starsPhraseText");
+    if (!sky) return;
+
+    const RAZONES = [
+        "Cuando te veo, todo pierde sentido mi amor solo me enfoco en ti y en esos ojos preciosos.",
+        "Tus ojitos me iluminan todos los días por eso le pido fotos todos los dias jejeje.",
+        "Tu siendo tú me encantas tu forma de ser de cantar de alabar a Dios , me encantas mi amor.",
+        "Mi vida tomó un rumbo muy bonito desde que llegaste.",
+        "Pienso día y noche en ti, solo en ti. En nadie más.",
+        "Si me dieran a escoger de nuevo, te elegiría con los ojos cerrados amoricto.",
+        "Vales la pena hoy, mañana y siempre.",
+        "Quiero estar ahí cuando cumplas tus metas y te pongas el uniforme de la psicóloga que siempre quisiste ser.",
+        "Tu sonrisa es lo más bonito que existe en mi mundo.",
+        "Contigo aprendí que el amor no duele, cura es decir curameeeeee.",
+        "Eres mi lugar favorito, el que más entre semana cuando no te veo mi amor.",
+        "Me haces mejor persona sin siquiera proponértelo y me cuidas mucho eso lo apreciooo amor.",
+    ];
+
+    // Tamaños de estrella
+    const SIZES = [18, 22, 28, 24, 20, 26, 22, 18, 30, 24, 20, 26];
+
+    // Posiciones % para que no se sobrepongan demasiado
+    const POSITIONS = [
+        [8,  12], [22, 55], [38, 10], [52, 62], [65, 18], [80, 48],
+        [14, 72], [47, 38], [72, 75], [88, 15], [30, 82], [60, 90],
+    ];
+
+    RAZONES.forEach((razon, i) => {
+        const [left, top] = POSITIONS[i] || [Math.random()*80+8, Math.random()*75+8];
+        const size = SIZES[i] || 22;
+        const dur  = (2 + Math.random() * 2).toFixed(1) + "s";
+        const del  = (Math.random() * 2).toFixed(1) + "s";
+
+        const btn = document.createElement("button");
+        btn.className = "star-btn";
+        btn.style.left = left + "%";
+        btn.style.top  = top + "%";
+        btn.setAttribute("aria-label", "Estrella " + (i + 1));
+
+        // SVG estrella de 5 puntas
+        btn.innerHTML = `
+            <svg class="star-shape" width="${size}" height="${size}" viewBox="0 0 24 24"
+                 style="--twinkle-dur:${dur};--twinkle-delay:${del}">
+                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
+                    fill="#ffd700" stroke="#f4a020" stroke-width="0.5"/>
+            </svg>`;
+
+        btn.addEventListener("click", () => {
+            // Iluminar estrella
+            sky.querySelectorAll(".star-btn").forEach(b => b.classList.remove("lit"));
+            btn.classList.add("lit");
+
+            // Mostrar frase
+            text.textContent = razon;
+            panel.classList.remove("visible");
+            void panel.offsetWidth;
+            panel.classList.add("visible");
+            panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+        });
+
+        sky.appendChild(btn);
+    });
+
+    // Micro-estrellas decorativas de fondo (no clicables)
+    for (let i = 0; i < 60; i++) {
+        const dot = document.createElement("div");
+        const s   = Math.random() * 2 + 1;
+        dot.style.cssText = `
+            position:absolute;
+            width:${s}px; height:${s}px;
+            border-radius:50%;
+            background:rgba(255,255,220,${0.3 + Math.random()*0.5});
+            left:${Math.random()*100}%;
+            top:${Math.random()*100}%;
+            pointer-events:none;
+            animation: starTwinkle ${(1.5+Math.random()*2).toFixed(1)}s ease-in-out infinite;
+            animation-delay:${(Math.random()*2).toFixed(1)}s;
+        `;
+        sky.appendChild(dot);
+    }
+})();
