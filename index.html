@@ -3,35 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para el amor de mi vida ❤️</title>
+    <title>Para el amor de mi vida</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <style>
-        /* Estilos específicos para la rosa y el sobre */
-        .rose-section-wrapper { display: flex; flex-direction: column; align-items: center; padding: 60px 20px; width: 100%; }
-        .rose-area { position: relative; width: min(480px, 94vw); margin-top: 16px; }
-        .rose-svg { width: 100%; height: auto; display: block; filter: drop-shadow(0 16px 40px rgba(140,40,80,0.2)); }
-        .petal-hit { cursor: pointer; transition: opacity 0.2s; }
-        .petal-hit:hover { opacity: 0.82; }
-        .petal-hit.revealed { filter: brightness(0.85); }
-        .petal-num { font-family: 'Playfair Display', serif; font-size: 14px; fill: white; font-weight: 700; text-anchor: middle; dominant-baseline: central; pointer-events: none; }
-        .phrase-panel {
-            width: 100%; max-width: 600px; background: white; border-radius: 20px; padding: 30px;
-            box-shadow: 0 10px 30px rgba(140,40,80,0.18); border: 1px solid rgba(201,66,106,0.12);
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
-            opacity: 0; transform: translateY(20px); transition: 0.5s; text-align: center; margin: 20px 0;
-        }
-        .phrase-panel.visible { opacity: 1; transform: translateY(0); }
-        .final-msg {
-            width: 100%; max-width: 600px; background: linear-gradient(135deg, #fff0f5, #fce4ee);
-            border-radius: 20px; padding: 30px; border: 1px solid rgba(201,66,106,0.2);
-            text-align: center; opacity: 0; transition: 0.8s; display: none;
-        }
-        .final-msg.visible { opacity: 1; display: block; }
-        .envelope.open .env-flap { transform: rotateX(-180deg); }
-    </style>
 </head>
 <body>
 
@@ -39,36 +15,53 @@
     <div class="floating-phrases" id="floatingPhrases"></div>
 
     <main class="main-wrapper">
+
         <header class="page-header">
             <div class="title-group">
                 <span class="subtitle-top">con todo mi amor</span>
                 <h1 class="main-title">
                     <span class="title-line">Para</span>
-                    <span class="title-name">Mi esposita</span>
+                    <span class="title-name">Mi Psicologa preciosa ❤️ </span>
                 </h1>
                 <div class="title-deco">✦</div>
             </div>
         </header>
 
-        <section class="counter-section">
+        <!-- ── Contador de relación ── -->
+        <section class="counter-section" id="counterSection">
             <div class="counter-label">llevamos juntos</div>
             <div class="counter-units">
-                <div class="counter-unit"><span class="counter-num" id="cntDays">000</span><span class="counter-uname">días</span></div>
+                <div class="counter-unit">
+                    <span class="counter-num" id="cntDays">000</span>
+                    <span class="counter-uname">días</span>
+                </div>
                 <div class="counter-sep">:</div>
-                <div class="counter-unit"><span class="counter-num" id="cntHours">00</span><span class="counter-uname">horas</span></div>
+                <div class="counter-unit">
+                    <span class="counter-num" id="cntHours">00</span>
+                    <span class="counter-uname">horas</span>
+                </div>
                 <div class="counter-sep">:</div>
-                <div class="counter-unit"><span class="counter-num" id="cntMins">00</span><span class="counter-uname">minutos</span></div>
+                <div class="counter-unit">
+                    <span class="counter-num" id="cntMins">00</span>
+                    <span class="counter-uname">minutos</span>
+                </div>
                 <div class="counter-sep">:</div>
-                <div class="counter-unit"><span class="counter-num" id="cntSecs">00</span><span class="counter-uname">segundos</span></div>
+                <div class="counter-unit">
+                    <span class="counter-num" id="cntSecs">00</span>
+                    <span class="counter-uname">segundos</span>
+                </div>
             </div>
             <div class="counter-since">y cada encuentro , cada mirada, cada beso y cada segundo vale la pena ❤️</div>
         </section>
 
+        <!-- Fila: mensaje izquierda + carrusel derecha -->
         <div class="content-row">
+
             <section class="message-section">
                 <div class="message-card">
                     <div class="card-ornament top-left">❝</div>
-                    <p class="card-text">Te quiero con todo mi corazon mi amor la verdad eres muy especial para mi no me veo en la vida en un rumbo que no sea contigo❤️.</p>
+                    <p class="card-text">Otro dia mas otro detalle para ti mi linda niña que vales toda la pena del mundo
+                        quererte abrazarte se queda corto para lo que te mereces en esta vida mi niña de lindos ojitos ,te quiero mi enojona ❤️.</p>
                     <div class="card-ornament bottom-right">❞</div>
                     <div class="card-signature">— Tu angelito</div>
                 </div>
@@ -77,126 +70,96 @@
             <section class="carousel-section">
                 <div class="carousel-container">
                     <div class="carousel-track" id="carouselTrack">
-                        <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="7.jpeg" alt="7"><div class="photo-placeholder">📷</div></div><div class="slide-phrase"><p>"Eres la razón más bonita de mis días"</p></div></div></div>
-                        <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="5.jpeg" alt="5"><div class="photo-placeholder">📷</div></div><div class="slide-phrase"><p>"La futura psicóloga más linda del mundo"</p></div></div></div>
-                        <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="4.jpeg" alt="4"><div class="photo-placeholder">📷</div></div><div class="slide-phrase"><p>"Luchare por ti y nuestro amor"</p></div></div></div>
-                        <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="8.jpeg" alt="8"><div class="photo-placeholder">📷</div></div><div class="slide-phrase"><p>"Orgulloso de ti, siempre"</p></div></div></div>
-                        <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="6.jpeg" alt="6"><div class="photo-placeholder">📷</div></div><div class="slide-phrase"><p>"Te quiero muchote mi amorcitoo"</p></div></div></div>
+
+                        <div class="slide"><div class="slide-inner">
+                            <div class="photo-frame">
+                                <img src="7.jpeg" alt="Nosotros" onerror="this.parentElement.classList.add('no-photo'); this.remove()">
+                                <div class="photo-placeholder">📷</div>
+                            </div>
+                            <div class="slide-phrase"><p>"Eres la razón más bonita de mis días"</p></div>
+                        </div></div>
+
+                        <div class="slide"><div class="slide-inner">
+                            <div class="photo-frame">
+                                <img src="5.jpeg" alt="Nosotros" onerror="this.parentElement.classList.add('no-photo'); this.remove()">
+                                <div class="photo-placeholder">📷</div>
+                            </div>
+                            <div class="slide-phrase"><p>"La futura psicóloga más linda del mundo"</p></div>
+                        </div></div>
+
+                        <div class="slide"><div class="slide-inner">
+                            <div class="photo-frame">
+                                <img src="4.jpeg" alt="Nosotros" onerror="this.parentElement.classList.add('no-photo'); this.remove()">
+                                <div class="photo-placeholder">📷</div>
+                            </div>
+                            <div class="slide-phrase"><p>"Luchare por ti y nuestro amor"</p></div>
+                        </div></div>
+
+                        <div class="slide"><div class="slide-inner">
+                            <div class="photo-frame">
+                                <img src="8.jpeg" alt="Nosotros" onerror="this.parentElement.classList.add('no-photo'); this.remove()">
+                                <div class="photo-placeholder">📷</div>
+                            </div>
+                            <div class="slide-phrase"><p>"Orgulloso de ti, siempre"</p></div>
+                        </div></div>
+
+                        <div class="slide"><div class="slide-inner">
+                            <div class="photo-frame">
+                                <img src="6.jpeg" alt="Nosotros" onerror="this.parentElement.classList.add('no-photo'); this.remove()">
+                                <div class="photo-placeholder">📷</div>
+                            </div>
+                            <div class="slide-phrase"><p>"Te quiero muchote mi amorcitoo"</p></div>
+                        </div></div>
+
                     </div>
-                    <button class="carousel-btn prev" id="prevBtn">‹</button>
-                    <button class="carousel-btn next" id="nextBtn">›</button>
+
+                    <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">‹</button>
+                    <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">›</button>
                     <div class="carousel-dots" id="carouselDots"></div>
                 </div>
             </section>
-        </div>
 
-        <section class="letter-section">
-            <p class="letter-hint">Tengo algo más para ti...</p>
-            <div class="envelope-wrapper">
-                <div class="envelope" id="envelope" onclick="document.getElementById('envelope').classList.add('open'); setTimeout(()=>document.getElementById('letterCard').classList.add('visible'), 600)">
-                    <div class="env-back"></div>
-                    <div class="env-body"><span class="env-heart">❤️</span></div>
-                    <div class="env-flap"></div>
-                    <div class="env-stamp">✦</div>
-                    <div class="env-cta">Toca para abrir</div>
+        </div><!-- /.content-row -->
+
+        <!-- ── Nuestra canción ── -->
+        <section class="song-section">
+            <div class="song-label">Nuestra canción</div>
+            <div class="song-card">
+                <div class="song-note song-note--left">♪</div>
+                <div class="song-note song-note--right">♫</div>
+                <p class="song-intro">La cancion que me recuerda a ti siempre mi amor</p>
+                <div class="song-embed-wrapper">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/3EK4tGkSiO5xvvB5sM4tln?utm_source=generator&theme=0"
+                        width="100%"
+                        height="152"
+                        frameborder="0"
+                        allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy"
+                        style="border-radius: 16px;">
+                    </iframe>
                 </div>
-            </div>
-
-            <div class="letter-card" id="letterCard">
-                <div class="letter-deco-top">✦ ✦ ✦</div>
-                <p class="letter-salute">Para mi psicóloga favorita,</p>
-                <p class="letter-body">
-                    Sé que los exámenes y la ansiedad de la U a veces pesan, pero quiero que recuerdes que eres capaz de todo. 
-                    Estoy muy orgulloso de ti y de cómo avanzas en tu carrera. Te quiero muchote</p>
-                <button class="letter-close-btn" onclick="document.getElementById('letterCard').classList.remove('visible'); setTimeout(()=>document.getElementById('envelope').classList.remove('open'), 400)">Cerrar</button>
+                <p class="song-closing">Esta canción es dedicada para ti  mi amor ❤️</p>
             </div>
         </section>
 
-        <section class="rose-section-wrapper" id="seccionRosa">
-            <p class="hint">toca cada pétalo</p>
-            <h2 class="main-title" style="font-size: 2.5rem;">Una rosa para ti mi niña linda</h2>
-            <p class="sub">Ocho pétalos, ocho cosas que siento por ti mi rebe</p>
-
-            <div class="rose-area">
-                <svg class="rose-svg" viewBox="0 0 480 520">
-                    <defs>
-                        <radialGradient id="pg0" cx="50%" cy="60%" r="55%"><stop offset="0%" stop-color="#f0a0bc"/><stop offset="100%" stop-color="#b03060"/></radialGradient>
-                        <radialGradient id="cg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#f7c8d8"/><stop offset="100%" stop-color="#c9426a"/></radialGradient>
-                        <linearGradient id="stemG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#3d6b38"/><stop offset="100%" stop-color="#5d9e56"/></linearGradient>
-                    </defs>
-                    <path d="M240 370 C238 410, 234 440, 232 490" stroke="url(#stemG)" stroke-width="6" fill="none" stroke-linecap="round"/>
-                    
-                    <g class="petal-hit" id="petal-0" onclick="revealPetal(0)"><ellipse cx="240" cy="200" rx="48" ry="72" fill="url(#pg0)" transform="rotate(-5 240 295)"/><text class="petal-num" x="240" y="188">1</text></g>
-                    <g class="petal-hit" id="petal-1" onclick="revealPetal(1)"><ellipse cx="305" cy="228" rx="46" ry="68" fill="url(#pg0)" transform="rotate(52 240 295)"/><text class="petal-num" x="320" y="215">2</text></g>
-                    <g class="petal-hit" id="petal-2" onclick="revealPetal(2)"><ellipse cx="305" cy="362" rx="46" ry="68" fill="url(#pg0)" transform="rotate(128 240 295)"/><text class="petal-num" x="316" y="370">3</text></g>
-                    <g class="petal-hit" id="petal-3" onclick="revealPetal(3)"><ellipse cx="240" cy="390" rx="48" ry="72" fill="url(#pg0)" transform="rotate(185 240 295)"/><text class="petal-num" x="240" y="402">4</text></g>
-                    <g class="petal-hit" id="petal-4" onclick="revealPetal(4)"><ellipse cx="195" cy="228" rx="42" ry="62" fill="url(#pg0)" transform="rotate(-52 240 295)"/><text class="petal-num" x="183" y="216">5</text></g>
-                    <g class="petal-hit" id="petal-5" onclick="revealPetal(5)"><ellipse cx="284" cy="238" rx="40" ry="60" fill="url(#pg0)" transform="rotate(28 240 295)"/><text class="petal-num" x="295" y="234">6</text></g>
-                    <g class="petal-hit" id="petal-6" onclick="revealPetal(6)"><ellipse cx="284" cy="352" rx="40" ry="60" fill="url(#pg0)" transform="rotate(152 240 295)"/><text class="petal-num" x="292" y="358">7</text></g>
-                    <g class="petal-hit" id="petal-7" onclick="revealPetal(7)"><ellipse cx="196" cy="362" rx="42" ry="62" fill="url(#pg0)" transform="rotate(-128 240 295)"/><text class="petal-num" x="184" y="368">8</text></g>
-                    
-                    <circle cx="240" cy="295" r="46" fill="url(#cg)"/><text x="240" y="297" style="font-size:22px; text-anchor:middle;">❤️</text>
-                </svg>
-            </div>
-
-            <div class="phrase-panel" id="phrasePanel">
-                <div class="phrase-icon" id="phraseIcon" style="font-size: 2rem;">🌹</div>
-                <p class="phrase-text" id="phraseText"></p>
-            </div>
-
-            <div class="final-msg" id="finalMsg">
-                <p style="font-family: 'Playfair Display'; font-size: 1.2rem;">Esta rosa que me costo hacerla amor jeje nunca se marchitara como el amor que te tengo..</p>
-                <p>— Tu angelito ❤️</p>
+        <!-- ── Cielo estrellado ── -->
+        <section class="stars-section">
+            <div class="stars-label">Unas cuantas razones de las muchas que te expresan mi amor por ti mi rebe</div>
+            <p class="stars-intro">Toca cada una de ellas</p>
+            <div class="stars-sky" id="starsSky"></div>
+            <div class="stars-phrase-panel" id="starsPhrasePanel">
+                <span class="stars-phrase-text" id="starsPhraseText"></span>
             </div>
         </section>
 
         <footer class="page-footer">
             <p>Con mucho amor de tu ingeniero ❤️</p>
         </footer>
+
     </main>
 
-    <script>
-        // 1. Contador (9 Feb 2025)
-        const START_DATE = new Date(2025, 1, 9, 0, 0, 0);
-        function updateCounter() {
-            const now = new Date();
-            const diff = now - START_DATE;
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-            const mins = Math.floor((diff / 1000 / 60) % 60);
-            const secs = Math.floor((diff / 1000) % 60);
-            document.getElementById('cntDays').textContent = String(days).padStart(3, '0');
-            document.getElementById('cntHours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('cntMins').textContent = String(mins).padStart(2, '0');
-            document.getElementById('cntSecs').textContent = String(secs).padStart(2, '0');
-        }
-        setInterval(updateCounter, 1000); updateCounter();
-
-        // 2. Frases de la Rosa (Tus originales)
-        const FRASES_ROSA = [
-            { icon: "😅", text: "Desde el primer día que te vi me dejaste sin palabras y ni saludarte bien pude ." },
-            { icon: "😂", text: "Me encanta cuando nos molestamos uno al otro y cuando te enojas pero luego me sonries uff." },
-            { icon: "💪", text: "Yo voy al gimnasio pero tu me demuestras lo fuertes que eres mi amor nunca te rindes ante nada." },
-            { icon: "🌙", text: "Pienso en ti antes de dormir y lo primero que hago es ver tus mensajes que me alegran la mañana." },
-            { icon: "🎓", text: "Verte luchar por tus sueños me llena de un orgullo que no sé cómo explicarte. Vas a llegar lejos, mi psicóloga preciosa." },
-            { icon: "🤝", text: "Estare siempre para ti aunque aveces me dices que puedes tu solita y yo se pero yo estare para lo que sea siempre mi amor siempre." },
-            { icon: "✨", text: "Tu sonrisa me mata, por eso veme mas y mas que si voy a morir lo hare feliz." },
-            { icon: "♾️", text: "Te quiero hoy, te voy a querer mañana, y dentro de muchos años todavía voy a elegirte a ti siempre a ti mi psicologa bonita inteligente preciosa siempre para ti este loquito solo tiene ojos para ti solo para ti." }
-        ];
-
-        let tocados = new Set();
-        function revealPetal(index) {
-            const petal = document.getElementById(`petal-${index}`);
-            petal.classList.add('revealed');
-            tocados.add(index);
-            document.getElementById('phraseIcon').textContent = FRASES_ROSA[index].icon;
-            document.getElementById('phraseText').textContent = FRASES_ROSA[index].text;
-            document.getElementById('phrasePanel').classList.add('visible');
-            if(tocados.size === 8) {
-                setTimeout(() => document.getElementById('finalMsg').classList.add('visible'), 500);
-            }
-        }
-    </script>
     <script src="script.js"></script>
 </body>
 </html>
