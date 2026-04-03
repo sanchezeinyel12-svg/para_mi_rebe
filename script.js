@@ -152,9 +152,7 @@ setInterval(spawnParticle, 2200);
 // ── CONTADOR DE RELACIÓN ─────────────────────
 // ════════════════════════════════════════════════
 (function initCounter() {
-    // ⬇️  CAMBIA esta fecha a la fecha real de inicio de su relación
-    //     Formato: año, mes-1 (enero=0), día, hora, minuto, segundo
-    const START = new Date(2026, 1, 9, 0, 0, 0); // Ejemplo: 15 de abril de 2023
+    const START = new Date(2026, 1, 9, 0, 0, 0);
 
     const elDays  = document.getElementById("cntDays");
     const elHours = document.getElementById("cntHours");
@@ -170,23 +168,22 @@ setInterval(spawnParticle, 2200);
     }
 
     function tick() {
-        const now     = new Date();
-        const diff    = Math.max(0, now - START); // milisegundos
+        const now      = new Date();
+        const diff     = Math.max(0, now - START);
         const totalSec = Math.floor(diff / 1000);
-        const secs    = totalSec % 60;
-        const mins    = Math.floor(totalSec / 60) % 60;
-        const hours   = Math.floor(totalSec / 3600) % 24;
-        const days    = Math.floor(totalSec / 86400);
+        const secs     = totalSec % 60;
+        const mins     = Math.floor(totalSec / 60) % 60;
+        const hours    = Math.floor(totalSec / 3600) % 24;
+        const days     = Math.floor(totalSec / 86400);
 
         elDays.textContent  = pad(days, 3);
         elHours.textContent = pad(hours);
         elMins.textContent  = pad(mins);
         elSecs.textContent  = pad(secs);
 
-        // Pequeño efecto "tick" en segundos
         if (secs !== prevSecs) {
             elSecs.classList.remove("tick");
-            void elSecs.offsetWidth; // reflow
+            void elSecs.offsetWidth;
             elSecs.classList.add("tick");
             prevSecs = secs;
         }
@@ -196,164 +193,208 @@ setInterval(spawnParticle, 2200);
     setInterval(tick, 1000);
 })();
 
-// ════════════════════════════════════════════════
-// ── CARTA SECRETA ────────────────────────────
-// ════════════════════════════════════════════════
-(function initLetter() {
-    // Mensajes del día — se elige uno según el día del año para que siempre sea distinto
-    const MENSAJES = [
-        `Hoy quiero que sepas que eres lo más bonito que me ha pasado en la vida.\nNo hay día en que no piense en esa sonrisa tuya que lo ilumina todo.\nTe amo más de lo que las palabras pueden decir.`,
-
-        `Mi niña hermosa,\ncada vez que me miras así, con esos ojos llenos de luz, siento que tengo todo lo que necesito.\nGracias por existir y por dejarme ser parte de tu historia.`,
-
-        `Sé que a veces los días son difíciles,\npero quiero que recuerdes que yo estoy aquí,\nsiempre, en las risas y también en las tormentas.\nEres mi lugar favorito en el mundo.`,
-
-        `Hoy solo quiero decirte que estoy orgulloso de ti.\nDe tu fuerza, de tu inteligencia, de la persona tan increíble que eres.\nEl mundo no sabe todavía lo afortunado que es de tenerte.`,
-
-        `Mi princesa,\nsi pudiera darte una cosa en el mundo,\nte daría todos los días felices que te mereces,\nporque te lo mereces absolutamente todo.`,
-
-        `Eres mi calma cuando todo es caos,\nmi risa cuando el día se pone gris,\nmi hogar cuando estoy perdido.\nTe quiero muchísimo, mi amor.`,
-
-        `Oye tú, la de la sonrisa que me roba el aliento...\n¿ya sabes cuánto te adoro?\nPorque te adoro a morir, mi psicóloga preciosa.`,
-    ];
-
-    const envelope   = document.getElementById("envelope");
-    const letterCard = document.getElementById("letterCard");
-    const closeBtn   = document.getElementById("letterCloseBtn");
-    const letterBody = document.getElementById("letterBody");
-    const letterDate = document.getElementById("letterDate");
-
-    if (!envelope) return;
-
-    // Elegir mensaje según día del año (siempre el mismo para el mismo día)
-    const now = new Date();
-    const dayOfYear = Math.floor(
-        (now - new Date(now.getFullYear(), 0, 0)) / 86400000
-    );
-    const msg = MENSAJES[dayOfYear % MENSAJES.length];
-
-    // Fecha formateada en español
-    const fecha = now.toLocaleDateString("es-SV", {
-        weekday: "long", year: "numeric", month: "long", day: "numeric"
-    });
-    // capitalizar primera letra
-    if (letterDate) {
-        letterDate.textContent = fecha.charAt(0).toUpperCase() + fecha.slice(1);
-    }
-    if (letterBody) letterBody.textContent = msg;
-
-    let isOpen = false;
-
-    envelope.addEventListener("click", () => {
-        if (isOpen) return;
-        isOpen = true;
-
-        envelope.classList.add("open");
-
-        // Mostrar carta después de que el sobre se abra
-        setTimeout(() => {
-            letterCard.classList.add("visible");
-            letterCard.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        }, 500);
-    });
-
-    closeBtn?.addEventListener("click", () => {
-        letterCard.classList.remove("visible");
-        setTimeout(() => {
-            envelope.classList.remove("open");
-            isOpen = false;
-        }, 400);
-    });
-})();
-
 // ─── Año en footer ─────────────────────────────
 const yearEl = document.getElementById("currentYear");
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// ════════════════════════════════════════════════
-// ── CIELO ESTRELLADO ─────────────────────────
-// ════════════════════════════════════════════════
-(function initStars() {
-    const sky   = document.getElementById("starsSky");
-    const panel = document.getElementById("starsPhrasePanel");
-    const text  = document.getElementById("starsPhraseText");
-    if (!sky) return;
 
-    const RAZONES = [
-        "Cuando te veo, todo pierde sentido mi amor solo me enfoco en ti y en esos ojos preciosos.",
-        "Tus ojitos me iluminan todos los días por eso le pido fotos todos los dias jejeje.",
-        "Tu siendo tú me encantas tu forma de ser de cantar de alabar a Dios , me encantas mi amor.",
-        "Mi vida tomó un rumbo muy bonito desde que llegaste.",
-        "Pienso día y noche en ti, solo en ti. En nadie más.",
-        "Si me dieran a escoger de nuevo, te elegiría con los ojos cerrados amoricto.",
-        "Vales la pena hoy, mañana y siempre.",
-        "Quiero estar ahí cuando cumplas tus metas y te pongas el uniforme de la psicóloga que siempre quisiste ser.",
-        "Tu sonrisa es lo más bonito que existe en mi mundo.",
-        "Contigo aprendí que el amor no duele, cura es decir curameeeeee.",
-        "Eres mi lugar favorito, el que más entre semana cuando no te veo mi amor.",
-        "Me haces mejor persona sin siquiera proponértelo y me cuidas mucho eso lo apreciooo amor.",
+// ════════════════════════════════════════════════
+// ── JARDÍN DE MOMENTOS ────────────────────────
+// ════════════════════════════════════════════════
+(function initGarden() {
+
+    // ── Personaliza aquí tus momentos ──────────────
+    // Para agregar una foto pon la ruta en "photo", ejemplo: "foto1.jpeg"
+    const MOMENTS = [
+        {
+            chapter: "Capítulo I",
+            title: "La primera vez que nos vimos",
+            badge: "El inicio de todo",
+            text: " No hubo foto pero si momentos de diversion verdad mi amorcitoooo",
+            phrase: "\"El día que cambió mi historia para siempre al conocerte.\"",
+            photo: "gato.jpeg",
+        },
+        {
+            chapter: "Capítulo II",
+            title: "Nuestra primera foto juntos y besito incluido",
+            badge: "El inicio de nosotros",
+            text: "Me acuerdo ese dia mi amorcito, me dejaste mudo WOW en todo el camino hacia la casa no hable nada y va solo pensando en ti mi amoooor ",
+            phrase: "\"Ni el tiempo senti a tu lado.\"",
+            photo: "beso.jpeg",
+        },
+        {
+            chapter: "Capítulo III",
+            title: "El dia el paisajeeeee ufff",
+            badge: "precioso recuerdo como tu mi amorrrr",
+            text: "Ese dia ese vestido mi amor te quedaba dvino y el paisaje ufff",
+            phrase: "\"Solo vino a mi mente QUE MUJER\"",
+            photo: "paisaje.jpeg",
+        },
+        {
+            chapter: "Capítulo IV",
+            title: "Un momento que solo nosotros recordamos mas que todo yoooo",
+            badge: "Solo tú y yo",
+            text: " Hay mi amorcito agarrarte de la cintura uff y sentir esas curvaaaaas ",
+            phrase: "\"Contigo todo es muy bonitoooo.\"",
+            photo: "mano.jpg",
+        },
+        {
+            chapter: "Capítulo V",
+            title: "El día que me enamoré aún más de ti por lo sencillo y hermoso que fue compartir una comida juntos",
+            badge: "Mi favorito de todos los momentos",
+            text: "Hubo un instante en que te miré y pensé quien nos iba imaginar a nosotros juntos.",
+            phrase: "\"Te elegiría mil veces más, con los ojos cerrados.\"",
+            photo: "comida.jpg",
+        },
     ];
 
-    // Tamaños de estrella
-    const SIZES = [18, 22, 28, 24, 20, 26, 22, 18, 30, 24, 20, 26];
-
-    // Posiciones % para que no se sobrepongan demasiado
-    const POSITIONS = [
-        [8,  12], [22, 55], [38, 10], [52, 62], [65, 18], [80, 48],
-        [14, 72], [47, 38], [72, 75], [88, 15], [30, 82], [60, 90],
+    const FLOWER_COLORS = [
+        { petals: "#ff6b9d", center: "#ffd700", size: 90 },
+        { petals: "#e8758a", center: "#ffb347", size: 80 },
+        { petals: "#c9426a", center: "#ffd700", size: 100 },
+        { petals: "#f4a0c0", center: "#ffcc44", size: 78 },
+        { petals: "#d4537e", center: "#ffd700", size: 88 },
     ];
 
-    RAZONES.forEach((razon, i) => {
-        const [left, top] = POSITIONS[i] || [Math.random()*80+8, Math.random()*75+8];
-        const size = SIZES[i] || 22;
-        const dur  = (2 + Math.random() * 2).toFixed(1) + "s";
-        const del  = (Math.random() * 2).toFixed(1) + "s";
+    const STEM_COLOR = "#2d8a4e";
+    const LABELS = ["primera vez que nos vimos", "primer besitooo", "Momento a solas", "Esa mano arbitro", "Comiendo juntos en nuestra citaaaa"];
 
-        const btn = document.createElement("button");
-        btn.className = "star-btn";
-        btn.style.left = left + "%";
-        btn.style.top  = top + "%";
-        btn.setAttribute("aria-label", "Estrella " + (i + 1));
+    function buildFlowerSVG(fc, idx) {
+        const { petals, center, size } = fc;
+        const petalCount = 8;
+        const pr = size * 0.28;
+        const cr = size * 0.14;
+        const cx = size / 2;
+        const stemH = 60 + idx * 8;
+        const totalH = size + stemH;
 
-        // SVG estrella de 5 puntas
-        btn.innerHTML = `
-            <svg class="star-shape" width="${size}" height="${size}" viewBox="0 0 24 24"
-                 style="--twinkle-dur:${dur};--twinkle-delay:${del}">
-                <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"
-                    fill="#ffd700" stroke="#f4a020" stroke-width="0.5"/>
-            </svg>`;
+        let petalPaths = "";
+        for (let i = 0; i < petalCount; i++) {
+            const angle = (i / petalCount) * Math.PI * 2;
+            const px = cx + Math.cos(angle) * pr * 1.1;
+            const py = (size * 0.45) + Math.sin(angle) * pr * 1.1;
+            petalPaths += `<ellipse cx="${px.toFixed(1)}" cy="${py.toFixed(1)}"
+                rx="${(pr * 0.55).toFixed(1)}" ry="${(pr * 0.82).toFixed(1)}"
+                fill="${petals}" opacity="0.92"
+                transform="rotate(${(angle * 180 / Math.PI).toFixed(1)} ${px.toFixed(1)} ${py.toFixed(1)})"/>`;
+        }
 
-        btn.addEventListener("click", () => {
-            // Iluminar estrella
-            sky.querySelectorAll(".star-btn").forEach(b => b.classList.remove("lit"));
-            btn.classList.add("lit");
+        return `<svg class="flower-svg" width="${size}" height="${totalH}"
+            viewBox="0 0 ${size} ${totalH}" xmlns="http://www.w3.org/2000/svg">
+            <line x1="${cx}" y1="${size * 0.55}" x2="${cx}" y2="${totalH}"
+                stroke="${STEM_COLOR}" stroke-width="3" stroke-linecap="round"/>
+            <path d="M${cx},${size * 0.7} Q${cx + 15},${size * 0.8} ${cx + 20},${size * 0.95}"
+                stroke="${STEM_COLOR}" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <ellipse cx="${cx + 15}" cy="${size * 0.93}" rx="10" ry="6"
+                fill="${STEM_COLOR}" opacity="0.7"/>
+            ${petalPaths}
+            <circle cx="${cx}" cy="${size * 0.45}" r="${(cr * 1.1).toFixed(1)}"
+                fill="${center}" opacity="0.97"/>
+            <circle cx="${cx}" cy="${size * 0.45}" r="${(cr * 0.55).toFixed(1)}"
+                fill="#fff" opacity="0.35"/>
+        </svg>`;
+    }
 
-            // Mostrar frase
-            text.textContent = razon;
-            panel.classList.remove("visible");
-            void panel.offsetWidth;
-            panel.classList.add("visible");
-            panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        });
+    // Construir HTML del jardín
+    const section = document.getElementById("gardenSection");
+    if (!section) return;
 
-        sky.appendChild(btn);
+    // Micro estrellas
+    let starsHTML = "";
+    for (let i = 0; i < 55; i++) {
+        const s = (Math.random() * 2 + 1).toFixed(1);
+        const l = (Math.random() * 100).toFixed(1);
+        const t = (Math.random() * 85).toFixed(1);
+        const o = (0.15 + Math.random() * 0.45).toFixed(2);
+        starsHTML += `<div style="position:absolute;width:${s}px;height:${s}px;border-radius:50%;background:rgba(255,255,220,${o});left:${l}%;top:${t}%;pointer-events:none;"></div>`;
+    }
+
+    // Flores
+    let flowersHTML = "";
+    MOMENTS.forEach((m, i) => {
+        const fc = FLOWER_COLORS[i];
+        flowersHTML += `
+            <button class="garden-flower-btn" data-idx="${i}" aria-label="${m.title}">
+                ${buildFlowerSVG(fc, i)}
+                <div class="garden-flower-label">${LABELS[i]}</div>
+            </button>`;
     });
 
-    // Micro-estrellas decorativas de fondo (no clicables)
-    for (let i = 0; i < 60; i++) {
-        const dot = document.createElement("div");
-        const s   = Math.random() * 2 + 1;
-        dot.style.cssText = `
-            position:absolute;
-            width:${s}px; height:${s}px;
-            border-radius:50%;
-            background:rgba(255,255,220,${0.3 + Math.random()*0.5});
-            left:${Math.random()*100}%;
-            top:${Math.random()*100}%;
-            pointer-events:none;
-            animation: starTwinkle ${(1.5+Math.random()*2).toFixed(1)}s ease-in-out infinite;
-            animation-delay:${(Math.random()*2).toFixed(1)}s;
-        `;
-        sky.appendChild(dot);
+    section.innerHTML = `
+        <div class="garden-label">Nuestros momentos especiales</div>
+        <p class="garden-intro">Toca cada flor para revivir el momento ❤️</p>
+        <div class="garden-sky" id="gardenSky">
+            ${starsHTML}
+            <div class="garden-flowers-row">${flowersHTML}</div>
+            <div class="garden-ground"></div>
+        </div>
+
+        <div class="garden-modal-overlay" id="gardenOverlay">
+            <div class="garden-modal-card" id="gardenCard">
+                <div class="garden-modal-photo" id="gardenPhoto">
+                    <div class="garden-photo-placeholder">🌸</div>
+                    <img id="gardenImg" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+                    <div class="garden-modal-badge" id="gardenBadge"></div>
+                </div>
+                <div class="garden-modal-body">
+                    <div class="garden-modal-chapter" id="gardenChapter"></div>
+                    <div class="garden-modal-title" id="gardenTitle"></div>
+                    <div class="garden-modal-divider"></div>
+                    <div class="garden-modal-text" id="gardenText"></div>
+                    <div class="garden-modal-phrase" id="gardenPhrase"></div>
+                    <button class="garden-modal-close" id="gardenClose">cerrar ❤️</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Eventos
+    const overlay = document.getElementById("gardenOverlay");
+    const card    = document.getElementById("gardenCard");
+    const img     = document.getElementById("gardenImg");
+    const chapter = document.getElementById("gardenChapter");
+    const title   = document.getElementById("gardenTitle");
+    const text    = document.getElementById("gardenText");
+    const phrase  = document.getElementById("gardenPhrase");
+    const badge   = document.getElementById("gardenBadge");
+    const closeBtn= document.getElementById("gardenClose");
+
+    let activeBtn = null;
+
+    section.querySelectorAll(".garden-flower-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            const idx = parseInt(btn.dataset.idx);
+            const m = MOMENTS[idx];
+
+            if (activeBtn) activeBtn.classList.remove("lit");
+            btn.classList.add("lit");
+            activeBtn = btn;
+
+            chapter.textContent = m.chapter;
+            title.textContent   = m.title;
+            badge.textContent   = m.badge;
+            text.textContent    = m.text;
+            phrase.textContent  = m.phrase;
+
+            if (m.photo) {
+                img.src = m.photo;
+                img.style.display = "block";
+            } else {
+                img.style.display = "none";
+            }
+
+            overlay.classList.add("open");
+            card.style.animation = "none";
+            requestAnimationFrame(() => { card.style.animation = ""; });
+        });
+    });
+
+    function closeModal() {
+        overlay.classList.remove("open");
+        if (activeBtn) { activeBtn.classList.remove("lit"); activeBtn = null; }
     }
+
+    closeBtn.addEventListener("click", closeModal);
+    overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
+
 })();
