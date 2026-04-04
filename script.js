@@ -5,7 +5,7 @@
 // ─── Frases flotantes ──────────────────────────
 const FRASES = [
     "te quiero mucho mi princesa",
-    "Mi mujer preciosa ❤️ ",
+    "Mi mujer preciosa ❤️",
     "Mi tesorito",
     "eres increíble mi niña",
     "mi enojonaa",
@@ -27,23 +27,19 @@ const FRASES = [
 function spawnPhrase() {
     const container = document.getElementById("floatingPhrases");
     if (!container) return;
-
     const el = document.createElement("span");
     el.classList.add("float-phrase");
     el.textContent = FRASES[Math.floor(Math.random() * FRASES.length)];
-
-    const x   = Math.random() * 95;
-    const dur = 10 + Math.random() * 14;
-    const rot = (Math.random() - 0.5) * 20;
+    const x    = Math.random() * 95;
+    const dur  = 10 + Math.random() * 14;
+    const rot  = (Math.random() - 0.5) * 20;
     const size = 0.55 + Math.random() * 0.6;
-
     el.style.left              = x + "%";
     el.style.bottom            = "-5%";
     el.style.animationDuration = dur + "s";
     el.style.setProperty("--rot", rot + "deg");
     el.style.fontSize          = size + "rem";
     el.style.animationDelay    = "0s";
-
     container.appendChild(el);
     setTimeout(() => el.remove(), dur * 1000 + 500);
 }
@@ -57,7 +53,6 @@ function spawnPhrase() {
 function spawnParticle() {
     const container = document.getElementById("bgParticles");
     if (!container) return;
-
     const emojis = ["❤️", "🌸", "✨", "💕", "🩷"];
     const el = document.createElement("div");
     el.style.cssText = `
@@ -71,25 +66,21 @@ function spawnParticle() {
         user-select: none;
     `;
     el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
-
     if (!document.getElementById("particleStyle")) {
         const style = document.createElement("style");
         style.id = "particleStyle";
         style.textContent = `
             @keyframes particleFloat {
-                0%   { transform: translateY(0) scale(0.5) rotate(0deg);   opacity: 0; }
+                0%   { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
                 15%  { opacity: 0.7; }
                 80%  { opacity: 0.3; }
                 100% { transform: translateY(-110vh) scale(1) rotate(360deg); opacity: 0; }
-            }
-        `;
+            }`;
         document.head.appendChild(style);
     }
-
     container.appendChild(el);
     setTimeout(() => el.remove(), 15000);
 }
-
 setInterval(spawnParticle, 2200);
 
 // ─── Carrusel ──────────────────────────────────
@@ -98,7 +89,6 @@ setInterval(spawnParticle, 2200);
     const dotsEl  = document.getElementById("carouselDots");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
-
     if (!track) return;
 
     const slides = Array.from(track.querySelectorAll(".slide"));
@@ -116,9 +106,8 @@ setInterval(spawnParticle, 2200);
     });
 
     function updateDots() {
-        dotsEl.querySelectorAll(".dot").forEach((d, i) => {
-            d.classList.toggle("active", i === current);
-        });
+        dotsEl.querySelectorAll(".dot").forEach((d, i) =>
+            d.classList.toggle("active", i === current));
     }
 
     function goTo(index) {
@@ -134,38 +123,30 @@ setInterval(spawnParticle, 2200);
     nextBtn?.addEventListener("click", () => { resetAutoplay(); next(); });
 
     let touchStartX = 0;
-    track.addEventListener("touchstart", e => {
-        touchStartX = e.changedTouches[0].clientX;
-    }, { passive: true });
-    track.addEventListener("touchend", e => {
+    track.addEventListener("touchstart", e => { touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    track.addEventListener("touchend",   e => {
         const dx = e.changedTouches[0].clientX - touchStartX;
         if (Math.abs(dx) > 40) { resetAutoplay(); dx < 0 ? next() : prev(); }
     });
 
     function startAutoplay() { autoplayTimer = setInterval(next, 5000); }
     function resetAutoplay() { clearInterval(autoplayTimer); startAutoplay(); }
-
     startAutoplay();
 })();
 
-// ════════════════════════════════════════════════
-// ── CONTADOR DE RELACIÓN ─────────────────────
-// ════════════════════════════════════════════════
+// ── CONTADOR DE RELACIÓN ────────────────────────
 (function initCounter() {
-    const START = new Date(2026, 1, 9, 0, 0, 0);
+    // ⬇️ Cambia esta fecha a la real de inicio
+    const START = new Date(2026, 1, 9, 0, 0, 0); // 9 de febrero de 2026
 
     const elDays  = document.getElementById("cntDays");
     const elHours = document.getElementById("cntHours");
     const elMins  = document.getElementById("cntMins");
     const elSecs  = document.getElementById("cntSecs");
-
     if (!elDays) return;
 
     let prevSecs = -1;
-
-    function pad(n, len = 2) {
-        return String(n).padStart(len, "0");
-    }
+    function pad(n, len = 2) { return String(n).padStart(len, "0"); }
 
     function tick() {
         const now      = new Date();
@@ -188,29 +169,20 @@ setInterval(spawnParticle, 2200);
             prevSecs = secs;
         }
     }
-
     tick();
     setInterval(tick, 1000);
 })();
 
-// ─── Año en footer ─────────────────────────────
-const yearEl = document.getElementById("currentYear");
-if (yearEl) yearEl.textContent = new Date().getFullYear();
-
-
-// ════════════════════════════════════════════════
-// ── JARDÍN DE MOMENTOS ────────────────────────
-// ════════════════════════════════════════════════
+// ── JARDÍN DE MOMENTOS ─────────────────────────
 (function initGarden() {
 
-    // ── Personaliza aquí tus momentos ──────────────
-    // Para agregar una foto pon la ruta en "photo", ejemplo: "foto1.jpeg"
+    // ⬇️ Personaliza aquí tus momentos — cambia "photo" por el nombre real de tu imagen
     const MOMENTS = [
         {
             chapter: "Capítulo I",
             title: "La primera vez que nos vimos",
             badge: "El inicio de todo",
-            text: " No hubo foto pero si momentos de diversion verdad mi amorcitoooo",
+            text: "No hubo foto pero si momentos de diversion verdad mi amorcitoooo",
             phrase: "\"El día que cambió mi historia para siempre al conocerte.\"",
             photo: "gato.jpeg",
         },
@@ -218,46 +190,52 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
             chapter: "Capítulo II",
             title: "Nuestra primera foto juntos y besito incluido",
             badge: "El inicio de nosotros",
-            text: "Me acuerdo ese dia mi amorcito, me dejaste mudo WOW en todo el camino hacia la casa no hable nada y va solo pensando en ti mi amoooor ",
+            text: "Me acuerdo ese dia mi amorcito, me dejaste mudo WOW en todo el camino hacia la casa no hable nada y va solo pensando en ti mi amoooor",
             phrase: "\"Ni el tiempo senti a tu lado.\"",
             photo: "beso.jpeg",
         },
         {
             chapter: "Capítulo III",
             title: "El dia el paisajeeeee ufff",
-            badge: "precioso recuerdo como tu mi amorrrr",
-            text: "Ese dia ese vestido mi amor te quedaba dvino y el paisaje ufff",
-            phrase: "\"Solo vino a mi mente QUE MUJER\"",
+            badge: "Precioso recuerdo como tu mi amorrrr",
+            text: "Ese dia ese vestido mi amor te quedaba divino y el paisaje ufff",
+            phrase: "\"Solo vino a mi mente: QUE MUJER.\"",
             photo: "paisaje.jpeg",
         },
         {
             chapter: "Capítulo IV",
-            title: "Un momento que solo nosotros recordamos mas que todo yoooo",
+            title: "Un momento que solo nosotros recordamos — más que todo yoooo",
             badge: "Solo tú y yo",
-            text: " Hay mi amorcito agarrarte de la cintura uff y sentir esas curvaaaaas ",
+            text: "Hay mi amorcito agarrarte de la cintura uff y sentir esas curvaaaaas",
             phrase: "\"Contigo todo es muy bonitoooo.\"",
             photo: "mano.jpg",
         },
         {
             chapter: "Capítulo V",
-            title: "El día que me enamoré aún más de ti por lo sencillo y hermoso que fue compartir una comida juntos",
+            title: "El día que me enamoré aún más de ti",
             badge: "Mi favorito de todos los momentos",
-            text: "Hubo un instante en que te miré y pensé quien nos iba imaginar a nosotros juntos.",
+            text: "Hubo un instante en que te miré y pensé: quién nos iba a imaginar a nosotros juntos.",
             phrase: "\"Te elegiría mil veces más, con los ojos cerrados.\"",
             photo: "comida.jpg",
         },
     ];
 
     const FLOWER_COLORS = [
-        { petals: "#ff6b9d", center: "#ffd700", size: 90 },
-        { petals: "#e8758a", center: "#ffb347", size: 80 },
+        { petals: "#ff6b9d", center: "#ffd700", size: 90  },
+        { petals: "#e8758a", center: "#ffb347", size: 80  },
         { petals: "#c9426a", center: "#ffd700", size: 100 },
-        { petals: "#f4a0c0", center: "#ffcc44", size: 78 },
-        { petals: "#d4537e", center: "#ffd700", size: 88 },
+        { petals: "#f4a0c0", center: "#ffcc44", size: 78  },
+        { petals: "#d4537e", center: "#ffd700", size: 88  },
     ];
 
     const STEM_COLOR = "#2d8a4e";
-    const LABELS = ["primera vez que nos vimos", "primer besitooo", "Momento a solas", "Esa mano arbitro", "Comiendo juntos en nuestra citaaaa"];
+    const LABELS = [
+        "primera vez",
+        "primer besito",
+        "el paisaje",
+        "esa mano",
+        "nuestra cita",
+    ];
 
     function buildFlowerSVG(fc, idx) {
         const { petals, center, size } = fc;
@@ -295,18 +273,18 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
         </svg>`;
     }
 
-    // Construir HTML del jardín
     const section = document.getElementById("gardenSection");
     if (!section) return;
 
-    // Micro estrellas
+    // Micro estrellas decorativas
     let starsHTML = "";
     for (let i = 0; i < 55; i++) {
         const s = (Math.random() * 2 + 1).toFixed(1);
         const l = (Math.random() * 100).toFixed(1);
         const t = (Math.random() * 85).toFixed(1);
         const o = (0.15 + Math.random() * 0.45).toFixed(2);
-        starsHTML += `<div style="position:absolute;width:${s}px;height:${s}px;border-radius:50%;background:rgba(255,255,220,${o});left:${l}%;top:${t}%;pointer-events:none;"></div>`;
+        starsHTML += `<div style="position:absolute;width:${s}px;height:${s}px;border-radius:50%;
+            background:rgba(255,255,220,${o});left:${l}%;top:${t}%;pointer-events:none;"></div>`;
     }
 
     // Flores
@@ -333,38 +311,35 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
             <div class="garden-modal-card" id="gardenCard">
                 <div class="garden-modal-photo" id="gardenPhoto">
                     <div class="garden-photo-placeholder">🌸</div>
-                    <img id="gardenImg" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;">
+                    <img id="gardenImg" src="" alt=""
+                        style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:1;">
                     <div class="garden-modal-badge" id="gardenBadge"></div>
                 </div>
                 <div class="garden-modal-body">
                     <div class="garden-modal-chapter" id="gardenChapter"></div>
-                    <div class="garden-modal-title" id="gardenTitle"></div>
+                    <div class="garden-modal-title"   id="gardenTitle"></div>
                     <div class="garden-modal-divider"></div>
-                    <div class="garden-modal-text" id="gardenText"></div>
-                    <div class="garden-modal-phrase" id="gardenPhrase"></div>
+                    <div class="garden-modal-text"    id="gardenText"></div>
+                    <div class="garden-modal-phrase"  id="gardenPhrase"></div>
                     <button class="garden-modal-close" id="gardenClose">cerrar ❤️</button>
                 </div>
             </div>
-        </div>
-    `;
+        </div>`;
 
-    // Eventos
-    const overlay = document.getElementById("gardenOverlay");
-    const card    = document.getElementById("gardenCard");
-    const img     = document.getElementById("gardenImg");
-    const chapter = document.getElementById("gardenChapter");
-    const title   = document.getElementById("gardenTitle");
-    const text    = document.getElementById("gardenText");
-    const phrase  = document.getElementById("gardenPhrase");
-    const badge   = document.getElementById("gardenBadge");
-    const closeBtn= document.getElementById("gardenClose");
-
-    let activeBtn = null;
+    const overlay  = document.getElementById("gardenOverlay");
+    const img      = document.getElementById("gardenImg");
+    const chapter  = document.getElementById("gardenChapter");
+    const title    = document.getElementById("gardenTitle");
+    const text     = document.getElementById("gardenText");
+    const phrase   = document.getElementById("gardenPhrase");
+    const badge    = document.getElementById("gardenBadge");
+    const closeBtn = document.getElementById("gardenClose");
+    let activeBtn  = null;
 
     section.querySelectorAll(".garden-flower-btn").forEach(btn => {
         btn.addEventListener("click", () => {
             const idx = parseInt(btn.dataset.idx);
-            const m = MOMENTS[idx];
+            const m   = MOMENTS[idx];
 
             if (activeBtn) activeBtn.classList.remove("lit");
             btn.classList.add("lit");
@@ -384,8 +359,6 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
             }
 
             overlay.classList.add("open");
-            card.style.animation = "none";
-            requestAnimationFrame(() => { card.style.animation = ""; });
         });
     });
 
@@ -396,5 +369,184 @@ if (yearEl) yearEl.textContent = new Date().getFullYear();
 
     closeBtn.addEventListener("click", closeModal);
     overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
+
+})();
+
+// ════════════════════════════════════════════════
+// ── RULETA DEL AMOR ──────────────────────────
+// ════════════════════════════════════════════════
+(function initRuleta() {
+
+    const ITEMS = [
+        { emoji: "💕", text: "Te quiero tanto que aveces las palabras se me quedan cortas mi princesa" },
+        { emoji: "🌍", text: "Prometo en un futuro conocer el mundooo o bueno nuestro pais juntos" },
+        { emoji: "😂", text: "Me haces reir mucho siempre me sacas una sonrisotaaaa" },
+        { emoji: "🎓", text: "Prometo estar ahí el día que te pongas el uniforme de psicóloga y verte con ojos de orgullo" },
+        { emoji: "🔒", text: "Mi corazón tiene tu nombre y ojos solo par ti" },
+        { emoji: "👀", text: "Tus ojos me destruyen cada vez que me miran, no puedo explicarlo pero me cambian en un instante" },
+        { emoji: "💍", text: "Prometo elegirte hoy, mañana y todos los días que me queden" },
+    ];
+
+    const section = document.getElementById("ruletaSection");
+    if (!section) return;
+
+    const COLORS = [
+        "#c9426a","#d4537e","#e8758a","#b03060",
+        "#c9426a","#d4537e","#e8758a","#b03060",
+        "#c9426a","#d4537e","#e8758a","#b03060",
+    ];
+
+    const N     = ITEMS.length;
+    const R     = 160; // radio
+    const CX    = 170; // centro canvas
+    const CY    = 170;
+    const slice = (2 * Math.PI) / N;
+
+    // ── Construir HTML ──
+    section.innerHTML = `
+        <div class="ruleta-label">ruleta del amor</div>
+        <p class="ruleta-intro">Gira la ruleta mi amor y descubriras cosas huyyyy</p>
+        <div class="ruleta-wrapper">
+            <div class="ruleta-pin">▼</div>
+            <canvas id="ruletaCanvas" width="340" height="340"></canvas>
+            <button class="ruleta-spin-btn" id="ruletaSpinBtn">
+                <span class="ruleta-btn-inner">Gire mi amorcito</span>
+            </button>
+        </div>
+        <div class="ruleta-result" id="ruletaResult">
+            <div class="ruleta-result-emoji" id="ruletaEmoji"></div>
+            <p class="ruleta-result-text" id="ruletaText"></p>
+        </div>
+    `;
+
+    const canvas = document.getElementById("ruletaCanvas");
+    const ctx    = canvas.getContext("2d");
+    const btn    = document.getElementById("ruletaSpinBtn");
+    const result = document.getElementById("ruletaResult");
+    const resEmoji = document.getElementById("ruletaEmoji");
+    const resText  = document.getElementById("ruletaText");
+
+    let currentAngle = 0;
+    let spinning     = false;
+
+    function drawWheel(angle) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Sombra exterior
+        ctx.save();
+        ctx.shadowColor = "rgba(140,40,80,0.35)";
+        ctx.shadowBlur  = 28;
+        ctx.beginPath();
+        ctx.arc(CX, CY, R + 4, 0, 2 * Math.PI);
+        ctx.fillStyle = "#fff";
+        ctx.fill();
+        ctx.restore();
+
+        for (let i = 0; i < N; i++) {
+            const start = angle + i * slice;
+            const end   = start + slice;
+
+            // Sector
+            ctx.beginPath();
+            ctx.moveTo(CX, CY);
+            ctx.arc(CX, CY, R, start, end);
+            ctx.closePath();
+            ctx.fillStyle = COLORS[i];
+            ctx.fill();
+            ctx.strokeStyle = "rgba(255,255,255,0.35)";
+            ctx.lineWidth   = 1.5;
+            ctx.stroke();
+
+            // Emoji
+            ctx.save();
+            ctx.translate(CX, CY);
+            ctx.rotate(start + slice / 2);
+            ctx.translate(R * 0.68, 0);
+            ctx.rotate(Math.PI / 2);
+            ctx.font       = "18px serif";
+            ctx.textAlign  = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(ITEMS[i].emoji, 0, 0);
+            ctx.restore();
+        }
+
+        // Centro círculo
+        ctx.save();
+        ctx.shadowColor = "rgba(140,40,80,0.4)";
+        ctx.shadowBlur  = 12;
+        ctx.beginPath();
+        ctx.arc(CX, CY, 28, 0, 2 * Math.PI);
+        const grad = ctx.createRadialGradient(CX-6, CY-6, 2, CX, CY, 28);
+        grad.addColorStop(0, "#f4a0c0");
+        grad.addColorStop(1, "#8b1a3a");
+        ctx.fillStyle = grad;
+        ctx.fill();
+        ctx.restore();
+
+        // Corazón centro
+        ctx.font          = "20px serif";
+        ctx.textAlign     = "center";
+        ctx.textBaseline  = "middle";
+        ctx.fillText("❤️", CX, CY);
+    }
+
+    drawWheel(currentAngle);
+
+    // ── Animación de giro ──
+    function spin() {
+        if (spinning) return;
+        spinning = true;
+        btn.disabled = true;
+        result.classList.remove("visible");
+
+        const extraSpins  = 5 + Math.floor(Math.random() * 5); // 5-9 vueltas
+        const targetExtra = Math.random() * 2 * Math.PI;
+        const totalRad    = extraSpins * 2 * Math.PI + targetExtra;
+        const duration    = 4000 + Math.random() * 1500; // ms
+        const startAngle  = currentAngle;
+        const startTime   = performance.now();
+
+        function easeOut(t) {
+            // Ease out cubic
+            return 1 - Math.pow(1 - t, 3);
+        }
+
+        function frame(now) {
+            const elapsed  = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased    = easeOut(progress);
+
+            currentAngle = startAngle + totalRad * eased;
+            drawWheel(currentAngle);
+
+            if (progress < 1) {
+                requestAnimationFrame(frame);
+            } else {
+                spinning = false;
+                btn.disabled = false;
+                showResult();
+            }
+        }
+
+        requestAnimationFrame(frame);
+    }
+
+    function showResult() {
+        // La punta (pin) apunta arriba = -PI/2
+        // Calculamos qué sector queda arriba
+        const normalized = (((-currentAngle - Math.PI / 2) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
+        const idx = Math.floor(normalized / slice) % N;
+        const item = ITEMS[idx];
+
+        resEmoji.textContent = item.emoji;
+        resText.textContent  = item.text;
+
+        result.classList.remove("visible");
+        void result.offsetWidth;
+        result.classList.add("visible");
+        result.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+
+    btn.addEventListener("click", spin);
 
 })();
