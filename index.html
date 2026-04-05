@@ -6,7 +6,7 @@
     <title>Para el amor de mi vida ❤️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="intro.css">
 </head>
@@ -57,14 +57,14 @@
         </section>
 
         <!-- ── Mensaje + Carrusel ── -->
-        <!-- ── Mensaje + Carrusel ── -->
         <div class="content-row">
             <section class="message-section">
                 <div class="message-card">
                     <div class="card-ornament top-left">❝</div>
-                    <p class="card-text">Más detalles para mi hermosa novia que quiero con todo mi corazon
-                        valoro cada momento a tu lado por que solo yo se lo que has cambiado en mi desde 
-                        estas en mi vida te quiero mucho mi muñecotaaa ❤️.</p>
+                    <p class="card-text">Amorcito solo quiero que sepas que estoy orgullo de ti siempre
+                        desde el día uno y los que nos esperan ❤️ cada esfuerzo cada desvelada que haces tu mi reina
+                        valdrá la pena y yo quiero estar ese dia cuando le den su titulo para que pueda abrazar a mi psicologa preciosa
+                        y felicitarla por que lo logró ❤️ .</p>
                     <div class="card-ornament bottom-right">❞</div>
                     <div class="card-signature">— Tu angelito</div>
                 </div>
@@ -87,7 +87,7 @@
                             </div>
                             <div class="slide-phrase"><p>"La futura psicóloga más linda del mundo"</p></div>
                         </div></div>
-                         <div class="slide"><div class="slide-inner">
+                        <div class="slide"><div class="slide-inner">
                             <div class="photo-frame">
                                 <img src="rebe2.jpeg" alt="Nosotros" onerror="this.parentElement.classList.add('no-photo'); this.remove()">
                                 <div class="photo-placeholder">📷</div>
@@ -149,12 +149,15 @@
             </div>
         </section>
 
-
         <!-- ── Ruleta del amor ── -->
-        <section class="ruleta-section" id="ruletaSection"></section>
+        <!-- <section class="ruleta-section" id="ruletaSection"></section> -->
 
-        <!-- ── Jardín de momentos ── -->
-        <section class="garden-section" id="gardenSection"></section>
+
+        <!-- ── Galería Polaroid ── -->
+        <section class="polaroid-section" id="polaroidSection"></section>
+
+        <!-- ── Mini Quiz ── -->
+        <section class="quiz-section" id="quizSection"></section>
 
         <footer class="page-footer">
             <p>Con mucho amor de tu ingeniero ❤️</p>
@@ -162,7 +165,23 @@
 
     </main>
 
+    <!-- Lightbox Polaroid -->
+    <div class="lb-overlay" id="lbOverlay">
+        <div class="lb-card" id="lbCard">
+            <button class="lb-close" id="lbClose">✕</button>
+            <div class="lb-img-wrap" id="lbImgWrap">
+                <span class="lb-emoji" id="lbEmoji"></span>
+                <img id="lbPhotoImg" src="" alt="" style="display:none;width:100%;height:100%;object-fit:cover;position:absolute;inset:0;z-index:2;border-radius:2px;">
+            </div>
+            <div class="lb-caption" id="lbCaption"></div>
+            <div class="lb-note" id="lbNote"></div>
+        </div>
+    </div>
+
+    <!-- Lluvia de corazones (quiz perfecto) -->
+    <div class="hearts-rain" id="heartsRain"></div>
+
     <script src="script.js"></script>
-    <script src="intro.js"></script>
+    <!-- <script src="intro.js"></script> -->
 </body>
 </html>
