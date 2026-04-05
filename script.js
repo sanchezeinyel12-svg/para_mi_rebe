@@ -136,7 +136,6 @@ setInterval(spawnParticle, 2200);
 
 // ─── Contador de relación ──────────────────────
 (function initCounter() {
-    // ⬇️ Cambia esta fecha a la real de inicio de su relación
     const START = new Date(2026, 1, 9, 0, 0, 0); // 9 de febrero de 2026
 
     const elDays  = document.getElementById("cntDays");
@@ -176,7 +175,6 @@ setInterval(spawnParticle, 2200);
 // ─── Jardín de momentos ────────────────────────
 (function initGarden() {
 
-    // ⬇️ Personaliza aquí tus momentos — cambia "photo" por el nombre real de tu imagen
     const MOMENTS = [
         {
             chapter: "Capítulo I",
@@ -534,7 +532,6 @@ setInterval(spawnParticle, 2200);
 // ─── Galería Polaroid ──────────────────────────
 (function initPolaroid() {
 
-    // ⬇️ Personaliza: "photo" es el nombre de tu imagen, "emoji" se muestra si no carga la foto
     const POLAROIDS = [
         {
             photo: "gato.jpeg",
@@ -584,27 +581,22 @@ setInterval(spawnParticle, 2200);
             color: "#f9dde6",
             rot: "2deg"
         },
-
-
         {
             photo: "c3.jpeg",
             emoji: "⭐",
-            caption: "Solo mirate lo preciosa que estas 🥺 Estoy tan feliz contigo mi amor❤️" ,
+            caption: "Solo mirate lo preciosa que estas 🥺 Estoy tan feliz contigo mi amor❤️",
             note: "WOW",
             color: "#f9dde6",
             rot: "2deg"
         },
-
-
         {
-            photo: "c1.jpeg",
+            photo: "rebe4.jpeg",
             emoji: "⭐",
             caption: "Esos besitos, sentir esos labios en mi ufff",
             note: "Más fotitos asi por favor 😅",
             color: "#f9dde6",
             rot: "2deg"
         },
-
         {
             photo: "c2.jpeg",
             emoji: "⭐",
@@ -613,7 +605,6 @@ setInterval(spawnParticle, 2200);
             color: "#f9dde6",
             rot: "2deg"
         },
-
         {
             photo: "c4.jpeg",
             emoji: "⭐",
@@ -627,7 +618,6 @@ setInterval(spawnParticle, 2200);
     const section = document.getElementById("polaroidSection");
     if (!section) return;
 
-    // Encabezado de sección
     section.innerHTML = `
         <div class="polaroid-section-label">Galería de recuerdos</div>
         <div class="polaroid-section-title">Nuestros Polaroids ❤️</div>
@@ -656,7 +646,6 @@ setInterval(spawnParticle, 2200);
         shelf.appendChild(wrap);
     });
 
-    // Lightbox
     const overlay  = document.getElementById("lbOverlay");
     const lbImgWrap= document.getElementById("lbImgWrap");
     const lbEmoji  = document.getElementById("lbEmoji");
@@ -685,7 +674,6 @@ setInterval(spawnParticle, 2200);
 // ─── Mini Quiz ─────────────────────────────────
 (function initQuiz() {
 
-    // ⬇️ Personaliza las preguntas y respuestas
     const QUESTIONS = [
         {
             q: "¿Cuál es mi carrera universitaria?",
@@ -717,7 +705,7 @@ setInterval(spawnParticle, 2200);
         },
         {
             q: "¿Qué es lo que más me gusta de ti (aparte de todo 😍)?",
-            opts: ["Tu cabello", "Tus ojos", "Tu forma de enojarme con esa carita", "Todas las anteriores "],
+            opts: ["Tu cabello", "Tus ojos", "Tu forma de enojarte con esa carita", "Todas las anteriores "],
             correct: 3,
             ok:   "Todo mi niña lindaaa 💕",
             fail: "Todita tu es mas completitaaa ❤️"
@@ -818,7 +806,7 @@ setInterval(spawnParticle, 2200);
         }
     });
 
-function showFinalResult() {
+    function showFinalResult() {
         quizBody.style.display   = "none";
         quizResult.classList.add("show");
         qBar.style.width = "100%";
@@ -826,42 +814,11 @@ function showFinalResult() {
         const pct = score / QUESTIONS.length;
         let emoji, msg;
 
-       // ... dentro de showFinalResult, cuando pct === 1 ...
-
-if (pct === 1) {
-    emoji = "🏆";
-    msg = "EXCELENTEEEEE 6 de 6 — Eres la que más me conoce en este mundo AMOOOR...";
-    launchHeartsRain();
-
-    // ── CONFIGURACIÓN DEL REPRODUCTOR ──
-    let audioPremio = document.getElementById("reproductorPremio");
-
-    // Si no existe, lo creamos e insertamos
-    if (!audioPremio) {
-        audioPremio = document.createElement("audio");
-        audioPremio.id = "reproductorPremio";
-        audioPremio.src = "premio.mp3";
-        audioPremio.controls = true; // <--- ESTO activa la interfaz visual
-        
-        // Estilo para que se vea bonito y centrado
-        audioPremio.style.cssText = `
-            display: block;
-            margin: 20px auto;
-            border-radius: 50px;
-            filter: sepia(20%) saturate(150%) hue-rotate(300deg); /* Color rosadito */
-            width: 80%;
-            max-width: 300px;
-        `;
-        
-        // Lo agregamos al panel de resultados para que aparezca bajo el mensaje
-        document.getElementById("quizResult").appendChild(audioPremio);
-    }
-
-    audioPremio.play().catch(() => {
-        // Si el navegador bloquea el autoplay, el usuario usará los controles que ya son visibles
-        console.log("Esperando interacción del usuario para el audio.");
-    });
-
+        if (pct === 1) {
+            emoji = "🏆";
+            msg   = "EXCELENTEEEEE 6 de 6 — Eres la que más me conoce en este mundo AMOOOR. Eso solo me dice que me pone muchaaaa atención. Te quiero muchísimo mi psicóloga hermosa ❤️";
+            launchHeartsRain();
+            mostrarReproductor();
         } else if (pct >= 0.7) {
             emoji = "💕";
             msg   = `${score} de 6 — Siga intentando amorcito ❤️`;
@@ -879,6 +836,10 @@ if (pct === 1) {
     }
 
     document.getElementById("qRestart").addEventListener("click", () => {
+        // Remover reproductor si existe para que no se duplique
+        const oldPlayer = document.getElementById("playerPremio");
+        if (oldPlayer) oldPlayer.remove();
+
         qIdx = 0; score = 0; answered = false;
         quizResult.classList.remove("show");
         quizBody.style.display = "block";
@@ -887,9 +848,10 @@ if (pct === 1) {
 
     loadQuestion();
 })();
+
 // ─── Lluvia de corazones (quiz perfecto) ───────
 function launchHeartsRain() {
-    const rain   = document.getElementById("heartsRain");
+    const rain = document.getElementById("heartsRain");
     if (!rain) return;
     const emojis = ["❤️","💕","🌸","✨","💗","🩷","💖"];
     for (let i = 0; i < 40; i++) {
@@ -904,20 +866,138 @@ function launchHeartsRain() {
             setTimeout(() => h.remove(), 3600);
         }, i * 75);
     }
-    
 }
-function mostrarBotonAudio(audio) {
-    const btn = document.createElement("button");
-    btn.textContent = "🎵 Escucha tu premio";
-    btn.style.cssText = `
-        position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+
+// ─── Reproductor de audio (premio quiz perfecto) ───
+function mostrarReproductor() {
+    // Evitar duplicados
+    if (document.getElementById("playerPremio")) return;
+
+    const wrap = document.createElement("div");
+    wrap.id = "playerPremio";
+    wrap.style.cssText = `
+        margin-top: 24px;
         background: linear-gradient(135deg, #8b1a3a, #c9426a);
-        border: none; border-radius: 50px; padding: 14px 32px;
-        font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
-        color: #fff; cursor: pointer; z-index: 99999;
-        box-shadow: 0 8px 30px rgba(201,66,106,0.45);
+        border-radius: 18px;
+        padding: 18px 22px;
+        color: #fff;
+        font-family: 'Playfair Display', serif;
+        max-width: 360px;
+        margin-left: auto;
+        margin-right: auto;
         animation: fadeSlideUp 0.5s cubic-bezier(.22,1,.36,1) both;
+        box-shadow: 0 8px 30px rgba(139,26,58,0.35);
     `;
-    btn.onclick = () => { audio.play(); btn.remove(); };
-    document.body.appendChild(btn);
+
+    wrap.innerHTML = `
+        <div style="font-size:0.85rem;opacity:0.85;margin-bottom:12px;text-align:center;letter-spacing:0.05em;">
+            Con mucho amor de tu ingenierooo ❤️
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <button id="ppPlayBtn" title="Play / Pausa" style="
+                width:46px;height:46px;border-radius:50%;
+                background:rgba(255,255,255,0.2);
+                border:2px solid rgba(255,255,255,0.55);
+                color:#fff;font-size:20px;cursor:pointer;
+                display:flex;align-items:center;justify-content:center;
+                flex-shrink:0;transition:background 0.2s;">▶</button>
+            <div style="flex:1;display:flex;flex-direction:column;gap:5px;">
+                <div id="ppProgWrap" title="Clic para saltar" style="
+                    width:100%;height:6px;
+                    background:rgba(255,255,255,0.25);
+                    border-radius:99px;cursor:pointer;position:relative;">
+                    <div id="ppProgFill" style="
+                        height:100%;background:#fff;
+                        border-radius:99px;width:0%;
+                        pointer-events:none;
+                        transition:width 0.1s linear;"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:11px;opacity:0.75;font-family:monospace;">
+                    <span id="ppCur">0:00</span>
+                    <span id="ppDur">--:--</span>
+                </div>
+            </div>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:15px;" title="Volumen">🔈</span>
+            <input type="range" id="ppVol" min="0" max="1" step="0.01" value="0.85"
+                title="Volumen"
+                style="flex:1;accent-color:#fff;cursor:pointer;">
+            <span style="font-size:15px;">🔊</span>
+        </div>
+    `;
+
+    // Insertarlo dentro del panel de resultado
+    const resultPanel = document.getElementById("quizResult");
+    resultPanel.appendChild(wrap);
+
+    // ── Audio ──
+    const audio = new Audio("premio.mp3");
+    audio.volume = 0.85;
+
+    const playBtn  = document.getElementById("ppPlayBtn");
+    const progFill = document.getElementById("ppProgFill");
+    const progWrap = document.getElementById("ppProgWrap");
+    const curEl    = document.getElementById("ppCur");
+    const durEl    = document.getElementById("ppDur");
+    const volEl    = document.getElementById("ppVol");
+
+    function fmt(s) {
+        if (isNaN(s)) return "--:--";
+        const m = Math.floor(s / 60);
+        const sec = Math.floor(s % 60);
+        return m + ":" + String(sec).padStart(2, "0");
+    }
+
+    // Play / Pausa
+    playBtn.addEventListener("click", () => {
+        if (audio.paused) {
+            audio.play().catch(() => {});
+            playBtn.textContent = "⏸";
+        } else {
+            audio.pause();
+            playBtn.textContent = "▶";
+        }
+    });
+
+    // Progreso
+    audio.addEventListener("timeupdate", () => {
+        if (!audio.duration) return;
+        const pct = (audio.currentTime / audio.duration) * 100;
+        progFill.style.width = pct + "%";
+        curEl.textContent = fmt(audio.currentTime);
+    });
+
+    // Duración cuando carga
+    audio.addEventListener("loadedmetadata", () => {
+        durEl.textContent = fmt(audio.duration);
+    });
+
+    // Al terminar
+    audio.addEventListener("ended", () => {
+        playBtn.textContent = "▶";
+        progFill.style.width = "0%";
+        curEl.textContent = "0:00";
+    });
+
+    // Clic en barra de progreso → saltar
+    progWrap.addEventListener("click", e => {
+        if (!audio.duration) return;
+        const rect = progWrap.getBoundingClientRect();
+        const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        audio.currentTime = pct * audio.duration;
+    });
+
+    // Volumen
+    volEl.addEventListener("input", () => {
+        audio.volume = parseFloat(volEl.value);
+    });
+
+    // Intentar autoplay; si el navegador lo bloquea el botón ya está visible
+    audio.play()
+        .then(() => { playBtn.textContent = "⏸"; })
+        .catch(() => {
+            // Autoplay bloqueado — esperamos que ella le dé play manualmente
+            playBtn.style.background = "rgba(255,255,255,0.35)";
+        });
 }
