@@ -826,16 +826,42 @@ function showFinalResult() {
         const pct = score / QUESTIONS.length;
         let emoji, msg;
 
-        if (pct === 1) {
-            emoji = "🏆";
-            msg   = "EXCELENTEEEEE 6 de 6 — Eres la que más me conoce en este mundo AMOOOR. Eso solo me dice que me pone muchaaaa atención. Te quiero muchísimo mi psicóloga hermosa ❤️";
-            launchHeartsRain();
-            // ── AUDIO PREMIO ──
-            const audioPremio = new Audio("premio.mp3");
-            audioPremio.volume = 0.85;
-            audioPremio.play().catch(() => {
-                mostrarBotonAudio(audioPremio);
-            });
+       // ... dentro de showFinalResult, cuando pct === 1 ...
+
+if (pct === 1) {
+    emoji = "🏆";
+    msg = "EXCELENTEEEEE 6 de 6 — Eres la que más me conoce en este mundo AMOOOR...";
+    launchHeartsRain();
+
+    // ── CONFIGURACIÓN DEL REPRODUCTOR ──
+    let audioPremio = document.getElementById("reproductorPremio");
+
+    // Si no existe, lo creamos e insertamos
+    if (!audioPremio) {
+        audioPremio = document.createElement("audio");
+        audioPremio.id = "reproductorPremio";
+        audioPremio.src = "premio.mp3";
+        audioPremio.controls = true; // <--- ESTO activa la interfaz visual
+        
+        // Estilo para que se vea bonito y centrado
+        audioPremio.style.cssText = `
+            display: block;
+            margin: 20px auto;
+            border-radius: 50px;
+            filter: sepia(20%) saturate(150%) hue-rotate(300deg); /* Color rosadito */
+            width: 80%;
+            max-width: 300px;
+        `;
+        
+        // Lo agregamos al panel de resultados para que aparezca bajo el mensaje
+        document.getElementById("quizResult").appendChild(audioPremio);
+    }
+
+    audioPremio.play().catch(() => {
+        // Si el navegador bloquea el autoplay, el usuario usará los controles que ya son visibles
+        console.log("Esperando interacción del usuario para el audio.");
+    });
+}
         } else if (pct >= 0.7) {
             emoji = "💕";
             msg   = `${score} de 6 — Siga intentando amorcito ❤️`;
