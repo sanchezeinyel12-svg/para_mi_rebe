@@ -1,5 +1,5 @@
 /* ============================================
-   PARA REBECA ❤️  —  script.js
+   PARA REBECA ❤️  —  script.js  (COMPLETO)
    ============================================ */
 
 // ─── Frases flotantes ──────────────────────────
@@ -134,9 +134,9 @@ setInterval(spawnParticle, 2200);
     startAutoplay();
 })();
 
-// ── CONTADOR DE RELACIÓN ────────────────────────
+// ─── Contador de relación ──────────────────────
 (function initCounter() {
-    // ⬇️ Cambia esta fecha a la real de inicio
+    // ⬇️ Cambia esta fecha a la real de inicio de su relación
     const START = new Date(2026, 1, 9, 0, 0, 0); // 9 de febrero de 2026
 
     const elDays  = document.getElementById("cntDays");
@@ -173,7 +173,7 @@ setInterval(spawnParticle, 2200);
     setInterval(tick, 1000);
 })();
 
-// ── JARDÍN DE MOMENTOS ─────────────────────────
+// ─── Jardín de momentos ────────────────────────
 (function initGarden() {
 
     // ⬇️ Personaliza aquí tus momentos — cambia "photo" por el nombre real de tu imagen
@@ -276,7 +276,6 @@ setInterval(spawnParticle, 2200);
     const section = document.getElementById("gardenSection");
     if (!section) return;
 
-    // Micro estrellas decorativas
     let starsHTML = "";
     for (let i = 0; i < 55; i++) {
         const s = (Math.random() * 2 + 1).toFixed(1);
@@ -287,7 +286,6 @@ setInterval(spawnParticle, 2200);
             background:rgba(255,255,220,${o});left:${l}%;top:${t}%;pointer-events:none;"></div>`;
     }
 
-    // Flores
     let flowersHTML = "";
     MOMENTS.forEach((m, i) => {
         const fc = FLOWER_COLORS[i];
@@ -362,19 +360,16 @@ setInterval(spawnParticle, 2200);
         });
     });
 
-    function closeModal() {
+    function closeGardenModal() {
         overlay.classList.remove("open");
         if (activeBtn) { activeBtn.classList.remove("lit"); activeBtn = null; }
     }
 
-    closeBtn.addEventListener("click", closeModal);
-    overlay.addEventListener("click", e => { if (e.target === overlay) closeModal(); });
-
+    closeBtn.addEventListener("click", closeGardenModal);
+    overlay.addEventListener("click", e => { if (e.target === overlay) closeGardenModal(); });
 })();
 
-// ════════════════════════════════════════════════
-// ── RULETA DEL AMOR ──────────────────────────
-// ════════════════════════════════════════════════
+// ─── Ruleta del amor ───────────────────────────
 (function initRuleta() {
 
     const ITEMS = [
@@ -397,12 +392,11 @@ setInterval(spawnParticle, 2200);
     ];
 
     const N     = ITEMS.length;
-    const R     = 160; // radio
-    const CX    = 170; // centro canvas
+    const R     = 160;
+    const CX    = 170;
     const CY    = 170;
     const slice = (2 * Math.PI) / N;
 
-    // ── Construir HTML ──
     section.innerHTML = `
         <div class="ruleta-label">ruleta del amor</div>
         <p class="ruleta-intro">Gira la ruleta mi amor y descubriras cosas huyyyy</p>
@@ -419,10 +413,10 @@ setInterval(spawnParticle, 2200);
         </div>
     `;
 
-    const canvas = document.getElementById("ruletaCanvas");
-    const ctx    = canvas.getContext("2d");
-    const btn    = document.getElementById("ruletaSpinBtn");
-    const result = document.getElementById("ruletaResult");
+    const canvas   = document.getElementById("ruletaCanvas");
+    const ctx      = canvas.getContext("2d");
+    const btn      = document.getElementById("ruletaSpinBtn");
+    const result   = document.getElementById("ruletaResult");
     const resEmoji = document.getElementById("ruletaEmoji");
     const resText  = document.getElementById("ruletaText");
 
@@ -432,7 +426,6 @@ setInterval(spawnParticle, 2200);
     function drawWheel(angle) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        // Sombra exterior
         ctx.save();
         ctx.shadowColor = "rgba(140,40,80,0.35)";
         ctx.shadowBlur  = 28;
@@ -446,7 +439,6 @@ setInterval(spawnParticle, 2200);
             const start = angle + i * slice;
             const end   = start + slice;
 
-            // Sector
             ctx.beginPath();
             ctx.moveTo(CX, CY);
             ctx.arc(CX, CY, R, start, end);
@@ -457,20 +449,18 @@ setInterval(spawnParticle, 2200);
             ctx.lineWidth   = 1.5;
             ctx.stroke();
 
-            // Emoji
             ctx.save();
             ctx.translate(CX, CY);
             ctx.rotate(start + slice / 2);
             ctx.translate(R * 0.68, 0);
             ctx.rotate(Math.PI / 2);
-            ctx.font       = "18px serif";
-            ctx.textAlign  = "center";
+            ctx.font        = "18px serif";
+            ctx.textAlign   = "center";
             ctx.textBaseline = "middle";
             ctx.fillText(ITEMS[i].emoji, 0, 0);
             ctx.restore();
         }
 
-        // Centro círculo
         ctx.save();
         ctx.shadowColor = "rgba(140,40,80,0.4)";
         ctx.shadowBlur  = 12;
@@ -483,59 +473,50 @@ setInterval(spawnParticle, 2200);
         ctx.fill();
         ctx.restore();
 
-        // Corazón centro
-        ctx.font          = "20px serif";
-        ctx.textAlign     = "center";
-        ctx.textBaseline  = "middle";
+        ctx.font         = "20px serif";
+        ctx.textAlign    = "center";
+        ctx.textBaseline = "middle";
         ctx.fillText("❤️", CX, CY);
     }
 
     drawWheel(currentAngle);
 
-    // ── Animación de giro ──
     function spin() {
         if (spinning) return;
-        spinning = true;
+        spinning     = true;
         btn.disabled = true;
         result.classList.remove("visible");
 
-        const extraSpins  = 5 + Math.floor(Math.random() * 5); // 5-9 vueltas
+        const extraSpins  = 5 + Math.floor(Math.random() * 5);
         const targetExtra = Math.random() * 2 * Math.PI;
         const totalRad    = extraSpins * 2 * Math.PI + targetExtra;
-        const duration    = 4000 + Math.random() * 1500; // ms
+        const duration    = 4000 + Math.random() * 1500;
         const startAngle  = currentAngle;
         const startTime   = performance.now();
 
-        function easeOut(t) {
-            // Ease out cubic
-            return 1 - Math.pow(1 - t, 3);
-        }
+        function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
 
         function frame(now) {
             const elapsed  = now - startTime;
             const progress = Math.min(elapsed / duration, 1);
-            const eased    = easeOut(progress);
-
-            currentAngle = startAngle + totalRad * eased;
+            currentAngle   = startAngle + totalRad * easeOut(progress);
             drawWheel(currentAngle);
 
             if (progress < 1) {
                 requestAnimationFrame(frame);
             } else {
-                spinning = false;
+                spinning     = false;
                 btn.disabled = false;
-                showResult();
+                showRuletaResult();
             }
         }
 
         requestAnimationFrame(frame);
     }
 
-    function showResult() {
-        // La punta (pin) apunta arriba = -PI/2
-        // Calculamos qué sector queda arriba
+    function showRuletaResult() {
         const normalized = (((-currentAngle - Math.PI / 2) % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-        const idx = Math.floor(normalized / slice) % N;
+        const idx  = Math.floor(normalized / slice) % N;
         const item = ITEMS[idx];
 
         resEmoji.textContent = item.emoji;
@@ -548,5 +529,369 @@ setInterval(spawnParticle, 2200);
     }
 
     btn.addEventListener("click", spin);
-
 })();
+
+// ─── Galería Polaroid ──────────────────────────
+(function initPolaroid() {
+
+    // ⬇️ Personaliza: "photo" es el nombre de tu imagen, "emoji" se muestra si no carga la foto
+    const POLAROIDS = [
+        {
+            photo: "gato.jpeg",
+            emoji: "🌅",
+            caption: "la primera vez que nos encontramos mujer 😂",
+            note: "Ese día lo cambió todo para mí ❤️",
+            color: "#f9dde6",
+            rot: "-4deg"
+        },
+        {
+            photo: "beso.jpeg",
+            emoji: "💋",
+            caption: "nuestro primer besitooo 🥹",
+            note: "Me dejaste sin palabras, mujer",
+            color: "#fce8ee",
+            rot: "3deg"
+        },
+        {
+            photo: "paisaje.jpeg",
+            emoji: "🌄",
+            caption: "Huyy amor ese dia ese vestidoooo huuuuuy",
+            note: "No la mire mucho  a los ojos ese dia huuuy",
+            color: "#f5c8d8",
+            rot: "-2deg"
+        },
+        {
+            photo: "mano.jpg",
+            emoji: "🤝",
+            caption: "Amoooooor esa cinturitaaaa 😤",
+            note: "Siempre quiero agarrarte y abrazarte asi mi amooor",
+            color: "#fce8ee",
+            rot: "5deg"
+        },
+        {
+            photo: "comida.jpg",
+            emoji: "🍽️",
+            caption: "nuestra cita juntitos comiendo felices 🥺",
+            note: "Verte toda feliz ese dia no tiene precio ❤️",
+            color: "#fde8f0",
+            rot: "-3deg"
+        },
+        {
+            photo: "rebe4.jpeg",
+            emoji: "⭐",
+            caption: "Hay mi niña preciosa solo mirateeee, esos ojitos 🥺 , vuelven loco a este ingeniero",
+            note: "Me encanta ❤️",
+            color: "#f9dde6",
+            rot: "2deg"
+        },
+
+
+        {
+            photo: "c3.jpeg",
+            emoji: "⭐",
+            caption: "Solo mirate lo preciosa que estas 🥺 Estoy tan feliz contigo mi amor❤️" ,
+            note: "WOW",
+            color: "#f9dde6",
+            rot: "2deg"
+        },
+
+
+        {
+            photo: "rebe4.jpeg",
+            emoji: "⭐",
+            caption: "Esos besitos, sentir esos labios en mi ufff",
+            note: "Más fotitos asi por favor 😅",
+            color: "#f9dde6",
+            rot: "2deg"
+        },
+
+        {
+            photo: "c2.jpeg",
+            emoji: "⭐",
+            caption: "Nosotros juntitos como debe ser",
+            note: "Esa foto me encantó",
+            color: "#f9dde6",
+            rot: "2deg"
+        },
+
+        {
+            photo: "c4.jpeg",
+            emoji: "⭐",
+            caption: "Qué me veas de esa manera me deja uff la verdad siempre mirame asi ahi es donde quiero estar siempre ❤️",
+            note: "Me enamora esa miradaaaa ❤️",
+            color: "#f9dde6",
+            rot: "2deg"
+        },
+    ];
+
+    const section = document.getElementById("polaroidSection");
+    if (!section) return;
+
+    // Encabezado de sección
+    section.innerHTML = `
+        <div class="polaroid-section-label">Galería de recuerdos</div>
+        <div class="polaroid-section-title">Nuestros Polaroids ❤️</div>
+        <div class="polaroid-shelf" id="polaroidShelf"></div>
+    `;
+
+    const shelf = document.getElementById("polaroidShelf");
+
+    POLAROIDS.forEach((p) => {
+        const wrap = document.createElement("div");
+        wrap.className = "polaroid-wrap";
+        wrap.style.transform = `rotate(${p.rot})`;
+        wrap.innerHTML = `
+            <div class="polaroid">
+                <div class="polaroid-tape"></div>
+                <div class="polaroid-heart">❤</div>
+                <div class="polaroid-img-box" style="background:linear-gradient(135deg,${p.color},#fff8f6);">
+                    <img src="${p.photo}" alt="${p.caption}"
+                        onerror="this.style.display='none'"
+                        onload="this.nextElementSibling.style.display='none'">
+                    <span class="polaroid-emoji-fallback">${p.emoji}</span>
+                </div>
+                <div class="polaroid-caption">${p.caption}</div>
+            </div>`;
+        wrap.addEventListener("click", () => openLightbox(p));
+        shelf.appendChild(wrap);
+    });
+
+    // Lightbox
+    const overlay  = document.getElementById("lbOverlay");
+    const lbImgWrap= document.getElementById("lbImgWrap");
+    const lbEmoji  = document.getElementById("lbEmoji");
+    const lbPhoto  = document.getElementById("lbPhotoImg");
+    const lbCap    = document.getElementById("lbCaption");
+    const lbNote   = document.getElementById("lbNote");
+    const lbClose  = document.getElementById("lbClose");
+
+    function openLightbox(p) {
+        lbImgWrap.style.background = `linear-gradient(135deg,${p.color},#fff8f6)`;
+        lbEmoji.textContent = p.emoji;
+        lbEmoji.style.display = "inline";
+        lbPhoto.style.display = "none";
+        lbPhoto.src = p.photo;
+        lbPhoto.onload  = () => { lbPhoto.style.display = "block"; lbEmoji.style.display = "none"; };
+        lbPhoto.onerror = () => { lbPhoto.style.display = "none";  lbEmoji.style.display = "inline"; };
+        lbCap.textContent  = p.caption;
+        lbNote.textContent = p.note;
+        overlay.classList.add("open");
+    }
+
+    lbClose.addEventListener("click", () => overlay.classList.remove("open"));
+    overlay.addEventListener("click", e => { if (e.target === overlay) overlay.classList.remove("open"); });
+})();
+
+// ─── Mini Quiz ─────────────────────────────────
+(function initQuiz() {
+
+    // ⬇️ Personaliza las preguntas y respuestas
+    const QUESTIONS = [
+        {
+            q: "¿Cuál es mi carrera universitaria?",
+            opts: ["Medicina", "Ingeniería en Sistemas", "Administración de Empresas", "Contaduría Pública"],
+            correct: 1,
+            ok:   "Obviamente si Soy tu ingenierito ❤️",
+            fail: "COMOOOOOOOOOOOO"
+        },
+        {
+            q: "¿Cómo me llaman mis amigos de cariño?",
+            opts: ["Fer", "Angel", "Sánchez", "Einyel"],
+            correct: 3,
+            ok:   "Estaba yuca  no lo negare 😂😂😂😂 ",
+            fail: "Era einyel amoooor😂"
+        },
+        {
+            q: "¿Qué fue lo primero que pensé cuando te vi por primera vez?",
+            opts: ["Qué simpática", "QUÉ MUJER 😵", "Parece seria", "Me da miedo nervio hablarleeee"],
+            correct: 1,
+            ok:   "Exacto, me dejaste sin palabras mujer ❤️",
+            fail: "Dije huuuy que guapa , ni supe como reaccionar ni queria sentarme 😅"
+        },
+        {
+            q: "¿Qué no queria hacer cuando hablamos por primera vez?",
+            opts: ["Hablar", "Sentarme", "Mirarte a los ojos", "nadita"],
+            correct: 1,
+            ok:   "Esta tiene su trampaaa 😂",
+            fail: "HUUUUY 😂"
+        },
+        {
+            q: "¿Qué es lo que más me gusta de ti (aparte de todo 😍)?",
+            opts: ["Tu cabello", "Tus ojos", "Tu forma de enojarme con esa carita", "Todas las anteriores "],
+            correct: 3,
+            ok:   "Todo mi niña lindaaa 💕",
+            fail: "Todita tu es mas completitaaa ❤️"
+        },
+        {
+            q: "¿En qué fecha empezamos nuestra historia?",
+            opts: ["9 de enero de 2026", "14 de febrero de 2026", "9 de febrero de 2026", "25 de diciembre de 2025"],
+            correct: 2,
+            ok:   "Esa fecha lo cambio todo mi amooor ❤️",
+            fail: "COMOOOOOOO"
+        },
+    ];
+
+    const section = document.getElementById("quizSection");
+    if (!section) return;
+
+    section.innerHTML = `
+        <div class="quiz-section-label">Ya que le gustan los cuestionarioooos 😂😂😂😂 </div>
+        <div class="quiz-section-title">¿Cuánto me conoces AMORCIITOOOOO?</div>
+        <div class="quiz-section-sub">Demuéstrame que me pones atención están facilitas y tendrá su premio 😏</div>
+        <div class="quiz-card">
+            <div class="quiz-progress-bar">
+                <div class="quiz-progress-fill" id="qBar" style="width:0%"></div>
+            </div>
+            <div id="quizBody">
+                <div class="quiz-q-num"    id="qNum"></div>
+                <div class="quiz-question" id="qText"></div>
+                <div class="quiz-options"  id="qOpts"></div>
+                <div class="quiz-feedback" id="qFeedback"></div>
+                <button class="quiz-next-btn" id="qNext">Siguiente →</button>
+            </div>
+            <div class="quiz-result-panel" id="quizResult">
+                <div class="quiz-result-emoji" id="resultEmoji"></div>
+                <div class="quiz-result-score" id="resultScore"></div>
+                <div class="quiz-result-msg"   id="resultMsg"></div>
+                <button class="quiz-restart-btn" id="qRestart">Intentaa de nuevoooo</button>
+            </div>
+        </div>
+    `;
+
+    let qIdx = 0, score = 0, answered = false;
+
+    const qBar      = document.getElementById("qBar");
+    const qNum      = document.getElementById("qNum");
+    const qText     = document.getElementById("qText");
+    const qOpts     = document.getElementById("qOpts");
+    const qFeedback = document.getElementById("qFeedback");
+    const qNext     = document.getElementById("qNext");
+    const quizBody  = document.getElementById("quizBody");
+    const quizResult= document.getElementById("quizResult");
+
+    function loadQuestion() {
+        const q  = QUESTIONS[qIdx];
+        answered = false;
+        qFeedback.textContent = "";
+        qNext.classList.remove("show");
+        qNum.textContent  = `Pregunta ${qIdx + 1} de ${QUESTIONS.length}`;
+        qText.textContent = q.q;
+        qBar.style.width  = (qIdx / QUESTIONS.length * 100) + "%";
+        qOpts.innerHTML   = "";
+
+        q.opts.forEach((opt, i) => {
+            const btn = document.createElement("button");
+            btn.className   = "quiz-opt";
+            btn.textContent = opt;
+            btn.addEventListener("click", () => answerQuestion(i));
+            qOpts.appendChild(btn);
+        });
+    }
+
+    function answerQuestion(chosen) {
+        if (answered) return;
+        answered = true;
+        const q    = QUESTIONS[qIdx];
+        const btns = qOpts.querySelectorAll(".quiz-opt");
+        btns.forEach(b => b.disabled = true);
+
+        if (chosen === q.correct) {
+            btns[chosen].classList.add("correct");
+            qFeedback.textContent = q.ok;
+            score++;
+        } else {
+            btns[chosen].classList.add("wrong");
+            btns[q.correct].classList.add("correct");
+            qFeedback.textContent = q.fail;
+        }
+
+        qNext.textContent = qIdx < QUESTIONS.length - 1 ? "Siguiente →" : "Ver resultado ❤️";
+        qNext.classList.add("show");
+    }
+
+    qNext.addEventListener("click", () => {
+        qIdx++;
+        if (qIdx < QUESTIONS.length) {
+            loadQuestion();
+        } else {
+            showFinalResult();
+        }
+    });
+
+function showFinalResult() {
+        quizBody.style.display   = "none";
+        quizResult.classList.add("show");
+        qBar.style.width = "100%";
+
+        const pct = score / QUESTIONS.length;
+        let emoji, msg;
+
+        if (pct === 1) {
+            emoji = "🏆";
+            msg   = "EXCELENTEEEEE 6 de 6 — Eres la que más me conoce en este mundo AMOOOR. Eso solo me dice que me pone muchaaaa atención. Te quiero muchísimo mi psicóloga hermosa ❤️";
+            launchHeartsRain();
+            // ── AUDIO PREMIO ──
+            const audioPremio = new Audio("premio.mp3");
+            audioPremio.volume = 0.85;
+            audioPremio.play().catch(() => {
+                mostrarBotonAudio(audioPremio);
+            });
+        } else if (pct >= 0.7) {
+            emoji = "💕";
+            msg   = `${score} de 6 — Siga intentando amorcito ❤️`;
+        } else if (pct >= 0.4) {
+            emoji = "🌸";
+            msg   = `${score} de 6 — Vamos vamos usted puedeeee ❤️`;
+        } else {
+            emoji = "😤";
+            msg   = `${score} de 6 — COMOOOOOOOOO A ESTUDIAR ❤️`;
+        }
+
+        document.getElementById("resultEmoji").textContent = emoji;
+        document.getElementById("resultScore").textContent = `${score} / ${QUESTIONS.length}`;
+        document.getElementById("resultMsg").textContent   = msg;
+    }
+
+    document.getElementById("qRestart").addEventListener("click", () => {
+        qIdx = 0; score = 0; answered = false;
+        quizResult.classList.remove("show");
+        quizBody.style.display = "block";
+        loadQuestion();
+    });
+
+    loadQuestion();
+})();
+// ─── Lluvia de corazones (quiz perfecto) ───────
+function launchHeartsRain() {
+    const rain   = document.getElementById("heartsRain");
+    if (!rain) return;
+    const emojis = ["❤️","💕","🌸","✨","💗","🩷","💖"];
+    for (let i = 0; i < 40; i++) {
+        setTimeout(() => {
+            const h = document.createElement("div");
+            h.className = "h-drop";
+            h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            h.style.left = Math.random() * 100 + "vw";
+            h.style.animationDuration = (1.4 + Math.random() * 2) + "s";
+            h.style.fontSize = (0.8 + Math.random() * 1.4) + "rem";
+            rain.appendChild(h);
+            setTimeout(() => h.remove(), 3600);
+        }, i * 75);
+    }
+    
+}
+function mostrarBotonAudio(audio) {
+    const btn = document.createElement("button");
+    btn.textContent = "🎵 Escucha tu premio";
+    btn.style.cssText = `
+        position: fixed; bottom: 28px; left: 50%; transform: translateX(-50%);
+        background: linear-gradient(135deg, #8b1a3a, #c9426a);
+        border: none; border-radius: 50px; padding: 14px 32px;
+        font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 700;
+        color: #fff; cursor: pointer; z-index: 99999;
+        box-shadow: 0 8px 30px rgba(201,66,106,0.45);
+        animation: fadeSlideUp 0.5s cubic-bezier(.22,1,.36,1) both;
+    `;
+    btn.onclick = () => { audio.play(); btn.remove(); };
+    document.body.appendChild(btn);
+}
