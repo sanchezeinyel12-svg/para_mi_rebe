@@ -861,7 +861,7 @@ if (pct === 1) {
         // Si el navegador bloquea el autoplay, el usuario usará los controles que ya son visibles
         console.log("Esperando interacción del usuario para el audio.");
     });
-}
+
         } else if (pct >= 0.7) {
             emoji = "💕";
             msg   = `${score} de 6 — Siga intentando amorcito ❤️`;
