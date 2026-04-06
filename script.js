@@ -659,7 +659,7 @@ setInterval(spawnParticle, 2200);
             rot: "2deg"
         },
         {
-            photo: "rebe4.jpeg",
+            photo: "c1.jpeg",
             emoji: "⭐",
             caption: "Esos besitos, sentir esos labios en mi ufff",
             note: "Más fotitos asi por favor 😅",
