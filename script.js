@@ -1,27 +1,28 @@
 /* ============================================
-   PARA REBECA ❤️  —  script.js  (COMPLETO)
+   PARA REBECA ❤️  —  script.js  (PSICOLOGÍA)
    ============================================ */
 
 // ─── Frases flotantes ──────────────────────────
 const FRASES = [
-    "te quiero mucho mi princesa",
-    "Mi mujer preciosa ❤️",
-    "Mi tesorito",
+    "mi futura psicóloga ❤️",
+    "mi mujer preciosa",
+    "mi tesorito",
     "eres increíble mi niña",
     "mi enojonaa",
-    "mi psicóloga bonita",
+    "brillante y hermosa",
     "tan orgulloso de ti",
-    "Te admiro mucho mi reina hermosa",
+    "te admiro mucho mi reina",
     "eres capaz de todo",
     "te quiero muchote",
     "mi guerrera",
     "eres brillante",
-    "siempre contigo en las buenas y en las malas",
+    "siempre contigo",
     "mi vida entera",
     "❤️",
     "✦",
     "mi amor",
     "lo mejor que me pasó",
+    "🧠❤️",
 ];
 
 function spawnPhrase() {
@@ -49,15 +50,16 @@ function spawnPhrase() {
     setInterval(spawnPhrase, 1800);
 })();
 
-// ─── Partículas de fondo ───────────────────────
+// ─── Partículas neuronales de fondo ───────────────
 function spawnParticle() {
     const container = document.getElementById("bgParticles");
     if (!container) return;
-    const emojis = ["❤️", "🌸", "✨", "💕", "🩷"];
+    // mix de emojis + mini-sinapsis SVG
+    const emojis = ["❤️", "🧠", "✨", "💜", "🌸", "🔮"];
     const el = document.createElement("div");
     el.style.cssText = `
         position: absolute;
-        font-size: ${10 + Math.random() * 14}px;
+        font-size: ${9 + Math.random() * 13}px;
         left: ${Math.random() * 100}%;
         bottom: -60px;
         opacity: 0;
@@ -72,8 +74,8 @@ function spawnParticle() {
         style.textContent = `
             @keyframes particleFloat {
                 0%   { transform: translateY(0) scale(0.5) rotate(0deg); opacity: 0; }
-                15%  { opacity: 0.7; }
-                80%  { opacity: 0.3; }
+                15%  { opacity: 0.6; }
+                80%  { opacity: 0.28; }
                 100% { transform: translateY(-110vh) scale(1) rotate(360deg); opacity: 0; }
             }`;
         document.head.appendChild(style);
@@ -82,6 +84,48 @@ function spawnParticle() {
     setTimeout(() => el.remove(), 15000);
 }
 setInterval(spawnParticle, 2200);
+
+// ─── Pulso neuronal SVG en el fondo ────────────────
+(function initNeuralBg() {
+    const container = document.getElementById("bgParticles");
+    if (!container) return;
+
+    function spawnNeuralPulse() {
+        const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        const size = 60 + Math.random() * 80;
+        svg.setAttribute("width", size);
+        svg.setAttribute("height", size);
+        svg.setAttribute("viewBox", "0 0 100 100");
+        svg.style.cssText = `
+            position: absolute;
+            left: ${Math.random() * 95}%;
+            bottom: -${size}px;
+            opacity: 0;
+            pointer-events: none;
+            animation: particleFloat ${12 + Math.random() * 10}s linear forwards;
+        `;
+
+        // Neurona simple: nodo central + dendritas
+        const cx = 50, cy = 50;
+        const arms = 4 + Math.floor(Math.random() * 3);
+        let svgContent = `<circle cx="${cx}" cy="${cy}" r="5" fill="rgba(155,107,185,0.5)"/>`;
+        for (let i = 0; i < arms; i++) {
+            const angle = (i / arms) * Math.PI * 2;
+            const len = 18 + Math.random() * 14;
+            const ex = cx + Math.cos(angle) * len;
+            const ey = cy + Math.sin(angle) * len;
+            svgContent += `<line x1="${cx}" y1="${cy}" x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}"
+                stroke="rgba(155,107,185,0.35)" stroke-width="1.2"/>
+                <circle cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="2.5"
+                fill="rgba(201,168,232,0.45)"/>`;
+        }
+        svg.innerHTML = svgContent;
+        container.appendChild(svg);
+        setTimeout(() => svg.remove(), 22000);
+    }
+
+    setInterval(spawnNeuralPulse, 4500);
+})();
 
 // ─── Carrusel ──────────────────────────────────
 (function initCarousel() {
@@ -218,15 +262,16 @@ setInterval(spawnParticle, 2200);
         },
     ];
 
+    // Paleta violeta/lavanda para flores
     const FLOWER_COLORS = [
-        { petals: "#ff6b9d", center: "#ffd700", size: 90  },
-        { petals: "#e8758a", center: "#ffb347", size: 80  },
-        { petals: "#c9426a", center: "#ffd700", size: 100 },
-        { petals: "#f4a0c0", center: "#ffcc44", size: 78  },
-        { petals: "#d4537e", center: "#ffd700", size: 88  },
+        { petals: "#9b6bb9", center: "#f5d87a", size: 90  },
+        { petals: "#c9a8e8", center: "#ffd580", size: 80  },
+        { petals: "#5b2d8e", center: "#f5d87a", size: 100 },
+        { petals: "#e0c6f5", center: "#ffc87a", size: 78  },
+        { petals: "#7a4aaa", center: "#f5d87a", size: 88  },
     ];
 
-    const STEM_COLOR = "#2d8a4e";
+    const STEM_COLOR = "#3d7a56";
     const LABELS = [
         "primera vez",
         "primer besito",
@@ -281,7 +326,29 @@ setInterval(spawnParticle, 2200);
         const t = (Math.random() * 85).toFixed(1);
         const o = (0.15 + Math.random() * 0.45).toFixed(2);
         starsHTML += `<div style="position:absolute;width:${s}px;height:${s}px;border-radius:50%;
-            background:rgba(255,255,220,${o});left:${l}%;top:${t}%;pointer-events:none;"></div>`;
+            background:rgba(220,190,255,${o});left:${l}%;top:${t}%;pointer-events:none;"></div>`;
+    }
+
+    // Mini neuronas decorativas en el fondo del jardín
+    let neuronBg = "";
+    for (let i = 0; i < 8; i++) {
+        const x = 5 + Math.random() * 90;
+        const y = 5 + Math.random() * 75;
+        neuronBg += `<div style="position:absolute;left:${x}%;top:${y}%;pointer-events:none;opacity:0.18;">
+            <svg width="40" height="40" viewBox="0 0 40 40">
+                <circle cx="20" cy="20" r="3" fill="#c9a8e8"/>
+                <line x1="20" y1="20" x2="8" y2="12" stroke="#c9a8e8" stroke-width="1"/>
+                <line x1="20" y1="20" x2="32" y2="12" stroke="#c9a8e8" stroke-width="1"/>
+                <line x1="20" y1="20" x2="20" y2="5" stroke="#c9a8e8" stroke-width="1"/>
+                <line x1="20" y1="20" x2="8" y2="30" stroke="#c9a8e8" stroke-width="1"/>
+                <line x1="20" y1="20" x2="32" y2="30" stroke="#c9a8e8" stroke-width="1"/>
+                <circle cx="8" cy="12" r="2" fill="#c9a8e8"/>
+                <circle cx="32" cy="12" r="2" fill="#c9a8e8"/>
+                <circle cx="20" cy="5" r="2" fill="#c9a8e8"/>
+                <circle cx="8" cy="30" r="2" fill="#c9a8e8"/>
+                <circle cx="32" cy="30" r="2" fill="#c9a8e8"/>
+            </svg>
+        </div>`;
     }
 
     let flowersHTML = "";
@@ -299,6 +366,7 @@ setInterval(spawnParticle, 2200);
         <p class="garden-intro">Toca cada flor para revivir el momento ❤️</p>
         <div class="garden-sky" id="gardenSky">
             ${starsHTML}
+            ${neuronBg}
             <div class="garden-flowers-row">${flowersHTML}</div>
             <div class="garden-ground"></div>
         </div>
@@ -371,7 +439,7 @@ setInterval(spawnParticle, 2200);
 (function initRuleta() {
 
     const ITEMS = [
-        { emoji: "💕", text: "Te quiero tanto que aveces las palabras se me quedan cortas mi princesa" },
+        { emoji: "💜", text: "Te quiero tanto que aveces las palabras se me quedan cortas mi princesa" },
         { emoji: "🌍", text: "Prometo en un futuro conocer el mundooo o bueno nuestro pais juntos" },
         { emoji: "😂", text: "Me haces reir mucho siempre me sacas una sonrisotaaaa" },
         { emoji: "🎓", text: "Prometo estar ahí el día que te pongas el uniforme de psicóloga y verte con ojos de orgullo" },
@@ -383,10 +451,11 @@ setInterval(spawnParticle, 2200);
     const section = document.getElementById("ruletaSection");
     if (!section) return;
 
+    // Paleta violeta para la ruleta
     const COLORS = [
-        "#c9426a","#d4537e","#e8758a","#b03060",
-        "#c9426a","#d4537e","#e8758a","#b03060",
-        "#c9426a","#d4537e","#e8758a","#b03060",
+        "#5b2d8e","#7a4aaa","#9b6bb9","#3a1560",
+        "#5b2d8e","#7a4aaa","#9b6bb9","#3a1560",
+        "#5b2d8e","#7a4aaa","#9b6bb9","#3a1560",
     ];
 
     const N     = ITEMS.length;
@@ -425,7 +494,7 @@ setInterval(spawnParticle, 2200);
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
         ctx.save();
-        ctx.shadowColor = "rgba(140,40,80,0.35)";
+        ctx.shadowColor = "rgba(91,45,142,0.3)";
         ctx.shadowBlur  = 28;
         ctx.beginPath();
         ctx.arc(CX, CY, R + 4, 0, 2 * Math.PI);
@@ -443,7 +512,7 @@ setInterval(spawnParticle, 2200);
             ctx.closePath();
             ctx.fillStyle = COLORS[i];
             ctx.fill();
-            ctx.strokeStyle = "rgba(255,255,255,0.35)";
+            ctx.strokeStyle = "rgba(255,255,255,0.3)";
             ctx.lineWidth   = 1.5;
             ctx.stroke();
 
@@ -460,13 +529,13 @@ setInterval(spawnParticle, 2200);
         }
 
         ctx.save();
-        ctx.shadowColor = "rgba(140,40,80,0.4)";
+        ctx.shadowColor = "rgba(91,45,142,0.4)";
         ctx.shadowBlur  = 12;
         ctx.beginPath();
         ctx.arc(CX, CY, 28, 0, 2 * Math.PI);
         const grad = ctx.createRadialGradient(CX-6, CY-6, 2, CX, CY, 28);
-        grad.addColorStop(0, "#f4a0c0");
-        grad.addColorStop(1, "#8b1a3a");
+        grad.addColorStop(0, "#c9a8e8");
+        grad.addColorStop(1, "#3a1560");
         ctx.fillStyle = grad;
         ctx.fill();
         ctx.restore();
@@ -474,7 +543,7 @@ setInterval(spawnParticle, 2200);
         ctx.font         = "20px serif";
         ctx.textAlign    = "center";
         ctx.textBaseline = "middle";
-        ctx.fillText("❤️", CX, CY);
+        ctx.fillText("💜", CX, CY);
     }
 
     drawWheel(currentAngle);
@@ -538,7 +607,7 @@ setInterval(spawnParticle, 2200);
             emoji: "🌅",
             caption: "la primera vez que nos encontramos mujer 😂",
             note: "Ese día lo cambió todo para mí ❤️",
-            color: "#f9dde6",
+            color: "#e8d8f8",
             rot: "-4deg"
         },
         {
@@ -546,15 +615,15 @@ setInterval(spawnParticle, 2200);
             emoji: "💋",
             caption: "nuestro primer besitooo 🥹",
             note: "Me dejaste sin palabras, mujer",
-            color: "#fce8ee",
+            color: "#f0eafc",
             rot: "3deg"
         },
         {
             photo: "paisaje.jpeg",
             emoji: "🌄",
             caption: "Huyy amor ese dia ese vestidoooo huuuuuy",
-            note: "No la mire mucho  a los ojos ese dia huuuy",
-            color: "#f5c8d8",
+            note: "No la mire mucho a los ojos ese dia huuuy",
+            color: "#e4d0f5",
             rot: "-2deg"
         },
         {
@@ -562,7 +631,7 @@ setInterval(spawnParticle, 2200);
             emoji: "🤝",
             caption: "Amoooooor esa cinturitaaaa 😤",
             note: "Siempre quiero agarrarte y abrazarte asi mi amooor",
-            color: "#fce8ee",
+            color: "#f0eafc",
             rot: "5deg"
         },
         {
@@ -570,15 +639,15 @@ setInterval(spawnParticle, 2200);
             emoji: "🍽️",
             caption: "nuestra cita juntitos comiendo felices 🥺",
             note: "Verte toda feliz ese dia no tiene precio ❤️",
-            color: "#fde8f0",
+            color: "#ede0fa",
             rot: "-3deg"
         },
         {
             photo: "rebe4.jpeg",
             emoji: "⭐",
-            caption: "Hay mi niña preciosa solo mirateeee, esos ojitos 🥺 , vuelven loco a este ingeniero",
+            caption: "Hay mi niña preciosa solo mirateeee, esos ojitos 🥺",
             note: "Me encanta ❤️",
-            color: "#f9dde6",
+            color: "#e8d8f8",
             rot: "2deg"
         },
         {
@@ -586,15 +655,15 @@ setInterval(spawnParticle, 2200);
             emoji: "⭐",
             caption: "Solo mirate lo preciosa que estas 🥺 Estoy tan feliz contigo mi amor❤️",
             note: "WOW",
-            color: "#f9dde6",
+            color: "#e8d8f8",
             rot: "2deg"
         },
         {
-            photo: "c1.jpeg",
+            photo: "rebe4.jpeg",
             emoji: "⭐",
             caption: "Esos besitos, sentir esos labios en mi ufff",
             note: "Más fotitos asi por favor 😅",
-            color: "#f9dde6",
+            color: "#e8d8f8",
             rot: "2deg"
         },
         {
@@ -602,15 +671,15 @@ setInterval(spawnParticle, 2200);
             emoji: "⭐",
             caption: "Nosotros juntitos como debe ser",
             note: "Esa foto me encantó",
-            color: "#f9dde6",
+            color: "#e8d8f8",
             rot: "2deg"
         },
         {
             photo: "c4.jpeg",
             emoji: "⭐",
-            caption: "Qué me veas de esa manera me deja uff la verdad siempre mirame asi ahi es donde quiero estar siempre ❤️",
+            caption: "Qué me veas de esa manera me deja uff ❤️",
             note: "Me enamora esa miradaaaa ❤️",
-            color: "#f9dde6",
+            color: "#e8d8f8",
             rot: "2deg"
         },
     ];
@@ -634,7 +703,7 @@ setInterval(spawnParticle, 2200);
             <div class="polaroid">
                 <div class="polaroid-tape"></div>
                 <div class="polaroid-heart">❤</div>
-                <div class="polaroid-img-box" style="background:linear-gradient(135deg,${p.color},#fff8f6);">
+                <div class="polaroid-img-box" style="background:linear-gradient(135deg,${p.color},#f8f4ff);">
                     <img src="${p.photo}" alt="${p.caption}"
                         onerror="this.style.display='none'"
                         onload="this.nextElementSibling.style.display='none'">
@@ -655,7 +724,7 @@ setInterval(spawnParticle, 2200);
     const lbClose  = document.getElementById("lbClose");
 
     function openLightbox(p) {
-        lbImgWrap.style.background = `linear-gradient(135deg,${p.color},#fff8f6)`;
+        lbImgWrap.style.background = `linear-gradient(135deg,${p.color},#f8f4ff)`;
         lbEmoji.textContent = p.emoji;
         lbEmoji.style.display = "inline";
         lbPhoto.style.display = "none";
@@ -707,7 +776,7 @@ setInterval(spawnParticle, 2200);
             q: "¿Qué es lo que más me gusta de ti (aparte de todo 😍)?",
             opts: ["Tu cabello", "Tus ojos", "Tu forma de enojarte con esa carita", "Todas las anteriores "],
             correct: 3,
-            ok:   "Todo mi niña lindaaa 💕",
+            ok:   "Todo mi niña lindaaa 💜",
             fail: "Todita tu es mas completitaaa ❤️"
         },
         {
@@ -820,7 +889,7 @@ setInterval(spawnParticle, 2200);
             launchHeartsRain();
             mostrarReproductor();
         } else if (pct >= 0.7) {
-            emoji = "💕";
+            emoji = "💜";
             msg   = `${score} de 6 — Siga intentando amorcito ❤️`;
         } else if (pct >= 0.4) {
             emoji = "🌸";
@@ -836,7 +905,6 @@ setInterval(spawnParticle, 2200);
     }
 
     document.getElementById("qRestart").addEventListener("click", () => {
-        // Remover reproductor si existe para que no se duplique
         const oldPlayer = document.getElementById("playerPremio");
         if (oldPlayer) oldPlayer.remove();
 
@@ -849,11 +917,11 @@ setInterval(spawnParticle, 2200);
     loadQuestion();
 })();
 
-// ─── Lluvia de corazones (quiz perfecto) ───────
+// ─── Lluvia de estrellas/corazones (quiz perfecto) ──
 function launchHeartsRain() {
     const rain = document.getElementById("heartsRain");
     if (!rain) return;
-    const emojis = ["❤️","💕","🌸","✨","💗","🩷","💖"];
+    const emojis = ["❤️","💜","🌸","✨","💗","🧠","💖","⭐"];
     for (let i = 0; i < 40; i++) {
         setTimeout(() => {
             const h = document.createElement("div");
@@ -868,16 +936,15 @@ function launchHeartsRain() {
     }
 }
 
-// ─── Reproductor de audio (premio quiz perfecto) ───
+// ─── Reproductor premio quiz ───
 function mostrarReproductor() {
-    // Evitar duplicados
     if (document.getElementById("playerPremio")) return;
 
     const wrap = document.createElement("div");
     wrap.id = "playerPremio";
     wrap.style.cssText = `
         margin-top: 24px;
-        background: linear-gradient(135deg, #8b1a3a, #c9426a);
+        background: linear-gradient(135deg, #3a1560, #5b2d8e);
         border-radius: 18px;
         padding: 18px 22px;
         color: #fff;
@@ -886,7 +953,7 @@ function mostrarReproductor() {
         margin-left: auto;
         margin-right: auto;
         animation: fadeSlideUp 0.5s cubic-bezier(.22,1,.36,1) both;
-        box-shadow: 0 8px 30px rgba(139,26,58,0.35);
+        box-shadow: 0 8px 30px rgba(58,21,96,0.35);
     `;
 
     wrap.innerHTML = `
@@ -896,15 +963,15 @@ function mostrarReproductor() {
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
             <button id="ppPlayBtn" title="Play / Pausa" style="
                 width:46px;height:46px;border-radius:50%;
-                background:rgba(255,255,255,0.2);
-                border:2px solid rgba(255,255,255,0.55);
+                background:rgba(255,255,255,0.18);
+                border:2px solid rgba(255,255,255,0.5);
                 color:#fff;font-size:20px;cursor:pointer;
                 display:flex;align-items:center;justify-content:center;
                 flex-shrink:0;transition:background 0.2s;">▶</button>
             <div style="flex:1;display:flex;flex-direction:column;gap:5px;">
                 <div id="ppProgWrap" title="Clic para saltar" style="
                     width:100%;height:6px;
-                    background:rgba(255,255,255,0.25);
+                    background:rgba(255,255,255,0.22);
                     border-radius:99px;cursor:pointer;position:relative;">
                     <div id="ppProgFill" style="
                         height:100%;background:#fff;
@@ -912,26 +979,23 @@ function mostrarReproductor() {
                         pointer-events:none;
                         transition:width 0.1s linear;"></div>
                 </div>
-                <div style="display:flex;justify-content:space-between;font-size:11px;opacity:0.75;font-family:monospace;">
+                <div style="display:flex;justify-content:space-between;font-size:11px;opacity:0.7;font-family:monospace;">
                     <span id="ppCur">0:00</span>
                     <span id="ppDur">--:--</span>
                 </div>
             </div>
         </div>
         <div style="display:flex;align-items:center;gap:8px;">
-            <span style="font-size:15px;" title="Volumen">🔈</span>
+            <span style="font-size:15px;">🔈</span>
             <input type="range" id="ppVol" min="0" max="1" step="0.01" value="0.85"
-                title="Volumen"
-                style="flex:1;accent-color:#fff;cursor:pointer;">
+                style="flex:1;accent-color:#c9a8e8;cursor:pointer;">
             <span style="font-size:15px;">🔊</span>
         </div>
     `;
 
-    // Insertarlo dentro del panel de resultado
     const resultPanel = document.getElementById("quizResult");
     resultPanel.appendChild(wrap);
 
-    // ── Audio ──
     const audio = new Audio("premio.mp3");
     audio.volume = 0.85;
 
@@ -949,7 +1013,6 @@ function mostrarReproductor() {
         return m + ":" + String(sec).padStart(2, "0");
     }
 
-    // Play / Pausa
     playBtn.addEventListener("click", () => {
         if (audio.paused) {
             audio.play().catch(() => {});
@@ -960,7 +1023,6 @@ function mostrarReproductor() {
         }
     });
 
-    // Progreso
     audio.addEventListener("timeupdate", () => {
         if (!audio.duration) return;
         const pct = (audio.currentTime / audio.duration) * 100;
@@ -968,19 +1030,16 @@ function mostrarReproductor() {
         curEl.textContent = fmt(audio.currentTime);
     });
 
-    // Duración cuando carga
     audio.addEventListener("loadedmetadata", () => {
         durEl.textContent = fmt(audio.duration);
     });
 
-    // Al terminar
     audio.addEventListener("ended", () => {
         playBtn.textContent = "▶";
         progFill.style.width = "0%";
         curEl.textContent = "0:00";
     });
 
-    // Clic en barra de progreso → saltar
     progWrap.addEventListener("click", e => {
         if (!audio.duration) return;
         const rect = progWrap.getBoundingClientRect();
@@ -988,16 +1047,117 @@ function mostrarReproductor() {
         audio.currentTime = pct * audio.duration;
     });
 
-    // Volumen
     volEl.addEventListener("input", () => {
         audio.volume = parseFloat(volEl.value);
     });
 
-    // Intentar autoplay; si el navegador lo bloquea el botón ya está visible
     audio.play()
         .then(() => { playBtn.textContent = "⏸"; })
         .catch(() => {
-            // Autoplay bloqueado — esperamos que ella le dé play manualmente
-            playBtn.style.background = "rgba(255,255,255,0.35)";
+            playBtn.style.background = "rgba(255,255,255,0.3)";
         });
 }
+
+// ─── Cajita sorpresa del día ───────────────────
+(function initSorpresa() {
+
+    const MENSAJES = [
+        { dia: "Domingo",   texto: "Que este domingo te recargue de energía, amor y la certeza de que eres lo mejor que me pasó." },
+        { dia: "Lunes",     texto: "Empezaste la semana y ya eres lo más bonito de mi día. Que tus clases sean fáciles y tu sonrisa no se apague." },
+        { dia: "Martes",    texto: "Cada martes me recuerda que tengo a la chica más increíble del mundo estudiando para cambiar vidas." },
+        { dia: "Miércoles", texto: "Mitad de semana, mitad de mis pensamientos son sobre ti. La otra mitad también. No me hagas caso." },
+        { dia: "Jueves",    texto: "Ya casi es viernes y tú sigues siendo lo mejor de toda la semana, mi amor." },
+        { dia: "Viernes",   texto: "¡Llegó el viernes, mi reina! Te mereces descansar, reír y saber que este ingeniero está muy orgulloso de ti." },
+        { dia: "Sábado",    texto: "Sábado contigo o pensando en ti. De las dos formas es mi día favorito." },
+    ];
+
+    const section = document.getElementById("sorpresaSection");
+    if (!section) return;
+
+    const hoy = MENSAJES[new Date().getDay()];
+
+    section.innerHTML = `
+        <div class="sorpresa-label">sorpresa del día</div>
+        <div class="sorpresa-title">Tu cajita de amor ❤️</div>
+        <p class="sorpresa-hint" id="hintCaja">Toca la caja para ver tu sorpresa de hoy</p>
+        <div class="caja-wrap" id="cajaWrap">
+            <div class="caja" id="cajaBox">
+                <div class="caja-lazo">🎀</div>
+                <div class="caja-cara caja-frente">
+                    <div class="caja-icono">🎁</div>
+                    <div class="caja-tap-txt">toca aquí</div>
+                </div>
+                <div class="caja-cara caja-dorso">
+                    <div class="sorpresa-msg-dia">${hoy.dia}</div>
+                    <div class="sorpresa-msg-texto">${hoy.texto}</div>
+                    <div class="sorpresa-msg-firma">— Tu angelito ❤️</div>
+                </div>
+            </div>
+        </div>`;
+
+    let abierta = false;
+    const cajaBox = document.getElementById("cajaBox");
+    const hint    = document.getElementById("hintCaja");
+
+    document.getElementById("cajaWrap").addEventListener("click", () => {
+        abierta = !abierta;
+        cajaBox.classList.toggle("abierta", abierta);
+        hint.textContent = abierta
+            ? "¡Que tengas un día hermoso! ❤️"
+            : "Toca la caja para ver tu sorpresa de hoy";
+    });
+})();
+
+// ─── Carta animada ─────────────────────────────
+(function initCarta() {
+
+    const CARTAS = [
+        "Hay mi amor la verdad que estoy tan feliz contigo que las palabras se quedan cortas amor y las acciones hablan por si solas, solo quiero decirte que contigo me siento feliz , seguro en confianza no sabes la alegria que me da tenerte conmigo y poder tener la dicha que seas mi novia , yo por ti hare lo imposible para que siempre estemos juntos y poder apoyarte en las buenas y las malas mi princesa ❤️",
+        
+    ];
+
+    const semana  = Math.floor(Date.now() / 1000 / 60 / 60 / 24 / 7);
+    const carta   = CARTAS[semana % CARTAS.length];
+    const fechaStr = new Date().toLocaleDateString("es-ES", {
+        weekday: "long", year: "numeric", month: "long", day: "numeric"
+    });
+
+    const section = document.getElementById("cartaSection");
+    if (!section) return;
+
+    section.innerHTML = `
+        <div class="sorpresa-label">una carta para ti</div>
+        <div class="sorpresa-title">Carta de amor ✉️</div>
+        <div class="sobre-wrap" id="sobreWrap">
+            <div class="sobre" id="sobre">
+                <div class="sobre-flap" id="sobreFlap"></div>
+                <div class="sobre-lineas">
+                    <div class="sobre-linea"></div>
+                    <div class="sobre-linea"></div>
+                    <div class="sobre-linea"></div>
+                    <div class="sobre-linea"></div>
+                </div>
+                <div class="sobre-sello">💌</div>
+                <div class="sobre-tap-txt" id="sobreTap">abrir carta</div>
+            </div>
+        </div>
+        <div class="carta-contenido" id="cartaContenido">
+            <div class="carta-fecha">${fechaStr}</div>
+            <div class="carta-deco-linea"></div>
+            <div class="carta-saludo">Mi psicóloga preciosa,</div>
+            <div class="carta-cuerpo">${carta}</div>
+            <div class="carta-firma">Con todo mi amor,<br>Tu angelito ❤️</div>
+        </div>`;
+
+    let abierta = false;
+    const flap      = document.getElementById("sobreFlap");
+    const contenido = document.getElementById("cartaContenido");
+    const tapTxt    = document.getElementById("sobreTap");
+
+    document.getElementById("sobreWrap").addEventListener("click", () => {
+        abierta = !abierta;
+        flap.classList.toggle("levantada", abierta);
+        contenido.classList.toggle("abierta", abierta);
+        tapTxt.style.opacity = abierta ? "0" : "1";
+    });
+})();
