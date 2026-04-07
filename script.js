@@ -54,7 +54,6 @@ function spawnPhrase() {
 function spawnParticle() {
     const container = document.getElementById("bgParticles");
     if (!container) return;
-    // mix de emojis + mini-sinapsis SVG
     const emojis = ["❤️", "🧠", "✨", "💜", "🌸", "🔮"];
     const el = document.createElement("div");
     el.style.cssText = `
@@ -105,7 +104,6 @@ setInterval(spawnParticle, 2200);
             animation: particleFloat ${12 + Math.random() * 10}s linear forwards;
         `;
 
-        // Neurona simple: nodo central + dendritas
         const cx = 50, cy = 50;
         const arms = 4 + Math.floor(Math.random() * 3);
         let svgContent = `<circle cx="${cx}" cy="${cy}" r="5" fill="rgba(155,107,185,0.5)"/>`;
@@ -262,7 +260,6 @@ setInterval(spawnParticle, 2200);
         },
     ];
 
-    // Paleta violeta/lavanda para flores
     const FLOWER_COLORS = [
         { petals: "#9b6bb9", center: "#f5d87a", size: 90  },
         { petals: "#c9a8e8", center: "#ffd580", size: 80  },
@@ -329,7 +326,6 @@ setInterval(spawnParticle, 2200);
             background:rgba(220,190,255,${o});left:${l}%;top:${t}%;pointer-events:none;"></div>`;
     }
 
-    // Mini neuronas decorativas en el fondo del jardín
     let neuronBg = "";
     for (let i = 0; i < 8; i++) {
         const x = 5 + Math.random() * 90;
@@ -451,7 +447,6 @@ setInterval(spawnParticle, 2200);
     const section = document.getElementById("ruletaSection");
     if (!section) return;
 
-    // Paleta violeta para la ruleta
     const COLORS = [
         "#5b2d8e","#7a4aaa","#9b6bb9","#3a1560",
         "#5b2d8e","#7a4aaa","#9b6bb9","#3a1560",
@@ -1108,12 +1103,11 @@ function mostrarReproductor() {
     });
 })();
 
-// ─── Carta animada ─────────────────────────────
+// ─── Carta animada original ─────────────────────────────
 (function initCarta() {
 
     const CARTAS = [
         "Hay mi amor la verdad que estoy tan feliz contigo que las palabras se quedan cortas amor y las acciones hablan por si solas, solo quiero decirte que contigo me siento feliz , seguro en confianza no sabes la alegria que me da tenerte conmigo y poder tener la dicha que seas mi novia , yo por ti hare lo imposible para que siempre estemos juntos y poder apoyarte en las buenas y las malas mi princesa ❤️",
-        
     ];
 
     const semana  = Math.floor(Date.now() / 1000 / 60 / 60 / 24 / 7);
@@ -1160,4 +1154,439 @@ function mostrarReproductor() {
         contenido.classList.toggle("abierta", abierta);
         tapTxt.style.opacity = abierta ? "0" : "1";
     });
+})();
+
+/* ════════════════════════════════════════════════
+   ✨ NUEVA SECCIÓN 1: RAZONES PSICÓLOGA ✨
+   Tarjetas flotantes con animación
+   ════════════════════════════════════════════════ */
+(function initRazones() {
+
+    const RAZONES = [
+        {
+            emoji: "💜",
+            titulo: "Tu empatía es  increible mi amorcito",
+            texto: "He notado su percepcion para sentir cosas en las demas  personas y como actuan eso se valora mucho mi amorr.",
+            tag: "Se nota vocación mi amor"
+        },
+        {
+            emoji: "👂",
+            titulo: "Escuchas sin juzgar algo que lo valoro mucho yo mi amor",
+            texto: "Cuando estoy contigo me siento en paz por que puedo ser yo sin que me juzguen asi me haces sentir tu mi amor.",
+            tag: "Una habilidad que tienes para escuchar que se aprecia un monton mi amor de mi vida"
+        },
+        {
+            emoji: "🧠",
+            titulo: "Eres brillante e inteligente",
+            texto: "Te he visto estudiar y el tiempo que le metes y te he visto pensar y como relacionas todo amor tienes mucho conocimiento. Un examen no te va definir nunca en lo increible que eres como persona amor.",
+            tag: "Lo que yo veo con orgullo en ti"
+        },
+        {
+            emoji: "🔥",
+            titulo: "Te apasiona lo que estudias amor",
+            texto: "No estudias psicología por obligación  ni conveniencia lo haces por tienes esa pasión que te llama amor eso ufff amor vale mucho",
+            tag: "Tu motivación"
+        },
+        {
+            emoji: "❤️",
+            titulo: "Un examen no te va definir nunca mi princesa",
+            texto: "Tu valor como futura psicóloga nunca se va basar en lo que escribas en un papel amor si no en las acciones que tomes como profesional.",
+            tag: "Serás la mejor mi amor no me cabe duda"
+        },
+    ];
+
+    const section = document.getElementById("razonesSection");
+    if (!section) return;
+
+    // Estilos de las cartas
+    const style = document.createElement("style");
+    style.textContent = `
+        .cartas-escena {
+            position: relative;
+            width: 100%;
+            min-height: 440px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .carta-hp {
+            position: absolute;
+            width: 130px;
+            height: 90px;
+            cursor: pointer;
+            transform-style: preserve-3d;
+        }
+        .carta-hp-inner {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(.22,1,.36,1);
+        }
+        .carta-hp.abierta .carta-hp-inner { transform: rotateY(180deg); }
+        .carta-hp-front, .carta-hp-back {
+            position: absolute;
+            inset: 0;
+            border-radius: 10px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .carta-hp-front {
+            background: linear-gradient(135deg, #f8f0ff, #ede0fa);
+            border: 1.5px solid rgba(91,45,142,0.25);
+            box-shadow: 0 6px 24px rgba(91,45,142,0.2), inset 0 1px 0 rgba(255,255,255,0.8);
+        }
+        .carta-hp-front::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: -1px; right: -1px;
+            height: 28px;
+            background: linear-gradient(135deg, #f0e6ff, #e8d8f8);
+            border-radius: 0 0 10px 10px;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+        }
+        .carta-hp-back {
+            background: #fff;
+            border: 1.5px solid rgba(91,45,142,0.2);
+            box-shadow: 0 6px 24px rgba(91,45,142,0.15);
+            transform: rotateY(180deg);
+            text-align: center;
+            padding: 10px 8px;
+        }
+        .carta-sello {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #5b2d8e, #9b6bb9);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px; margin-bottom: 4px;
+            box-shadow: 0 2px 8px rgba(91,45,142,0.3);
+        }
+        .carta-sobre-texto {
+            font-family: var(--font-serif, Georgia, serif);
+            font-size: 9px; color: #7a4aaa;
+            font-style: italic; text-align: center;
+            letter-spacing: 0.05em; line-height: 1.4;
+        }
+        .carta-back-num {
+            font-family: var(--font-serif, Georgia, serif);
+            font-size: 16px; font-weight: 700; color: #5b2d8e;
+            line-height: 1; margin-bottom: 2px;
+        }
+        .carta-back-emoji { font-size: 15px; margin-bottom: 3px; }
+        .carta-back-titulo {
+            font-family: var(--font-serif, Georgia, serif);
+            font-size: 8px; font-weight: 700;
+            color: #3a1560; line-height: 1.3; margin-bottom: 4px;
+        }
+        .carta-back-texto {
+            font-family: var(--font-serif, Georgia, serif);
+            font-style: italic; font-size: 7px;
+            color: #666; line-height: 1.5;
+            max-height: 36px; overflow: hidden;
+        }
+        .carta-back-tag {
+            margin-top: 4px;
+            font-family: var(--font-sans, sans-serif);
+            font-size: 6px; letter-spacing: 0.12em;
+            text-transform: uppercase; color: #9b6bb9;
+            background: #f0e8ff; padding: 2px 7px;
+            border-radius: 20px;
+        }
+        .ala {
+            position: absolute;
+            width: 36px; height: 22px;
+            background: linear-gradient(135deg, #ede0fa, #d4b8f0);
+            border-radius: 50% 50% 0 0;
+            border: 1px solid rgba(91,45,142,0.2);
+            transform-origin: center bottom;
+            pointer-events: none;
+        }
+        .ala-izq { left: -28px; top: 18px; transform: rotate(-30deg); }
+        .ala-der  { right: -28px; top: 18px; transform: rotate(30deg); }
+        .carta-hp:not(.abierta):hover .ala-izq {
+            animation: bateIzq 0.45s ease-in-out infinite alternate;
+        }
+        .carta-hp:not(.abierta):hover .ala-der {
+            animation: bateDer 0.45s ease-in-out infinite alternate;
+        }
+        @keyframes bateIzq { from{transform:rotate(-30deg)} to{transform:rotate(-55deg) translateY(-5px)} }
+        @keyframes bateDer { from{transform:rotate(30deg)}  to{transform:rotate(55deg) translateY(-5px)} }
+        @keyframes floatA { 0%,100%{transform:translateY(0) rotate(-3deg)} 50%{transform:translateY(-16px) rotate(-1deg)} }
+        @keyframes floatB { 0%,100%{transform:translateY(0) rotate(4deg)}  50%{transform:translateY(-20px) rotate(2deg)} }
+        @keyframes floatC { 0%,100%{transform:translateY(0) rotate(-1.5deg)} 50%{transform:translateY(-12px) rotate(1deg)} }
+        .estela-part {
+            position: absolute; pointer-events: none; font-size: 10px;
+            animation: estelaFade 0.8s ease-out forwards; z-index: 0;
+        }
+        @keyframes estelaFade {
+            0%   { opacity:0.8; transform:scale(1) translateY(0); }
+            100% { opacity:0; transform:scale(0.5) translateY(-14px); }
+        }
+        .cartas-overlay-bg {
+            position: fixed; inset: 0;
+            background: rgba(0,0,0,0.4);
+            z-index: 998; opacity: 0; pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        .cartas-overlay-bg.visible { opacity: 1; pointer-events: all; }
+        .carta-panel-detalle {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(135deg, #3a1560, #5b2d8e);
+            border-radius: 24px 24px 0 0;
+            padding: 28px 32px 36px;
+            color: #fff; z-index: 999;
+            transform: translateY(100%);
+            transition: transform 0.45s cubic-bezier(.22,1,.36,1);
+            max-width: 520px; margin: 0 auto;
+            box-shadow: 0 -8px 40px rgba(58,21,96,0.4);
+        }
+        .carta-panel-detalle.visible { transform: translateY(0); }
+        .carta-panel-cerrar {
+            position: absolute; top: 14px; right: 18px;
+            background: rgba(255,255,255,0.15); border: none;
+            color: #fff; width: 30px; height: 30px;
+            border-radius: 50%; font-size: 14px; cursor: pointer;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .carta-panel-num  { font-size: 11px; opacity: 0.6; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 6px; }
+        .carta-panel-emoji { font-size: 26px; margin-bottom: 8px; }
+        .carta-panel-titulo { font-family: var(--font-serif, Georgia, serif); font-size: 19px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; }
+        .carta-panel-divider { width: 40px; height: 2px; background: rgba(255,255,255,0.4); border-radius: 2px; margin-bottom: 12px; }
+        .carta-panel-texto { font-family: var(--font-serif, Georgia, serif); font-style: italic; font-size: 14px; line-height: 1.8; opacity: 0.88; margin-bottom: 12px; }
+        .carta-panel-tag { display:inline-block; font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; background: rgba(255,255,255,0.18); padding: 5px 14px; border-radius: 50px; opacity: 0.85; }
+        .cartas-hint { text-align: center; font-family: var(--font-serif, Georgia, serif); font-style: italic; font-size: 12px; color: rgba(91,45,142,0.6); margin-bottom: 8px; animation: pulsHint 2s ease-in-out infinite; }
+        @keyframes pulsHint { 0%,100%{opacity:0.5} 50%{opacity:1} }
+    `;
+    document.head.appendChild(style);
+
+    // Posiciones en el canvas relativo
+    const POS = [
+        { x: 40,  y: 40  },
+        { x: 210, y: 120 },
+        { x: 380, y: 45  },
+        { x: 130, y: 270 },
+        { x: 310, y: 285 },
+    ];
+
+    const FLOAT_ANIMS = [
+        { name: "floatA", dur: "4.2s", delay: "0s"   },
+        { name: "floatB", dur: "5s",   delay: "0.5s"  },
+        { name: "floatC", dur: "4.6s", delay: "0.2s"  },
+        { name: "floatB", dur: "5.4s", delay: "0.8s"  },
+        { name: "floatA", dur: "4.8s", delay: "0.4s"  },
+    ];
+
+    // Rebuild la sección
+    section.innerHTML = `
+        <div class="razones-label">para ti, mi amorcito</div>
+        <div class="razones-title">Razones que yo he visto en primera persona por las que serás<br>una psicóloga increíble 🧠❤️</div>
+        <div class="cartas-hint">toca una carta estan algo raras pero con amor</div>
+        <div class="cartas-escena" id="cartasEscena"></div>
+    `;
+
+    const escena = document.getElementById("cartasEscena");
+
+    // Overlay de fondo
+    const overlayBg = document.createElement("div");
+    overlayBg.className = "cartas-overlay-bg";
+    overlayBg.id = "cartasOverlay";
+    document.body.appendChild(overlayBg);
+
+    // Panel de detalle
+    const panelEl = document.createElement("div");
+    panelEl.className = "carta-panel-detalle";
+    panelEl.innerHTML = `
+        <button class="carta-panel-cerrar" id="cartaPanelCerrar">✕</button>
+        <div class="carta-panel-num"   id="cartaPanelNum"></div>
+        <div class="carta-panel-emoji" id="cartaPanelEmoji"></div>
+        <div class="carta-panel-titulo" id="cartaPanelTitulo"></div>
+        <div class="carta-panel-divider"></div>
+        <div class="carta-panel-texto" id="cartaPanelTexto"></div>
+        <span class="carta-panel-tag"  id="cartaPanelTag"></span>
+    `;
+    document.body.appendChild(panelEl);
+
+    let cartaActiva = null;
+
+    function cerrarPanel() {
+        panelEl.classList.remove("visible");
+        overlayBg.classList.remove("visible");
+        if (cartaActiva) { cartaActiva.classList.remove("abierta"); cartaActiva = null; }
+    }
+
+    document.getElementById("cartaPanelCerrar").addEventListener("click", cerrarPanel);
+    overlayBg.addEventListener("click", cerrarPanel);
+
+    function lanzarEstela(x, y) {
+        const emojis = ["✨","💜","🌸","❤️","⭐"];
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                const e = document.createElement("div");
+                e.className = "estela-part";
+                e.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                e.style.left  = (x + (Math.random()-0.5)*30) + "px";
+                e.style.top   = (y + (Math.random()-0.5)*20) + "px";
+                escena.appendChild(e);
+                setTimeout(() => e.remove(), 900);
+            }, i * 80);
+        }
+    }
+
+    RAZONES.forEach((r, i) => {
+        const pos  = POS[i];
+        const fa   = FLOAT_ANIMS[i];
+        const num  = String(i + 1).padStart(2, "0");
+
+        const el = document.createElement("div");
+        el.className = "carta-hp";
+        el.style.cssText = `left:${pos.x}px; top:${pos.y}px; animation:${fa.name} ${fa.dur} ${fa.delay} ease-in-out infinite; z-index:${10+i};`;
+
+        el.innerHTML = `
+            <div class="ala ala-izq"></div>
+            <div class="ala ala-der"></div>
+            <div class="carta-hp-inner">
+                <div class="carta-hp-front">
+                    <div class="carta-sello">${r.emoji}</div>
+                    <div class="carta-sobre-texto">para ti<br>mi amor ❤️</div>
+                </div>
+                <div class="carta-hp-back">
+                    <div class="carta-back-num">${num}</div>
+                    <div class="carta-back-emoji">${r.emoji}</div>
+                    <div class="carta-back-titulo">${r.titulo}</div>
+                    <div class="carta-back-texto">${r.texto}</div>
+                    <div class="carta-back-tag">${r.tag}</div>
+                </div>
+            </div>
+        `;
+
+        el.addEventListener("click", () => {
+            const rect = el.getBoundingClientRect();
+            const sr   = escena.getBoundingClientRect();
+            lanzarEstela(rect.left - sr.left + 65, rect.top - sr.top + 45);
+
+            const seAbre = !el.classList.contains("abierta");
+            if (cartaActiva && cartaActiva !== el) cartaActiva.classList.remove("abierta");
+            el.classList.toggle("abierta");
+            cartaActiva = seAbre ? el : null;
+
+            if (seAbre) {
+                document.getElementById("cartaPanelNum").textContent   = `razón ${num} de 5`;
+                document.getElementById("cartaPanelEmoji").textContent = r.emoji;
+                document.getElementById("cartaPanelTitulo").textContent = r.titulo;
+                document.getElementById("cartaPanelTexto").textContent  = r.texto;
+                document.getElementById("cartaPanelTag").textContent    = r.tag;
+                panelEl.classList.add("visible");
+                overlayBg.classList.add("visible");
+            } else {
+                cerrarPanel();
+            }
+        });
+
+        escena.appendChild(el);
+    });
+
+    escena.style.minHeight = "400px";
+})();
+
+/* ════════════════════════════════════════════════
+   ✨ NUEVA SECCIÓN 2: CARTA MOTIVADORA TYPEWRITER ✨
+   ════════════════════════════════════════════════ */
+(function initCartaMotivadora() {
+
+    const fechaEl  = document.getElementById("cartaMotivFecha");
+    const textoEl  = document.getElementById("cartaMotivTexto");
+    const cierreEl = document.getElementById("cartaMotivCierre");
+    const cursor   = document.getElementById("cartaMotivCursor");
+    const btn      = document.getElementById("cartaMotivBtn");
+
+    if (!textoEl) return;
+
+    // Fecha en formato bonito
+    const fecha = new Date().toLocaleDateString("es-ES", {
+        weekday: "long", year: "numeric", month: "long", day: "numeric"
+    });
+    if (fechaEl) fechaEl.textContent = fecha;
+
+    // El texto de la carta — dividido en párrafos para respirar
+    const PARRAFOS = [
+        "Amorcito  de mi vida se que no fue un dia bueno en lo absoluto, tu siempre estudias para lograr siempre sobresalir y mostrarle a todos y cerrar bocas sobre tu potencial que tienes ❤️ .",
+        "en estas situaciones el corazon se hace chiquito por el miedo a fracasar o la incertidumbre de sentirse triste que no pasaras el examen o dudar de ti.",
+        "Yo te he visto esos ojitos preciosos cuando me cuentas cosas de tu carrera como te brillan, la ilusión que se ven en esos ojitos al hablar de lo que amas y quieres y estas hecha para eso creeme amor que no cualquiera lo tiene",
+        "Eres honesta, responsable, auténtica y única. Y amorcito de mi corazon tienes muchas cualidades en tu ser unicas que te van a poder impulsar en tu carrera vales mucho mi amor y tu estas viviendo tu sueño de convertirte en la psicologa que siempre quiso ser siempre mi amor yo veo el trato con las personas y los niños y creeme amor usted esta hecha para lo que tanto desea y se hara realidad",
+        " Usted es una niña sipota muchacha señorita muy fuerte asi que amor llora si quieres, descansa, pero no te rindas por favor esos ojitos no merecen esa tristeza ni la duda en ti mi amor. Porque yo tengo la certeza absoluta de que un día voy a poder decirle al mundo con todo el orgullo en el corazon esa psicóloga increíble es mi mujer que querre tanto hoy, mañana y siempre mi rebe ❤️"
+    ];
+
+    const TEXTO_COMPLETO = PARRAFOS.join("\n\n");
+
+    let typeTimer   = null;
+    let charIdx     = 0;
+    let isTyping    = false;
+
+    function limpiar() {
+        clearInterval(typeTimer);
+        textoEl.innerHTML = "";
+        cierreEl.classList.remove("visible");
+        charIdx  = 0;
+        isTyping = false;
+    }
+
+    function escribir() {
+        if (isTyping) return;
+        isTyping = true;
+        limpiar();
+
+        // Velocidad: 28ms por carácter — suave y legible
+        const SPEED = 40;
+
+        typeTimer = setInterval(() => {
+            if (charIdx >= TEXTO_COMPLETO.length) {
+                clearInterval(typeTimer);
+                isTyping = false;
+                // Mostrar cierre con fade
+                setTimeout(() => cierreEl.classList.add("visible"), 400);
+                return;
+            }
+
+            const ch = TEXTO_COMPLETO[charIdx];
+            charIdx++;
+
+            if (ch === "\n" && TEXTO_COMPLETO[charIdx] === "\n") {
+                // doble salto = nuevo párrafo
+                textoEl.innerHTML += "<br><br>";
+                charIdx++; // saltar el segundo \n
+            } else if (ch !== "\n") {
+                // escapar HTML básico
+                textoEl.innerHTML += ch === "<" ? "&lt;" : ch === ">" ? "&gt;" : ch;
+            }
+        }, SPEED);
+    }
+
+    // Iniciar automáticamente cuando la sección entra en vista
+    const section = document.getElementById("cartaMotivSection");
+    if (section) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !isTyping && charIdx === 0) {
+                    setTimeout(escribir, 600);
+                    observer.unobserve(section);
+                }
+            });
+        }, { threshold: 0.3 });
+        observer.observe(section);
+    }
+
+    // Botón para releer
+    if (btn) {
+        btn.addEventListener("click", () => {
+            limpiar();
+            setTimeout(escribir, 200);
+        });
+    }
 })();
