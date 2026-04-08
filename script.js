@@ -3,6 +3,377 @@
    ============================================ */
 
 // ─── Frases flotantes ──────────────────────────
+// ─── Mensaje sorpresa al abrir ──────────────────
+(function initMensajeSorpresa() {
+  if (sessionStorage.getItem('sorpresaVista')) return;
+  sessionStorage.setItem('sorpresaVista', '1');
+
+  const overlay = document.createElement('div');
+  overlay.id = 'sorpresaOverlay';
+  overlay.style.cssText = `
+    position:fixed;inset:0;background:rgba(10,2,22,0.88);
+    z-index:99999;display:flex;align-items:center;justify-content:center;
+    padding:20px;backdrop-filter:blur(6px);
+    animation:sorpresaFadeIn 0.5s ease both;
+  `;
+
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes sorpresaFadeIn{from{opacity:0}to{opacity:1}}
+    @keyframes sorpresaCardIn{from{opacity:0;transform:scale(0.85) translateY(28px)}to{opacity:1;transform:scale(1) translateY(0)}}
+    .sorpresa-card-pop{
+      background:#fff;border-radius:28px;padding:48px 40px 40px;
+      max-width:480px;width:100%;text-align:center;position:relative;
+      box-shadow:0 30px 80px rgba(58,21,96,0.45);overflow:hidden;
+      animation:sorpresaCardIn 0.6s cubic-bezier(.22,1,.36,1) 0.15s both;
+    }
+    .sorpresa-card-pop::before{
+      content:'';position:absolute;top:0;left:0;right:0;height:5px;
+      background:linear-gradient(90deg,#3a1560,#9b6bb9,#3a1560);
+      border-radius:28px 28px 0 0;
+    }
+    .sorp-hearts{font-size:1rem;letter-spacing:6px;margin-bottom:18px;
+      animation:heartPop 1.5s ease-in-out infinite;}
+    @keyframes heartPop{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+    .sorp-titulo{font-family:'Playfair Display',Georgia,serif;font-size:clamp(1.3rem,4vw,1.9rem);
+      font-weight:700;color:#3a1560;line-height:1.25;margin-bottom:8px;}
+    .sorp-sub{font-family:'Playfair Display',Georgia,serif;font-style:italic;
+      font-size:clamp(0.88rem,2vw,1rem);color:#7a4aaa;margin-bottom:22px;line-height:1.6;}
+    .sorp-deco{width:48px;height:2px;background:linear-gradient(90deg,#5b2d8e,#c9a8e8);
+      border-radius:2px;margin:0 auto 22px;}
+    .sorp-msg{font-family:'Playfair Display',Georgia,serif;font-style:italic;
+      font-size:clamp(0.95rem,2.2vw,1.08rem);color:#1e0a3a;line-height:2;margin-bottom:24px;}
+    .sorp-firma{font-family:'Caveat',cursive;font-size:1.6rem;color:#5b2d8e;margin-bottom:28px;}
+    .sorp-btn{background:linear-gradient(135deg,#3a1560,#5b2d8e);border:none;
+      border-radius:50px;padding:13px 40px;color:#fff;font-family:'Playfair Display',serif;
+      font-size:1rem;font-weight:700;cursor:pointer;letter-spacing:0.04em;
+      box-shadow:0 6px 24px rgba(91,45,142,0.35);
+      transition:transform 0.2s,box-shadow 0.2s;}
+    .sorp-btn:hover{transform:translateY(-2px) scale(1.04);box-shadow:0 12px 32px rgba(91,45,142,0.4);}
+    .sorp-bg-emoji{position:absolute;font-size:5rem;opacity:0.04;pointer-events:none;}
+  `;
+  document.head.appendChild(style);
+
+  overlay.innerHTML = `
+    <div class="sorpresa-card-pop">
+      <div class="sorp-bg-emoji" style="top:-20px;right:-10px">🧠</div>
+      <div class="sorp-bg-emoji" style="bottom:-15px;left:-10px">❤️</div>
+      <div class="sorp-hearts">❤️ ❤️ ❤️</div>
+      <div class="sorp-titulo">Para ti, mi psicóloga preciosa</div>
+      <div class="sorp-sub">Algo que quiero decirte antes que nada amorcito</div>
+      <div class="sorp-deco"></div>
+      <div class="sorp-msg">
+        Sé que hoy fue un día difícil, mi amor.<br>
+        Pero un examen nunca va a poder medir<br>
+        lo increíble que eres ni lo que vales tu bien lo sabes <br><br>
+        Yo te veo todos los días y sé de lo que eres capaz que lograrás todo lo que te propongas TODO.<br>
+        Estoy tan orgulloso de ti, mi princesa LA QUIERO MUCHOTE HOY , MAÑANA  Y SIEMPRE. ❤️
+      </div>
+      <div class="sorp-firma">— Tu angelito que te quiere muchote</div>
+      <button class="sorp-btn" id="sorpresaCerrarBtn">Ir al inicio</button>
+    </div>
+  `;
+
+  document.body.appendChild(overlay);
+  document.getElementById('sorpresaCerrarBtn').addEventListener('click', () => {
+    overlay.style.transition = 'opacity 0.4s ease';
+    overlay.style.opacity = '0';
+    setTimeout(() => overlay.remove(), 420);
+  });
+})();
+
+
+/* ============================================
+   PARA REBECA ❤️  —  effects_enhanced.js
+   Copiar este código AL INICIO de script.js,
+   justo después de initMensajeSorpresa()
+   ============================================ */
+
+// ══════════════════════════════════════════════
+//  ✨ LLUVIA DE PÉTALOS / CORAZONES (Canvas)
+// ══════════════════════════════════════════════
+(function initPetalRain() {
+    const canvas = document.createElement('canvas');
+    canvas.id = 'petalsCanvas';
+    canvas.style.cssText = `
+        position:fixed;inset:0;pointer-events:none;
+        z-index:2;opacity:0.55;width:100%;height:100%;
+    `;
+    document.body.prepend(canvas);
+
+    const ctx = canvas.getContext('2d');
+    let W = canvas.width  = window.innerWidth;
+    let H = canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+        W = canvas.width  = window.innerWidth;
+        H = canvas.height = window.innerHeight;
+    });
+
+    const SYMBOLS = ['❤️', '💜', '🌸', '✨', '💗', '🌺'];
+    const COLORS  = ['rgba(244,167,192,0.7)', 'rgba(155,107,185,0.6)', 'rgba(212,96,122,0.5)', 'rgba(232,201,122,0.5)'];
+
+    class Petal {
+        constructor() { this.reset(true); }
+        reset(init = false) {
+            this.x     = Math.random() * W;
+            this.y     = init ? Math.random() * -H : -40;
+            this.size  = 8 + Math.random() * 14;
+            this.speed = 0.4 + Math.random() * 0.7;
+            this.wind  = (Math.random() - 0.5) * 0.6;
+            this.rot   = Math.random() * Math.PI * 2;
+            this.rotSp = (Math.random() - 0.5) * 0.04;
+            this.alpha = 0.15 + Math.random() * 0.45;
+            this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+            this.type  = Math.random() > 0.5 ? 'petal' : 'heart';
+            this.waver = Math.random() * 0.03;
+            this.waverOff = Math.random() * Math.PI * 2;
+            this.t = 0;
+        }
+        update() {
+            this.t += 0.02;
+            this.y += this.speed;
+            this.x += this.wind + Math.sin(this.t + this.waverOff) * this.waver * 8;
+            this.rot += this.rotSp;
+            if (this.y > H + 50) this.reset();
+        }
+        draw() {
+            ctx.save();
+            ctx.globalAlpha = this.alpha;
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rot);
+            if (this.type === 'petal') {
+                // Pétalo elegante
+                ctx.beginPath();
+                ctx.moveTo(0, 0);
+                ctx.bezierCurveTo(
+                    this.size * 0.5, -this.size * 0.5,
+                    this.size, 0,
+                    0, this.size
+                );
+                ctx.bezierCurveTo(
+                    -this.size, 0,
+                    -this.size * 0.5, -this.size * 0.5,
+                    0, 0
+                );
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            } else {
+                // Corazón pequeño
+                const s = this.size * 0.35;
+                ctx.beginPath();
+                ctx.moveTo(0, s * 0.5);
+                ctx.bezierCurveTo(-s * 2, -s, -s * 3.5, s * 1.5, 0, s * 3.5);
+                ctx.bezierCurveTo(s * 3.5, s * 1.5, s * 2, -s, 0, s * 0.5);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            ctx.restore();
+        }
+    }
+
+    const petals = Array.from({ length: 28 }, () => new Petal());
+
+    function animate() {
+        ctx.clearRect(0, 0, W, H);
+        petals.forEach(p => { p.update(); p.draw(); });
+        requestAnimationFrame(animate);
+    }
+    animate();
+})();
+
+// ══════════════════════════════════════════════
+//  🌟 AURA DE MOUSE — brillo suave que sigue el cursor
+// ══════════════════════════════════════════════
+(function initMouseAura() {
+    const aura = document.createElement('div');
+    aura.className = 'mouse-aura';
+    aura.style.cssText = `
+        position:fixed;width:280px;height:280px;
+        border-radius:50%;pointer-events:none;z-index:1;
+        background:radial-gradient(circle, rgba(244,167,192,0.07) 0%, rgba(155,107,185,0.04) 40%, transparent 70%);
+        transform:translate(-50%,-50%);
+        transition:left 0.12s ease, top 0.12s ease;
+        will-change:left,top;
+    `;
+    document.body.appendChild(aura);
+
+    let mx = -500, my = -500;
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        aura.style.left = mx + 'px';
+        aura.style.top  = my + 'px';
+    });
+})();
+
+// ══════════════════════════════════════════════
+//  💜 CORAZONES AL HACER CLICK
+// ══════════════════════════════════════════════
+(function initClickHearts() {
+    const emojis = ['💜', '❤️', '🌸', '✨', '💗', '🩷', '⭐'];
+    document.addEventListener('click', e => {
+        const count = 5 + Math.floor(Math.random() * 4);
+        for (let i = 0; i < count; i++) {
+            setTimeout(() => {
+                const el = document.createElement('div');
+                el.className = 'click-heart';
+                el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                const angle = (Math.random() * Math.PI * 2);
+                const dist  = 40 + Math.random() * 70;
+                const tx    = Math.cos(angle) * dist;
+                const ty    = Math.sin(angle) * dist;
+                const ty2   = ty - 80 - Math.random() * 60;
+                el.style.cssText = `
+                    position:fixed;left:${e.clientX}px;top:${e.clientY}px;
+                    pointer-events:none;z-index:99999;
+                    font-size:${0.8 + Math.random() * 0.8}rem;
+                    --tx:${tx}px;--ty:${ty}px;--ty2:${ty2}px;
+                    animation:clickHeartBurst 0.9s cubic-bezier(.22,1,.36,1) forwards;
+                    transform:translate(-50%,-50%);
+                `;
+                document.body.appendChild(el);
+                setTimeout(() => el.remove(), 950);
+            }, i * 55);
+        }
+    });
+})();
+
+// ══════════════════════════════════════════════
+//  👁️ SCROLL REVEAL SUAVE para secciones
+// ══════════════════════════════════════════════
+(function initScrollReveal() {
+    const targets = document.querySelectorAll('section, .counter-section, .content-row');
+    if (!targets.length) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+
+    targets.forEach((el, i) => {
+        el.classList.add('scroll-reveal');
+        el.style.transitionDelay = (i * 0.04) + 's';
+        observer.observe(el);
+    });
+})();
+
+// ══════════════════════════════════════════════
+//  🌠 ESTRELLAS DE FONDO PULSANTES (fijas)
+// ══════════════════════════════════════════════
+(function initBgStars() {
+    const colors = [
+        'rgba(244,167,192,0.45)',
+        'rgba(155,107,185,0.35)',
+        'rgba(232,201,122,0.3)',
+        'rgba(91,45,142,0.25)',
+    ];
+    for (let i = 0; i < 18; i++) {
+        const star = document.createElement('div');
+        const size = 2 + Math.random() * 5;
+        const dur  = 2 + Math.random() * 4;
+        const del  = Math.random() * 4;
+        star.style.cssText = `
+            position:fixed;
+            left:${Math.random() * 100}vw;
+            top:${Math.random() * 100}vh;
+            width:${size}px;height:${size}px;
+            border-radius:50%;
+            background:${colors[Math.floor(Math.random() * colors.length)]};
+            pointer-events:none;z-index:0;
+            animation:starPulse ${dur}s ${del}s ease-in-out infinite alternate;
+        `;
+        document.body.appendChild(star);
+    }
+})();
+
+// ══════════════════════════════════════════════
+//  💌 TOAST ROMÁNTICO al cargar la página
+// ══════════════════════════════════════════════
+(function initRomanticToast() {
+    const msgs = [
+        "Con todo mi amor para ti, mi princesa 💜",
+        "Te quiero más cada día que pasa ❤️",
+        "Mi psicóloga preciosa, esto es para ti 🌸",
+        "Gracias por existir, mi amor ✨",
+    ];
+    const toast = document.createElement('div');
+    toast.className = 'romantic-toast';
+    toast.textContent = msgs[Math.floor(Math.random() * msgs.length)];
+    document.body.appendChild(toast);
+
+    setTimeout(() => toast.classList.add('show'), 3500);
+    setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 600);
+    }, 7000);
+})();
+
+// ══════════════════════════════════════════════
+//  💫 ONDAS (RIPPLE) en las cards al hacer hover
+// ══════════════════════════════════════════════
+(function initCardRipples() {
+    const cards = document.querySelectorAll('.message-card, .song-card, .quiz-card, .ruleta-result, .counter-units');
+    cards.forEach(card => {
+        card.style.position = 'relative';
+        card.style.overflow = 'hidden';
+        card.addEventListener('click', function(e) {
+            const rect = card.getBoundingClientRect();
+            const ripple = document.createElement('div');
+            ripple.className = 'ripple';
+            ripple.style.cssText = `
+                position:absolute;
+                left:${e.clientX - rect.left}px;
+                top:${e.clientY - rect.top}px;
+                width:40px;height:40px;
+                border-radius:50%;
+                background:rgba(155,107,185,0.22);
+                pointer-events:none;
+                animation:rippleOut 0.7s ease-out forwards;
+                transform:translate(-50%,-50%) scale(0);
+            `;
+            card.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 750);
+        });
+    });
+})();
+
+// ══════════════════════════════════════════════
+//  🎨 Añadir keyframes de animación al head
+// ══════════════════════════════════════════════
+(function addKeyframes() {
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes clickHeartBurst {
+            0%   { opacity:1; transform:translate(-50%,-50%) scale(0.5); }
+            40%  { opacity:0.9; transform:translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1.2); }
+            100% { opacity:0;   transform:translate(calc(-50% + var(--tx2)), calc(-50% + var(--ty2))) scale(0.3) rotate(30deg); }
+        }
+        @keyframes rippleOut {
+            0%   { transform:translate(-50%,-50%) scale(0); opacity:0.6; }
+            100% { transform:translate(-50%,-50%) scale(4.5); opacity:0; }
+        }
+        @keyframes starPulse {
+            from { opacity:0.2; transform:scale(1); }
+            to   { opacity:0.7; transform:scale(1.5); }
+        }
+        .scroll-reveal {
+            opacity:0;
+            transform:translateY(28px);
+            transition:opacity 0.9s cubic-bezier(.22,1,.36,1), transform 0.9s cubic-bezier(.22,1,.36,1);
+        }
+        .scroll-reveal.revealed {
+            opacity:1;
+            transform:translateY(0);
+        }
+    `;
+    document.head.appendChild(style);
+})();
+
+
 const FRASES = [
     "mi futura psicóloga ❤️",
     "mi mujer preciosa",
@@ -1515,13 +1886,13 @@ function mostrarReproductor() {
     if (fechaEl) fechaEl.textContent = fecha;
 
     // El texto de la carta — dividido en párrafos para respirar
-    const PARRAFOS = [
-        "Amorcito  de mi vida se que no fue un dia bueno en lo absoluto, tu siempre estudias para lograr siempre sobresalir y mostrarle a todos y cerrar bocas sobre tu potencial que tienes ❤️ .",
-        "en estas situaciones el corazon se hace chiquito por el miedo a fracasar o la incertidumbre de sentirse triste que no pasaras el examen o dudar de ti.",
-        "Yo te he visto esos ojitos preciosos cuando me cuentas cosas de tu carrera como te brillan, la ilusión que se ven en esos ojitos al hablar de lo que amas y quieres y estas hecha para eso creeme amor que no cualquiera lo tiene",
-        "Eres honesta, responsable, auténtica y única. Y amorcito de mi corazon tienes muchas cualidades en tu ser unicas que te van a poder impulsar en tu carrera vales mucho mi amor y tu estas viviendo tu sueño de convertirte en la psicologa que siempre quiso ser siempre mi amor yo veo el trato con las personas y los niños y creeme amor usted esta hecha para lo que tanto desea y se hara realidad",
-        " Usted es una niña sipota muchacha señorita muy fuerte asi que amor llora si quieres, descansa, pero no te rindas por favor esos ojitos no merecen esa tristeza ni la duda en ti mi amor. Porque yo tengo la certeza absoluta de que un día voy a poder decirle al mundo con todo el orgullo en el corazon esa psicóloga increíble es mi mujer que querre tanto hoy, mañana y siempre mi rebe ❤️"
-    ];
+   const PARRAFOS = [
+    "Hay mi princesa, yo te quiero mucho y me parte el corazón verte así 💔. Sinceramente eres una persona con un corazoncito tan bonito que no merece pasar esos malos ratos.",
+    "Pero rendirse no debe estar en tu pensamiento amor, por más duro que sea el camino hay que seguir 💪. Agarrar fuerzas donde no las haya, dar siempre lo que uno pueda, pero seguir y seguir mi amor... nunca rendirse. Luchar aunque nos caigamos, porque nos levantamos otra vez. 🙌",
+    "Te quiero demasiado y siempre querré lo mejor para ti ❤️. Que te superes, que cumplas tus metas y objetivos, y si es a mi lado, pues yo seré tu mayor fan.",
+    "Ese que aplaude cada uno de tus éxitos y que te da apoyo y consuelo en los momentos difíciles 🫂. Pero nunca estarás sola amor, nunca. Aquí siempre tendrás un hombro donde llorar y desahogarte.",
+    "Te quiere mucho tu ingeniero 👷‍♂️❤️"
+];
 
     const TEXTO_COMPLETO = PARRAFOS.join("\n\n");
 
@@ -1590,3 +1961,5 @@ function mostrarReproductor() {
         });
     }
 })();
+
+
