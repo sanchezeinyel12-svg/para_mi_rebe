@@ -1,0 +1,565 @@
+/* ============================================
+   LÍNEA DEL TIEMPO — timeline.css
+   Añadir en el <head> del index.html
+   ============================================ */
+
+/* ── Variables ya definidas en style.css, usamos las mismas ── */
+
+/* ══════════════════════════════════════════════
+   SECCIÓN WRAPPER
+   ══════════════════════════════════════════════ */
+.timeline-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    position: relative;
+    padding-bottom: 2rem;
+    animation: fadeSlideUp 1.2s 1.5s cubic-bezier(.22,1,.36,1) both;
+}
+
+.timeline-label {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.72rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--violet-light);
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.timeline-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.6rem, 5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--violet-deep);
+    text-align: center;
+    margin-bottom: 6px;
+    line-height: 1.2;
+}
+
+.timeline-sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--text-mid);
+    text-align: center;
+    margin-bottom: 3.5rem;
+}
+
+/* ══════════════════════════════════════════════
+   EJE CENTRAL ANIMADO
+   ══════════════════════════════════════════════ */
+.tl-axis-wrap {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tl-axis {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        var(--violet-light) 8%,
+        var(--violet) 30%,
+        var(--rose-deep) 50%,
+        var(--violet) 70%,
+        var(--violet-light) 92%,
+        transparent 100%
+    );
+    border-radius: 3px;
+    z-index: 0;
+}
+
+/* Partícula que sube por el eje */
+.tl-axis::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 18px rgba(196,160,106,0.9), 0 0 6px rgba(232,201,122,0.6);
+    animation: axisParticle 4s ease-in-out infinite;
+    top: 0;
+}
+
+@keyframes axisParticle {
+    0%   { top: 0%;   opacity: 0; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+
+/* ══════════════════════════════════════════════
+   ITEMS DE LA LÍNEA DEL TIEMPO
+   ══════════════════════════════════════════════ */
+.tl-items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.tl-item {
+    display: grid;
+    grid-template-columns: 1fr 56px 1fr;
+    align-items: start;
+    min-height: 120px;
+    margin-bottom: 1.6rem;
+    opacity: 0;
+    transition: opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);
+}
+
+.tl-item.from-left  { transform: translateX(-48px); }
+.tl-item.from-right { transform: translateX(48px); }
+.tl-item.revealed   { opacity: 1; transform: translateX(0); }
+
+/* Celda izquierda */
+.tl-cell-left {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 20px 0 0;
+    padding-top: 14px;
+}
+
+/* Celda derecha */
+.tl-cell-right {
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 0 0 20px;
+    padding-top: 14px;
+}
+
+/* Celda central (nodo) */
+.tl-node-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* ── Nodo circular ── */
+.tl-node {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 3px solid var(--violet-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    position: relative;
+    z-index: 3;
+    box-shadow:
+        0 0 0 6px var(--violet-pale),
+        0 6px 24px rgba(91,45,142,0.22);
+    transition: transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease, border-color 0.3s;
+    cursor: default;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.tl-item:hover .tl-node {
+    transform: scale(1.18) rotate(8deg);
+    border-color: var(--violet);
+    box-shadow:
+        0 0 0 8px rgba(91,45,142,0.1),
+        0 10px 36px rgba(91,45,142,0.35);
+}
+
+/* Pulso animado en el nodo activo */
+.tl-node::before {
+    content: '';
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: 2px solid var(--violet-light);
+    opacity: 0;
+    animation: nodePulse 2.4s ease-in-out infinite;
+    animation-delay: var(--node-delay, 0s);
+}
+
+@keyframes nodePulse {
+    0%   { transform: scale(1);   opacity: 0.5; }
+    60%  { transform: scale(1.5); opacity: 0; }
+    100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ── Fecha debajo del nodo ── */
+.tl-node-date {
+    font-family: var(--font-sans);
+    font-size: 0.6rem;
+    font-weight: 400;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--violet);
+    margin-top: 6px;
+    text-align: center;
+    white-space: nowrap;
+    background: var(--violet-pale);
+    padding: 3px 10px;
+    border-radius: 20px;
+}
+
+/* ══════════════════════════════════════════════
+   TARJETA DE CADA MOMENTO
+   ══════════════════════════════════════════════ */
+.tl-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow:
+        0 4px 8px rgba(0,0,0,.03),
+        0 16px 48px var(--shadow),
+        0 0 0 1px rgba(91,45,142,0.07),
+        inset 0 1px 0 rgba(255,255,255,.95);
+    transition:
+        transform 0.4s cubic-bezier(.22,1,.36,1),
+        box-shadow 0.4s ease;
+    max-width: 340px;
+    width: 100%;
+    cursor: pointer;
+    position: relative;
+}
+
+.tl-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow:
+        0 4px 8px rgba(0,0,0,.04),
+        0 30px 70px rgba(91,45,142,0.25),
+        0 0 0 1px rgba(91,45,142,0.12),
+        inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+/* Barra superior de color por capítulo */
+.tl-card-bar {
+    height: 4px;
+    width: 100%;
+    background: linear-gradient(90deg, var(--violet-deep), var(--violet-light), var(--rose));
+    background-size: 200% 100%;
+    animation: waveSlide 3s linear infinite;
+}
+
+.tl-card-body {
+    padding: 18px 20px 16px;
+}
+
+.tl-card-badge {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.58rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--violet);
+    background: var(--violet-pale);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 8px;
+}
+
+.tl-card-title {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--violet-deep);
+    line-height: 1.35;
+    margin-bottom: 6px;
+}
+
+.tl-card-preview {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: var(--text-mid);
+    line-height: 1.65;
+}
+
+/* Sección expandible */
+.tl-card-expand {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(.22,1,.36,1), padding 0.4s ease;
+    padding: 0 20px;
+}
+
+.tl-card.open .tl-card-expand {
+    max-height: 480px;
+    padding: 0 20px 18px;
+}
+
+.tl-card-divider {
+    width: 36px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--rose-deep), var(--violet-light));
+    border-radius: 2px;
+    margin: 10px 0 12px;
+}
+
+.tl-card-desc {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.92rem;
+    color: var(--text-dark);
+    line-height: 1.85;
+    margin-bottom: 14px;
+}
+
+/* Foto dentro de la tarjeta */
+.tl-card-photo-wrap {
+    width: 100%;
+    aspect-ratio: 4/3;
+    border-radius: 14px;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--violet-pale), #e8d8f8);
+    margin-bottom: 12px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.tl-card-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    transition: transform 0.5s ease;
+}
+
+.tl-card:hover .tl-card-photo-wrap img {
+    transform: scale(1.04);
+}
+
+.tl-card-photo-fallback {
+    font-size: 2.5rem;
+    opacity: 0.35;
+    z-index: 1;
+    position: relative;
+}
+
+.tl-card-photo-label {
+    position: absolute;
+    bottom: 8px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: var(--font-hand);
+    font-size: 0.78rem;
+    color: var(--violet);
+    opacity: 0.6;
+    z-index: 3;
+}
+
+/* Mensaje especial */
+.tl-card-msg {
+    font-family: var(--font-hand);
+    font-size: 1.05rem;
+    color: var(--violet);
+    text-align: right;
+    line-height: 1.5;
+    padding-top: 8px;
+    border-top: 1px solid var(--violet-pale);
+}
+
+/* Botón abrir/cerrar */
+.tl-card-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin: 8px 20px 14px;
+    font-family: var(--font-sans);
+    font-size: 0.62rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--violet-light);
+    transition: color 0.2s;
+}
+
+.tl-card-toggle-arrow {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border-right: 1.5px solid var(--violet-light);
+    border-bottom: 1.5px solid var(--violet-light);
+    transform: rotate(45deg);
+    margin-top: -4px;
+    transition: transform 0.3s ease, border-color 0.2s;
+}
+
+.tl-card.open .tl-card-toggle-arrow {
+    transform: rotate(-135deg);
+    margin-top: 4px;
+}
+
+.tl-card:hover .tl-card-toggle,
+.tl-card:hover .tl-card-toggle-arrow {
+    color: var(--violet);
+    border-color: var(--violet);
+}
+
+/* ══════════════════════════════════════════════
+   NODO ESPECIAL — 2 MESES (destacado)
+   ══════════════════════════════════════════════ */
+.tl-item.special .tl-node {
+    width: 62px;
+    height: 62px;
+    border-color: var(--gold);
+    box-shadow:
+        0 0 0 8px rgba(196,160,106,0.15),
+        0 8px 30px rgba(196,160,106,0.35);
+    animation: goldNodePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes goldNodePulse {
+    from { box-shadow: 0 0 0 6px rgba(196,160,106,0.12), 0 6px 22px rgba(196,160,106,0.28); }
+    to   { box-shadow: 0 0 0 12px rgba(196,160,106,0.2), 0 12px 40px rgba(196,160,106,0.5); }
+}
+
+.tl-item.special .tl-card {
+    border: 2px solid rgba(196,160,106,0.4);
+}
+
+.tl-item.special .tl-card-bar {
+    background: linear-gradient(90deg, var(--gold), var(--rose), var(--gold-light));
+    background-size: 200% 100%;
+}
+
+/* ══════════════════════════════════════════════
+   ITEM VACÍO (celda placeholder lado opuesto)
+   ══════════════════════════════════════════════ */
+.tl-cell-empty {
+    /* vacío, solo ocupa espacio en el grid */
+}
+
+/* ══════════════════════════════════════════════
+   CIERRE DE LA TIMELINE
+   ══════════════════════════════════════════════ */
+.tl-footer-wrap {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.tl-footer-card {
+    background: var(--white);
+    border-radius: 28px;
+    padding: 32px 40px;
+    text-align: center;
+    box-shadow:
+        0 4px 8px rgba(0,0,0,.03),
+        0 20px 60px var(--shadow),
+        0 0 0 1px rgba(91,45,142,0.08);
+    max-width: 500px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.tl-footer-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--violet-deep), var(--rose-deep), var(--gold), var(--violet-light));
+    background-size: 300% 100%;
+    animation: waveSlide 4s linear infinite;
+}
+
+.tl-footer-emoji {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 2px 10px rgba(91,45,142,0.25));
+    animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25%       { transform: scale(1.18); }
+    50%       { transform: scale(1); }
+    75%       { transform: scale(1.1); }
+}
+
+.tl-footer-text {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(0.95rem, 2.2vw, 1.12rem);
+    color: var(--text-dark);
+    line-height: 1.9;
+    margin-bottom: 10px;
+}
+
+.tl-footer-firma {
+    font-family: var(--font-hand);
+    font-size: 1.4rem;
+    color: var(--violet);
+}
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+@media (max-width: 640px) {
+    .tl-axis { display: none; }
+
+    .tl-items {
+        gap: 1rem;
+    }
+
+    .tl-item {
+        grid-template-columns: 44px 1fr;
+        grid-template-rows: auto;
+        min-height: unset;
+        margin-bottom: 0;
+    }
+
+    .tl-item.from-left,
+    .tl-item.from-right { transform: translateY(24px); }
+    .tl-item.revealed   { transform: translateY(0); }
+
+    .tl-cell-left  { display: none; }
+    .tl-cell-empty { display: none; }
+
+    .tl-node-col {
+        grid-column: 1;
+        grid-row: 1;
+        padding-top: 8px;
+    }
+
+    .tl-cell-right {
+        grid-column: 2;
+        grid-row: 1;
+        padding: 0 0 0 12px;
+    }
+
+    .tl-node { width: 40px; height: 40px; font-size: 1.1rem; }
+    .tl-node-date { font-size: 0.52rem; }
+
+    .tl-card { max-width: 100%; }
+    .tl-card-bar { height: 3px; }
+    .tl-card-body { padding: 14px 16px 12px; }
+    .tl-card-expand.open { padding: 0 16px 14px; }
+    .tl-card-toggle { margin: 6px 16px 12px; }
+
+    .tl-footer-card { padding: 24px 22px; }
+}
