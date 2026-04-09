@@ -63,11 +63,9 @@
       <div class="sorp-sub">Algo que quiero decirte antes que nada amorcito</div>
       <div class="sorp-deco"></div>
       <div class="sorp-msg">
-        Sé que hoy fue un día difícil, mi amor.<br>
-        Pero un examen nunca va a poder medir<br>
-        lo increíble que eres ni lo que vales tu bien lo sabes <br><br>
-        Yo te veo todos los días y sé de lo que eres capaz que lograrás todo lo que te propongas TODO.<br>
-        Estoy tan orgulloso de ti, mi princesa LA QUIERO MUCHOTE HOY , MAÑANA  Y SIEMPRE. ❤️
+       Hay mi amor que feliz soy a tu lado, me hace bien tu compañia tus besos consejos tu solo tu, me haces feliz ❤️
+        Estoy tan orgulloso de ti, mi princesa LA QUIERO MUCHOTE HOY , MAÑANA  Y SIEMPRE. ❤️.<br>
+        Y estoy emocionado por verla mañanaaaaaa
       </div>
       <div class="sorp-firma">— Tu angelito que te quiere muchote</div>
       <button class="sorp-btn" id="sorpresaCerrarBtn">Ir al inicio</button>
@@ -1962,4 +1960,246 @@ function mostrarReproductor() {
     }
 })();
 
+/* ============================================
+   LÍNEA DEL TIEMPO — timeline.js
+   Pegar AL FINAL de script.js
+   (antes del último cierre si hay alguno)
+   ============================================ */
+
+(function initTimeline() {
+
+    const MOMENTS = [
+        {
+            side: "left",
+            special: false,
+            emoji: "📚",
+            nodeDelay: "0s",
+            badge: "el destino tenia algo para nosotros mi rebe",
+            date: "Hace 2 años",
+            title: "La primera vez que te vi ufff la vi bieeeen",
+            preview: "Te conocí dandote clases sin creer el impacto que tendrias en mi",
+            desc: "Hace dos años te vi por primera vez ahi toda nerviosa sin querer preguntar, toda preciosa con timidez",
+            photo: null,
+            photoEmoji: "📚",
+            photoLabel: "el inicio de toda esta bonita historia",
+            msg: "El destino nos junto a dar clases y ahora a seguir dando clases huuuuy 💋."
+        },
+        {
+            side: "right",
+            special: false,
+            emoji: "💬",
+            nodeDelay: "0.3s",
+            badge: "el primer paso",
+            date: "6 de febrero 2026",
+            title: "Te escribí por primera vez , con un chiste para romper el hielo y ver que pasaba obviamente mi interes ya estaba en ti amoor",
+            preview: "Pensé muchas formas de hablarle hasta que se me ocurrioo algo",
+            desc: "El 6 de febrero me armé de valor y te escribí ese mensaje lo pensé mil veces antes de mandarlo y o sabía si ibas a responder, pero lo mandé sin miedo al exito. ",
+            photo: null,
+            photoEmoji: "💬",
+            photoLabel: "ese primer mensaje",
+            msg: "La mejor accion que puede hacer."
+        },
+        {
+            side: "right",
+            special: false,
+            emoji: "🦋",
+            nodeDelay: "0.9s",
+            badge: "los nervios de ese dia ufff",
+            date: "20 de febrero 2026",
+            title: "Nos vimos por primera vez en persona ni queria sentarmeeeee",
+            preview: "Los dos nerviosos, los dos emocionados. Te vi y WOW solo dije que mujer más preciosa que tengo enfrenteeee",
+            desc: "El 20 de febrero nos vimos por primera vez verte ahi enfrente mio , que me sonrieras por primera vezzz uff y me vieras a los ojoooos ❤️",
+            photo: null,
+            photoEmoji: "🦋",
+            photoLabel: "nuestro primer encuentro",
+            msg: "Te vi y pensé: qué mujer tan increíble."
+        },
+        {
+            side: "left",
+            special: false,
+            emoji: "💋",
+            nodeDelay: "1.2s",
+            badge: "primer besito, bueno fueron variooooos",
+            date: "2 de marzo 2026",
+            title: "Primera foto juntos y ese primer beso uffff",
+            preview: "Nuestra primera foto. Ese beso que me dejó mudo aunque se queda corto mudo jajajaja",
+            desc: "Ese día me dejaste sin palabras mi amooor WOW sin palabras como tomaste la iniciatva me encanto 💋",
+            photo: "beso.jpeg",
+            photoEmoji: "💋",
+            photoLabel: "nuestra primera foto",
+            msg: "No hablé en todo el camino de regreso. Solo pensaba en ti."
+        },
+        {
+            side: "right",
+            special: false,
+            emoji: "🌄",
+            nodeDelay: "1.5s",
+            badge: "ese día tan bonito",
+            date: "20 de marzo 2026",
+            title: "El paisaje, ese vestido, esa sonrisa uffff",
+            preview: "Hay amor ese diaaaa huuuy tenia los ojos en otro ladoooo ufff",
+            desc: "Desde que la vi de lejitos esperandome me cambia el estado de animos la sonrisa todoooooo",
+            photo: "mano.jpg",
+            photoEmoji: "🌄",
+            photoLabel: "ese día tan especial",
+            msg: "Ese día lo disfrute muchoteeee"
+        },
+        {
+            side: "left",
+            special: false,
+            emoji: "🍽️",
+            nodeDelay: "1.8s",
+            badge: "nuestra mejor cita o bueno la primeraaaaa",
+            date: "27 de marzo 2026",
+            title: "Verte tan feliz conmigo no tiene precio ❤️",
+            preview: "Comimos juntos, reímos, estuvimos los dos solos ufff lo mejooooor",
+            desc: "El 27 de marzo fue uno de mis momentos más favoritos a tu lado amor, estar contigo disfrutando despues de que tuvo una semana pesada realmente me gusto pasarlo con usted mi reina",
+            photo: "comida.jpg",
+            photoEmoji: "🍽️",
+            photoLabel: "nuestra cita juntitos",
+            msg: "Ese día me enamoré aún más de ti, mi amorcito ❤️"
+        },
+        {
+            side: "right",
+            special: true,
+            emoji: "🎉",
+            nodeDelay: "2.1s",
+            badge: "2 MESES JUNTOOOOOS AMOOOOR",
+            date: "9 de abril 2026",
+            title: "Hoy cumplimos 2 meses contigo",
+            preview: "Dos meses siendo el hombre más afortunado del mundo y creeme que si amooor",
+            desc: "Hoy, 9 de abril, cumplimos 2 meses juntos. Dos meses de verte, de escucharte, de admirarte, de reírme contigo, de querer estar siempre cerca tuyo. Dos meses siendo el hombre más afortunado del mundo por tenerte a mi lado, mi princesa preciosa.",
+            photo: "rebe4.jpeg",
+            photoEmoji: "🎉",
+            photoLabel: "hoy, 2 meses juntos y los que no faltaaaaan",
+            msg: "Felices 2 meses, mi psicóloga preciosa la quiero muchoteeeeee ❤️"
+        },
+        {
+            side: "left",
+            special: false,
+            emoji: "✨",
+            nodeDelay: "2.4s",
+            badge: "cada día",
+            date: "Todos los días",
+            title: "Cada vez que hablamos y me alegras el día",
+            preview: "No hay un día que no piense en ti creeme cada foto que me mandas me enamora mas y mas de ti",
+            desc: "Cada mensaje cada llamada cada vez que te veo me alegra el corazón ❤️",
+            photo: "c4.jpeg",
+            photoEmoji: "✨",
+            photoLabel: "No cambies asi  me encantaaaas",
+            msg: "Gracias por existir y por estar en mi vida mi amorcito de mi vidaaaaaa."
+        },
+        {
+            side: "right",
+            special: false,
+            emoji: "🌍",
+            nodeDelay: "2.7s",
+            badge: "lo que nos queda",
+            date: "El futuro",
+            title: "Todo lo que aún nos queda por vivir",
+            preview: "Más citas, más risas, más momentos, más nosotros juntitoooos y enamoradoooos",
+            desc: "Esta linea de tiempo es corta amor pero representa nuestra historia y donde comenzo todo y tiene que seguir asi confiando siempre en Dios nuestro FUTURO ❤️.",
+            photo: "rebe1.jpeg",
+            photoEmoji: "🌍",
+            photoLabel: "nuestra próxima foto juntos",
+            msg: "Te elegiría mil veces más, con los ojos cerrados TU SABES ❤️"
+        }
+    ];
+
+    const container = document.getElementById("tlItems");
+    if (!container) return;
+
+    let openCard = null;
+
+    MOMENTS.forEach((m, i) => {
+        const isLeft = m.side === "left";
+        const item = document.createElement("div");
+        item.className = `tl-item ${isLeft ? "from-left" : "from-right"}${m.special ? " special" : ""}`;
+
+        const photoHTML = m.photo
+            ? `<img src="${m.photo}" alt="${m.title}"
+                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+               <div class="tl-card-photo-fallback" style="display:none;">${m.photoEmoji}</div>`
+            : `<div class="tl-card-photo-fallback">${m.photoEmoji}</div>`;
+
+        const cardHTML = `
+            <div class="tl-card" data-idx="${i}">
+                <div class="tl-card-bar"></div>
+                <div class="tl-card-body">
+                    <div class="tl-card-badge">${m.badge}</div>
+                    <div class="tl-card-title">${m.title}</div>
+                    <div class="tl-card-preview">${m.preview}</div>
+                </div>
+                <div class="tl-card-toggle">
+                    <span>ver más</span>
+                    <span class="tl-card-toggle-arrow"></span>
+                </div>
+                <div class="tl-card-expand">
+                    <div class="tl-card-divider"></div>
+                    <div class="tl-card-desc">${m.desc}</div>
+                    <div class="tl-card-photo-wrap">
+                        ${photoHTML}
+                        <div class="tl-card-photo-label">${m.photoLabel}</div>
+                    </div>
+                    <div class="tl-card-msg">${m.msg}</div>
+                </div>
+            </div>`;
+
+        const nodeHTML = `
+            <div class="tl-node-col">
+                <div class="tl-node" style="--node-delay:${m.nodeDelay}">${m.emoji}</div>
+                <div class="tl-node-date">${m.date}</div>
+            </div>`;
+
+        if (isLeft) {
+            item.innerHTML = `
+                <div class="tl-cell-left">${cardHTML}</div>
+                ${nodeHTML}
+                <div class="tl-cell-empty"></div>`;
+        } else {
+            item.innerHTML = `
+                <div class="tl-cell-empty"></div>
+                ${nodeHTML}
+                <div class="tl-cell-right">${cardHTML}</div>`;
+        }
+
+        container.appendChild(item);
+
+        // Click para expandir/cerrar
+        const card = item.querySelector(".tl-card");
+        card.addEventListener("click", () => {
+            const isOpen = card.classList.contains("open");
+            if (openCard && openCard !== card) {
+                openCard.classList.remove("open");
+                openCard.querySelector(".tl-card-toggle span:first-child").textContent = "ver más";
+            }
+            card.classList.toggle("open", !isOpen);
+            card.querySelector(".tl-card-toggle span:first-child").textContent = !isOpen ? "cerrar" : "ver más";
+            openCard = !isOpen ? card : null;
+
+            if (!isOpen) {
+                setTimeout(() => {
+                    card.scrollIntoView({ behavior: "smooth", block: "nearest" });
+                }, 300);
+            }
+        });
+    });
+
+    // Scroll reveal con IntersectionObserver
+    const items = container.querySelectorAll(".tl-item");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+
+    items.forEach((el, i) => {
+        el.style.transitionDelay = (i * 0.08) + "s";
+        observer.observe(el);
+    });
+
+})();
 
