@@ -2,8 +2,6 @@
    PARA REBECA ❤️  —  script.js  (PSICOLOGÍA)
    ============================================ */
 
-// ─── Frases flotantes ──────────────────────────
-// ─── Mensaje sorpresa al abrir ──────────────────
 (function initMensajeSorpresa() {
   if (sessionStorage.getItem('sorpresaVista')) return;
   sessionStorage.setItem('sorpresaVista', '1');
@@ -32,6 +30,12 @@
       background:linear-gradient(90deg,#3a1560,#9b6bb9,#3a1560);
       border-radius:28px 28px 0 0;
     }
+    .sorp-foto{
+      width:110px;height:110px;border-radius:50%;object-fit:cover;
+      border:4px solid #9b6bb9;
+      box-shadow:0 6px 24px rgba(91,45,142,0.3);
+      margin-bottom:18px;
+    }
     .sorp-hearts{font-size:1rem;letter-spacing:6px;margin-bottom:18px;
       animation:heartPop 1.5s ease-in-out infinite;}
     @keyframes heartPop{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
@@ -59,13 +63,17 @@
       <div class="sorp-bg-emoji" style="top:-20px;right:-10px">🧠</div>
       <div class="sorp-bg-emoji" style="bottom:-15px;left:-10px">❤️</div>
       <div class="sorp-hearts">❤️ ❤️ ❤️</div>
+
+      <!-- 📸 CAMBIA "TU_RUTA_AQUI" POR LA RUTA DE TU FOTO -->
+      <img class="sorp-foto" src="ayer.jpeg" alt="Foto">
+
       <div class="sorp-titulo">Para ti, mi psicóloga preciosa</div>
       <div class="sorp-sub">Algo que quiero decirte antes que nada amorcito</div>
       <div class="sorp-deco"></div>
       <div class="sorp-msg">
-       Hay mi amor que feliz soy a tu lado, me hace bien tu compañia tus besos consejos tu solo tu, me haces feliz ❤️
-        Estoy tan orgulloso de ti, mi princesa LA QUIERO MUCHOTE HOY , MAÑANA  Y SIEMPRE. ❤️.<br>
-        Y estoy emocionado por verla mañanaaaaaa
+       Ayer que día mas especial mi amor a tu lado me encanto todo desde volver a verte, tocarte la mano abrazarte, darte amor todo me encanto, conocer a mis suegros fuen dia
+       uff  espectacular a tu lado mi niña preciosa la quiero muchote ❤️.<br>
+        Y lo que nos esperaaaaa
       </div>
       <div class="sorp-firma">— Tu angelito que te quiere muchote</div>
       <button class="sorp-btn" id="sorpresaCerrarBtn">Ir al inicio</button>
@@ -79,7 +87,6 @@
     setTimeout(() => overlay.remove(), 420);
   });
 })();
-
 
 /* ============================================
    PARA REBECA ❤️  —  effects_enhanced.js
@@ -1043,6 +1050,16 @@ setInterval(spawnParticle, 2200);
             emoji: "⭐",
             caption: "Qué me veas de esa manera me deja uff ❤️",
             note: "Me enamora esa miradaaaa ❤️",
+            color: "#e8d8f8",
+            rot: "2deg"
+        },
+
+
+         {
+            photo: "ayer2.jpeg",
+            emoji: "⭐",
+            caption: "A TU LADO SIEMPRE SERE FELIZ MI AMOR ❤️",
+            note: "Cada día que nos vemos es inolvidable",
             color: "#e8d8f8",
             rot: "2deg"
         },
@@ -2203,3 +2220,56 @@ function mostrarReproductor() {
 
 })();
 
+
+/* ══════════════════════════════════════════
+   LLUVIA DE PÉTALOS Y CORAZONES 🌸💜
+   ══════════════════════════════════════════ */
+(function initLluviaPetalos() {
+  const items = ['🌸','💜','🌷','❤️','💗','🌺','💕','💖','🌸','💜'];
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .petalo-rain {
+      position: fixed;
+      top: -50px;
+      pointer-events: none;
+      user-select: none;
+      z-index: 99998;
+      animation: petaloCaer linear forwards;
+    }
+    @keyframes petaloCaer {
+      0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+      80%  { opacity: 1; }
+      100% { transform: translateY(110vh) rotate(720deg) scale(0.5); opacity: 0; }
+    }
+  `;
+  document.head.appendChild(style);
+
+  function crearPetalo() {
+    const el = document.createElement('div');
+    el.className = 'petalo-rain';
+    el.textContent = items[Math.floor(Math.random() * items.length)];
+    const size = 20 + Math.random() * 22;
+    el.style.cssText = `
+      font-size: ${size}px;
+      left: ${Math.random() * 98}vw;
+      animation-duration: ${3 + Math.random() * 4}s;
+      animation-delay: ${Math.random() * 1.5}s;
+    `;
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 7000);
+  }
+
+  /* Primera oleada al cargar */
+  for (let i = 0; i < 35; i++) {
+    setTimeout(crearPetalo, i * 120);
+  }
+
+  /* Lluvia continua durante 12 segundos */
+  let count = 0;
+  const interval = setInterval(() => {
+    crearPetalo();
+    count++;
+    if (count > 60) clearInterval(interval);
+  }, 200);
+})();
