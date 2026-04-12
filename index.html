@@ -6,254 +6,202 @@
     <title>Para el amor de mi vida ❤️</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&family=Caveat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600&family=DM+Sans:wght@300;400;500&family=Caveat:wght@400;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="intro.css">
     <link rel="stylesheet" href="timeline.css">
 
     <style>
     /* ══════════════════════════════════════════════
-       SECCIÓN: RAZONES PSICÓLOGA — tarjetas flotantes
+       SECCIÓN: RAZONES PSICÓLOGA — masonry asimétrico
        ══════════════════════════════════════════════ */
     .razones-section {
         width: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 0;
+        padding: 4rem 3.5rem;
+        border-bottom: 1px solid var(--cream-deep);
         animation: fadeSlideUp 1.2s 1.3s cubic-bezier(.22,1,.36,1) both;
     }
 
     .razones-label {
         font-family: var(--font-sans);
         font-weight: 300;
-        font-size: 0.72rem;
-        letter-spacing: 0.32em;
+        font-size: 0.68rem;
+        letter-spacing: 0.28em;
         text-transform: uppercase;
-        color: var(--violet-light);
-        margin-bottom: 8px;
-        text-align: center;
+        color: var(--sage-light);
+        margin-bottom: 6px;
     }
 
     .razones-title {
-        font-family: var(--font-serif);
-        font-size: clamp(1.5rem, 5vw, 2.4rem);
-        font-weight: 700;
-        color: var(--violet-deep);
-        text-align: center;
-        margin-bottom: 6px;
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        color: var(--sage-deep);
+        margin-bottom: 4px;
         line-height: 1.2;
     }
 
     .razones-sub {
         font-family: var(--font-serif);
         font-style: italic;
-        font-size: clamp(0.85rem, 2vw, 1rem);
-        color: var(--text-mid);
-        text-align: center;
-        margin-bottom: 2.4rem;
+        font-size: clamp(0.88rem, 2vw, 1rem);
+        color: var(--text-light);
+        margin-bottom: 2.5rem;
     }
 
     .razones-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-        gap: 24px;
-        width: 100%;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 14px;
     }
 
     .razon-card {
         background: var(--white);
-        border-radius: 24px;
-        padding: 32px 24px 28px;
-        box-shadow:
-            0 4px 8px rgba(0,0,0,.03),
-            0 18px 50px var(--shadow),
-            0 0 0 1px rgba(91,45,142,0.07),
-            inset 0 1px 0 rgba(255,255,255,.95);
+        border: 1px solid var(--cream-deep);
+        border-radius: var(--radius-md);
+        padding: 1.6rem 1.4rem;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 14px;
-        text-align: center;
+        gap: 10px;
         position: relative;
         overflow: hidden;
-        /* Animación flotante individual */
-        animation: cardFloat var(--float-dur, 5s) ease-in-out infinite;
-        animation-delay: var(--float-delay, 0s);
-        transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s ease;
+        transition: transform 0.3s cubic-bezier(.22,1,.36,1), box-shadow 0.3s;
     }
 
     .razon-card:hover {
-        box-shadow:
-            0 4px 8px rgba(0,0,0,.04),
-            0 28px 70px rgba(91,45,142,0.28),
-            0 0 0 1px rgba(91,45,142,0.12),
-            inset 0 1px 0 rgba(255,255,255,.95);
-        transform: translateY(-10px) scale(1.03) !important;
-        animation-play-state: paused;
-    }
-
-    @keyframes cardFloat {
-        0%, 100% { transform: translateY(0px) rotate(var(--float-rot, 0deg)); }
-        50%       { transform: translateY(var(--float-y, -10px)) rotate(var(--float-rot-mid, 0deg)); }
+        transform: translateY(-6px);
+        box-shadow: 0 16px 48px rgba(90,122,101,0.16);
     }
 
     .razon-card::before {
         content: '';
         position: absolute;
         top: 0; left: 0; right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--violet-deep), var(--violet-light), var(--violet));
-        border-radius: 24px 24px 0 0;
+        height: 3px;
+        background: linear-gradient(90deg, var(--sage), var(--mind-light));
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
     }
 
-    .razon-card::after {
-        content: '';
-        position: absolute;
-        bottom: -30px; right: -20px;
-        width: 100px; height: 100px;
-        background: radial-gradient(circle, rgba(155,107,185,0.07) 0%, transparent 70%);
-        pointer-events: none;
+    .razon-card.featured {
+        grid-column: span 2;
+        background: var(--sage-pale);
+        border-color: rgba(90,122,101,0.2);
+    }
+
+    .razon-card.featured::before {
+        background: linear-gradient(90deg, var(--sage-deep), var(--sage), var(--mind-light));
     }
 
     .razon-num {
-        width: 40px; height: 40px;
+        width: 36px; height: 36px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--violet-deep), var(--violet));
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: var(--font-serif);
-        font-size: 1rem;
-        font-weight: 700;
-        color: #fff;
+        background: var(--sage-pale);
+        border: 1px solid rgba(90,122,101,0.2);
+        display: flex; align-items: center; justify-content: center;
+        font-family: var(--font-sans);
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--sage-deep);
         flex-shrink: 0;
-        box-shadow: 0 4px 16px rgba(91,45,142,0.3);
     }
 
-    .razon-emoji {
-        font-size: 2.2rem;
-        line-height: 1;
-        filter: drop-shadow(0 2px 8px rgba(91,45,142,0.18));
+    .razon-card.featured .razon-num {
+        background: rgba(90,122,101,0.15);
     }
 
     .razon-titulo {
         font-family: var(--font-serif);
-        font-size: 1.05rem;
+        font-size: 1.02rem;
         font-weight: 700;
-        color: var(--violet-deep);
+        color: var(--sage-deep);
         line-height: 1.3;
     }
 
     .razon-texto {
         font-family: var(--font-serif);
         font-style: italic;
-        font-size: 0.92rem;
-        color: var(--text-mid);
-        line-height: 1.75;
+        font-size: 0.88rem;
+        color: var(--text-light);
+        line-height: 1.8;
     }
 
     .razon-tag {
         font-family: var(--font-sans);
-        font-size: 0.62rem;
-        font-weight: 400;
-        letter-spacing: 0.18em;
+        font-size: 0.6rem;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: var(--violet-light);
-        background: var(--violet-pale);
-        padding: 5px 14px;
+        color: var(--sage);
+        background: var(--sage-pale);
+        border: 1px solid rgba(90,122,101,0.15);
+        padding: 4px 12px;
         border-radius: 50px;
+        align-self: flex-start;
+        margin-top: auto;
     }
 
     /* ══════════════════════════════════════════════
-       SECCIÓN: CARTA MOTIVADORA ESPECIAL
+       SECCIÓN: CARTA MOTIVADORA
        ══════════════════════════════════════════════ */
     .carta-motiv-section {
         width: 100%;
+        padding: 4rem 3.5rem;
+        border-bottom: 1px solid var(--cream-deep);
         display: flex;
         flex-direction: column;
-        align-items: center;
-        gap: 0;
+        align-items: flex-start;
         animation: fadeSlideUp 1.2s 1.45s cubic-bezier(.22,1,.36,1) both;
     }
 
     .carta-motiv-label {
         font-family: var(--font-sans);
         font-weight: 300;
-        font-size: 0.72rem;
-        letter-spacing: 0.32em;
+        font-size: 0.68rem;
+        letter-spacing: 0.28em;
         text-transform: uppercase;
-        color: var(--violet-light);
-        margin-bottom: 8px;
-        text-align: center;
+        color: var(--blush);
+        margin-bottom: 6px;
     }
 
     .carta-motiv-title {
-        font-family: var(--font-serif);
-        font-size: clamp(1.4rem, 4vw, 2rem);
-        font-weight: 700;
-        color: var(--violet-deep);
-        text-align: center;
-        margin-bottom: 6px;
+        font-family: var(--font-display);
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        color: var(--blush-deep);
+        margin-bottom: 4px;
     }
 
     .carta-motiv-sub {
         font-family: var(--font-serif);
         font-style: italic;
-        font-size: clamp(0.85rem, 2vw, 0.98rem);
-        color: var(--text-mid);
-        text-align: center;
-        margin-bottom: 2rem;
+        font-size: clamp(0.88rem, 2vw, 1rem);
+        color: var(--text-light);
+        margin-bottom: 2.5rem;
     }
 
     .carta-motiv-wrap {
-        width: min(640px, 100%);
-        position: relative;
+        width: min(680px, 100%);
     }
 
     .carta-motiv-paper {
-        background: #fff;
-        border-radius: 20px;
-        padding: 3rem 3rem 2.5rem;
-        box-shadow:
-            0 4px 8px rgba(0,0,0,.03),
-            0 28px 80px var(--shadow),
-            0 0 0 1px rgba(91,45,142,0.07),
-            inset 0 1px 0 rgba(255,255,255,.95);
+        background: var(--white);
+        border-radius: var(--radius-md);
+        padding: 3rem 3.5rem;
+        border: 1px solid var(--cream-deep);
+        border-left: 3px solid var(--blush-light);
         position: relative;
         overflow: hidden;
+        box-shadow: 0 8px 40px var(--shadow-warm);
     }
 
-    /* Líneas de papel decorativas */
     .carta-motiv-paper::before {
         content: '';
         position: absolute;
-        left: 0; right: 0;
-        top: 0; bottom: 0;
+        left: 0; right: 0; top: 0; bottom: 0;
         background-image: repeating-linear-gradient(
-            transparent,
-            transparent 37px,
-            rgba(91,45,142,0.04) 37px,
-            rgba(91,45,142,0.04) 38px
+            transparent, transparent 39px,
+            rgba(196,115,122,0.05) 39px, rgba(196,115,122,0.05) 40px
         );
-        pointer-events: none;
-        border-radius: 20px;
-    }
-
-    /* Margen izquierdo estilo papel */
-    .carta-motiv-paper::after {
-        content: '';
-        position: absolute;
-        left: 56px; top: 0; bottom: 0;
-        width: 1.5px;
-        background: rgba(196,160,106,0.2);
         pointer-events: none;
     }
 
     .carta-motiv-header {
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
         margin-bottom: 1.8rem;
         position: relative;
         z-index: 2;
@@ -261,23 +209,23 @@
 
     .carta-motiv-fecha {
         font-family: var(--font-sans);
-        font-size: 0.7rem;
+        font-size: 0.68rem;
         letter-spacing: 0.22em;
         text-transform: uppercase;
-        color: var(--violet-light);
+        color: var(--blush);
+        margin-bottom: 10px;
     }
 
     .carta-motiv-deco {
-        width: 50px; height: 2px;
-        background: linear-gradient(90deg, var(--violet), var(--violet-light));
+        width: 40px; height: 2px;
+        background: linear-gradient(90deg, var(--blush), var(--blush-light));
         border-radius: 2px;
-        margin-top: 6px;
     }
 
     .carta-motiv-saludo {
         font-family: var(--font-hand);
-        font-size: 1.9rem;
-        color: var(--violet-deep);
+        font-size: 2rem;
+        color: var(--blush-deep);
         margin-bottom: 1.4rem;
         position: relative;
         z-index: 2;
@@ -286,19 +234,17 @@
     .carta-motiv-body {
         font-family: var(--font-serif);
         font-size: clamp(0.95rem, 2vw, 1.08rem);
-        line-height: 2;
+        line-height: 2.1;
         color: var(--text-dark);
         position: relative;
         z-index: 2;
         min-height: 80px;
     }
 
-    /* Cursor parpadeante del typewriter */
     .carta-motiv-body .cursor-blink {
         display: inline-block;
-        width: 2px;
-        height: 1.1em;
-        background: var(--violet);
+        width: 2px; height: 1.1em;
+        background: var(--blush);
         margin-left: 2px;
         vertical-align: text-bottom;
         animation: cursorBlink 0.75s step-end infinite;
@@ -315,12 +261,12 @@
         display: flex;
         flex-direction: column;
         align-items: flex-end;
-        gap: 6px;
+        gap: 5px;
         position: relative;
         z-index: 2;
         opacity: 0;
         transform: translateY(10px);
-        transition: opacity 0.6s ease, transform 0.6s cubic-bezier(.22,1,.36,1);
+        transition: opacity 0.6s, transform 0.6s cubic-bezier(.22,1,.36,1);
     }
 
     .carta-motiv-cierre.visible {
@@ -331,59 +277,50 @@
     .carta-motiv-firma {
         font-family: var(--font-hand);
         font-size: 1.6rem;
-        color: var(--violet);
+        color: var(--blush);
         text-align: right;
     }
 
     .carta-motiv-posdata {
         font-family: var(--font-serif);
         font-style: italic;
-        font-size: 0.82rem;
-        color: var(--text-mid);
+        font-size: 0.8rem;
+        color: var(--text-light);
         text-align: right;
     }
 
-    /* Pequeños corazones decorativos dentro de la carta */
-    .carta-motiv-deco-hearts {
-        position: absolute;
-        top: 16px; right: 20px;
-        font-size: 1.4rem;
-        opacity: 0.18;
-        pointer-events: none;
-        z-index: 1;
-        animation: noteFloat 5s ease-in-out infinite;
-    }
-
-    /* Botón para reiniciar la animación */
     .carta-motiv-btn {
         margin-top: 1.4rem;
         background: none;
-        border: 1.5px solid var(--violet);
-        color: var(--violet);
+        border: 1px solid var(--blush);
+        color: var(--blush);
         border-radius: 50px;
-        padding: 10px 30px;
+        padding: 10px 28px;
         font-family: var(--font-sans);
-        font-size: 0.78rem;
-        letter-spacing: 0.14em;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
         cursor: pointer;
         transition: background 0.2s, color 0.2s, transform 0.2s;
     }
 
     .carta-motiv-btn:hover {
-        background: var(--violet);
-        color: #fff;
+        background: var(--blush);
+        color: var(--white);
         transform: translateY(-2px);
     }
 
-    @media (max-width: 700px) {
-        .razones-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
-        .razon-card   { padding: 22px 16px 18px; }
-        .carta-motiv-paper { padding: 2rem 1.4rem 1.8rem; }
-        .carta-motiv-paper::after { left: 36px; }
+    /* Responsive razones y carta */
+    @media (max-width: 900px) {
+        .razones-section, .carta-motiv-section { padding: 3rem 2rem; }
+        .razones-grid { grid-template-columns: 1fr 1fr; }
+        .razon-card.featured { grid-column: span 2; }
     }
 
-    @media (max-width: 420px) {
+    @media (max-width: 600px) {
+        .razones-section, .carta-motiv-section { padding: 2.5rem 1.4rem; }
         .razones-grid { grid-template-columns: 1fr; }
+        .razon-card.featured { grid-column: span 1; }
+        .carta-motiv-paper { padding: 2rem 1.4rem; }
     }
     </style>
 </head>
@@ -394,8 +331,11 @@
 
     <main class="main-wrapper">
 
-        <!-- ── Header dramático ── -->
+        <!-- ══════════════════════════════════════
+             HEADER — split dos columnas
+             ══════════════════════════════════════ -->
         <header class="page-header">
+            <!-- Columna izquierda: texto -->
             <div class="title-group">
                 <span class="subtitle-top">con todo mi amor</span>
                 <h1 class="main-title">
@@ -404,27 +344,37 @@
                 </h1>
                 <div class="title-deco">✦</div>
             </div>
+
+            <!-- Columna derecha: foto + chip -->
+            <div class="header-right">
+                <div class="header-photo-frame">
+                    <img src="mi psicologa.jpeg" alt="Mi amor" onerror="this.style.display='none'">
+                    <div class="photo-placeholder"></div>
+                </div>
+                <div class="header-chip">
+                    <span class="header-chip-dot"></span>
+                    Para la futura psicologaaaa más preciosa e inteligenteeee
+                </div>
+            </div>
         </header>
 
-        <!-- ── Contador de relación ── -->
+        <!-- ══════════════════════════════════════
+             CONTADOR — barra editorial de 4 celdas
+             ══════════════════════════════════════ -->
         <section class="counter-section" id="counterSection">
-            <div class="counter-label">llevamos juntos</div>
             <div class="counter-units">
                 <div class="counter-unit">
                     <span class="counter-num" id="cntDays">000</span>
                     <span class="counter-uname">días</span>
                 </div>
-                <div class="counter-sep">:</div>
                 <div class="counter-unit">
                     <span class="counter-num" id="cntHours">00</span>
                     <span class="counter-uname">horas</span>
                 </div>
-                <div class="counter-sep">:</div>
                 <div class="counter-unit">
                     <span class="counter-num" id="cntMins">00</span>
                     <span class="counter-uname">minutos</span>
                 </div>
-                <div class="counter-sep">:</div>
                 <div class="counter-unit">
                     <span class="counter-num" id="cntSecs">00</span>
                     <span class="counter-uname">segundos</span>
@@ -433,16 +383,17 @@
             <div class="counter-since">y cada encuentro, cada mirada, cada beso y cada segundo vale la pena ❤️</div>
         </section>
 
-        <!-- ── Mensaje + Carrusel ── -->
+        <!-- ══════════════════════════════════════
+             MENSAJE + CARRUSEL — grid 42/58
+             ══════════════════════════════════════ -->
         <div class="content-row">
             <section class="message-section">
                 <div class="message-card">
                     <div class="card-ornament top-left">❝</div>
-                    <p class="card-text">Mi cielitoooooo, mi amor te deseo que te recuperes yo se que no es fácil ser mujer yo comprendo todo los cambios en tu cuerpo
-                        yo solo de imaginar lo que pasas pues se lo dificil que es, pero yo con mi cariño y apoyo que no te faltara nunca 
-                        estare siempre para ti mi amor me importas mi rebe linda
-                        Usted es unica, encantadora y es mi novia SOY UN AFORTUNADOTEEEEE  te quiero tanto MI NIÑA❤️ .</p>
-                    <div class="card-ornament bottom-right">❞</div>
+                    <p class="card-text"> Mi rebe preciosa, que puedo más pedir en esta vida sin contigo encuentro paz, amor, sinceridad
+                        todo lo que uno busca en otra persona para que lo complemente, eres todo lo que siempre quise mi amor TODO 
+                        por ti lucharé y no me rendiré hasta que siempre estemos JUNTOS como debe de ser
+                        tu me conoces muy bien, sabes como soy, como me comporto y como demuestro mi amor hacia TI. Te quiero demasiado mi amor ❤️</p>
                     <div class="card-signature">— Tu angelito</div>
                 </div>
             </section>
@@ -469,7 +420,7 @@
                                 <img src="rebe2.jpeg" alt="Nosotros" onerror="this.parentElement.classList.add('no-photo'); this.remove()">
                                 <div class="photo-placeholder">📷</div>
                             </div>
-                            <div class="slide-phrase"><p>"Esa carita de enojada me encanta y me vuelve loco mujer❤️"</p></div>
+                            <div class="slide-phrase"><p>"Esa carita de enojada me encanta y me vuelve loco mujer ❤️"</p></div>
                         </div></div>
                         <div class="slide"><div class="slide-inner">
                             <div class="photo-frame">
@@ -507,72 +458,89 @@
             </section>
         </div>
 
-        <!-- ── Nuestra canción ── -->
-      <section class="song-section">
-    <div class="song-label">Nuestra canción</div>
-    <div class="song-card">
-        <div class="song-note song-note--left">♪</div>
-        <div class="song-note song-note--right">♫</div>
-        <p class="song-intro">Para ti mi bonitaaaaa</p>
-        <div class="song-embed-wrapper">
-            <iframe
-    src="https://open.spotify.com/embed/track/4PpuZIMmeng6qPicveSI22?utm_source=generator&theme=0"
-                width="100%" height="152" frameborder="0" allowfullscreen=""
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy" style="border-radius:16px;">
-            </iframe>
-        </div>
-        <p class="song-closing">Esta canción es dedicada para ti mi amor ❤️</p>
-    </div>
-</section>
-
-
-<section class="timeline-section" id="timelineSection">
-    <div class="timeline-label">nuestra historia</div>
-    <div class="timeline-title">Dos meses que lo cambiaron todo 💜</div>
-    <div class="timeline-sub">Toca cada momento para revivir nuestra historia, mi amor</div>
- 
-    <div class="tl-axis-wrap" id="tlAxisWrap">
-        <div class="tl-axis"></div>
-        <div class="tl-items" id="tlItems"></div>
- 
-        <div class="tl-footer-wrap">
-            <div class="tl-footer-card">
-                <div class="tl-footer-emoji">❤️</div>
-                <div class="tl-footer-text">
-                   Y esto que vivimos amor solamente es el comienzo de nuestra historiaaaa.<br>
-                    Quiero seguir llenando estas páginas de momentos a tu lado mi preciosa<br>
-                    de momentos bonitos contigo.
-                </div>
-                <div class="tl-footer-firma">— Tu angelito que te quiere muchote ❤️</div>
+        <!-- ══════════════════════════════════════
+             CANCIÓN — dos columnas editoriales
+             ══════════════════════════════════════ -->
+        <section class="song-section">
+            <!-- Texto izquierdo -->
+            <div class="song-left">
+                <div class="song-eyebrow">nuestra canción</div>
+                <div class="song-intro">Para ti mi bonitaaaaa 🎵</div>
+                <div class="song-closing">Esta canción es dedicada para ti mi amor ❤️<br>Cada vez que la escuches, piensa en mí.</div>
             </div>
-        </div>
+            <!-- Embed derecho -->
+            <div class="song-right">
+                <div class="song-embed-wrapper">
+                    <iframe
+                        src="https://open.spotify.com/embed/track/4PpuZIMmeng6qPicveSI22?utm_source=generator&theme=0"
+                        width="100%" height="152" frameborder="0" allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                        loading="lazy" style="border-radius:12px; display:block;">
+                    </iframe>
+                </div>
+            </div>
+        </section>
+       <section class="video-section">
+    <div class="video-header">
+        <span class="video-eyebrow">Alguito de nosotrosss huuuy</span>
     </div>
+    
+    <div class="video-container video-besos">
+        <video controls class="video-element" poster="HUY.jpeg">
+            <source src="Beso.mp4" type="video/mp4">
+            Tu navegador no soporta videos.
+        </video>
+        <div class="video-deco-hearts">❤️</div>
+    </div>
+    <p class="video-footer-text">❤️ Me encantan tus besos ❤️</p>
 </section>
 
-        <!-- ══════════════════════════════════════════
-             ✨ NUEVA SECCIÓN: RAZONES PSICÓLOGA ✨
-             ══════════════════════════════════════════ -->
+        <!-- ══════════════════════════════════════
+             LÍNEA DEL TIEMPO
+             ══════════════════════════════════════ -->
+        <section class="timeline-section" id="timelineSection">
+            <div class="timeline-label">nuestra historia</div>
+            <div class="timeline-title">Dos meses que lo cambiaron todo 💜</div>
+            <div class="timeline-sub">Toca cada momento para revivir nuestra historia, mi amor</div>
+
+            <div class="tl-axis-wrap" id="tlAxisWrap">
+                <div class="tl-axis"></div>
+                <div class="tl-items" id="tlItems"></div>
+
+                <div class="tl-footer-wrap">
+                    <div class="tl-footer-card">
+                        <div class="tl-footer-emoji">❤️</div>
+                        <div class="tl-footer-text">
+                            Y esto que vivimos amor solamente es el comienzo de nuestra historiaaaa.<br>
+                            Quiero seguir llenando estas páginas de momentos a tu lado mi preciosa<br>
+                            de momentos bonitos contigo.
+                        </div>
+                        <div class="tl-footer-firma">— Tu angelito que te quiere muchote ❤️</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══════════════════════════════════════
+             RAZONES PSICÓLOGA — masonry asimétrico
+             ══════════════════════════════════════ -->
         <!-- <section class="razones-section" id="razonesSection">
             <div class="razones-label">para ti, mi amor</div>
-            <div class="razones-title">Razones por las que serás<br>una psicóloga increíble 🧠❤️</div>
+            <div class="razones-title">Razones por las que serás<br>una psicóloga increíble 🧠</div>
             <div class="razones-sub">Un mal examen no define lo que eres — esto sí lo hace</div>
-
             <div class="razones-grid" id="razonesGrid"></div>
         </section> -->
 
-        <!-- ══════════════════════════════════════════
-             💌 NUEVA SECCIÓN: CARTA MOTIVADORA ✨
-             ══════════════════════════════════════════ -->
+        <!-- ══════════════════════════════════════
+             CARTA MOTIVADORA
+             ══════════════════════════════════════ -->
         <!-- <section class="carta-motiv-section" id="cartaMotivSection">
             <div class="carta-motiv-label">desde mi corazón para ti mi niña</div>
             <div class="carta-motiv-title">Una carta solo para ti 💌</div>
-            <div class="carta-motiv-sub">Leela con toda la seguridad del mundo que aca alguien que te quiere mi princesa ❤️</div>
+            <div class="carta-motiv-sub">Léela con toda la seguridad del mundo, aquí alguien que te quiere ❤️</div>
 
             <div class="carta-motiv-wrap">
                 <div class="carta-motiv-paper" id="cartaMotivPaper">
-                    <div class="carta-motiv-deco-hearts">❤️</div>
-
                     <div class="carta-motiv-header">
                         <div class="carta-motiv-fecha" id="cartaMotivFecha"></div>
                         <div class="carta-motiv-deco"></div>
@@ -589,18 +557,22 @@
                     </div>
                 </div>
 
-                <div style="text-align:center;">
+                <div>
                     <button class="carta-motiv-btn" id="cartaMotivBtn">leer otra vez</button>
                 </div>
             </div>
         </section> -->
 
-        <!-- ── Galería Polaroid ── -->
+        <!-- ══════════════════════════════════════
+             GALERÍA — mosaico irregular
+             ══════════════════════════════════════ -->
         <section class="polaroid-section" id="polaroidSection"></section>
 
-
+        <!-- ══════════════════════════════════════
+             FOOTER
+             ══════════════════════════════════════ -->
         <footer class="page-footer">
-            <p>Con mucho amor de tu ingeniero ❤️</p>
+            Con mucho amor de tu ingeniero ❤️
         </footer>
 
     </main>
@@ -618,7 +590,7 @@
         </div>
     </div>
 
-    <!-- Lluvia de corazones (quiz perfecto) -->
+    <!-- Lluvia de corazones -->
     <div class="hearts-rain" id="heartsRain"></div>
 
     <script src="script.js"></script>
