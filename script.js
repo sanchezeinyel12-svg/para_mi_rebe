@@ -71,9 +71,9 @@
       <div class="sorp-sub">Algo que quiero decirte antes que nada amorcito</div>
       <div class="sorp-deco"></div>
       <div class="sorp-msg">
-       Ayer que día mas especial mi amor a tu lado me encanto todo desde volver a verte, tocarte la mano abrazarte, darte amor todo me encanto, conocer a mis suegros fuen dia
-       uff  espectacular a tu lado mi niña preciosa la quiero muchote ❤️.<br>
-        Y lo que nos esperaaaaa
+       Te quiero hoy, mañana y siempre mi niña preciosa me haz enseñado lo bonito de conocer una persona que me complemente tanto
+       POR TI SOLO POR TI POR QUE VALES LA PENA, Siempre pero siempre LUCHARE POR NUESTRO AMOR
+       TE QUIERO AMOR DE MI VIDA ❤️.<br>
       </div>
       <div class="sorp-firma">— Tu angelito que te quiere muchote</div>
       <button class="sorp-btn" id="sorpresaCerrarBtn">Ir al inicio</button>
