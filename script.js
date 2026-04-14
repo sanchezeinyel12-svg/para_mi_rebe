@@ -71,9 +71,8 @@
       <div class="sorp-sub">Algo que quiero decirte antes que nada amorcito</div>
       <div class="sorp-deco"></div>
       <div class="sorp-msg">
-       Te quiero hoy, mañana y siempre mi niña preciosa me haz enseñado lo bonito de conocer una persona que me complemente tanto
-       POR TI SOLO POR TI POR QUE VALES LA PENA, Siempre pero siempre LUCHARE POR NUESTRO AMOR
-       TE QUIERO AMOR DE MI VIDA ❤️.<br>
+       Gracias por todos los momentos especiales a tu lado mi amoooor
+       como el de ayer no lo olvidaré NUNCA y me alegra mi corazon sentirme querido por ti mi preciosa❤️.<br>
       </div>
       <div class="sorp-firma">— Tu angelito que te quiere muchote</div>
       <button class="sorp-btn" id="sorpresaCerrarBtn">Ir al inicio</button>
@@ -2272,4 +2271,161 @@ function mostrarReproductor() {
     count++;
     if (count > 60) clearInterval(interval);
   }, 200);
+})();
+
+(function() {
+    const CAJAS = [
+        {
+            icono: "💌",
+            tituloGrid: "Mensaje secreto",
+            titulo: "Para cuando te sientas sola o desanimada mi amor",
+            msg: "Aunque estemos lejos siempre, yo siempre estaré para ti dandote la prioridad que te mereces mi REINA acá hay alguien a quien le importas MUCHISIMO ❤️."
+        },
+        {
+            icono: "🌸",
+            tituloGrid: "Nuestras Tardes",
+            titulo: "Momentos que no olvidaré nunca",
+            msg: "Disfrutar cada momento contigo, no tiene precio, verte , sentirte y hablar noo tiene precio y nunca lo tendrá es la mejor parte de mi SEMANA 💖."
+        },
+        {
+            icono: "🧠",
+            tituloGrid: "Futura psicóloga",
+            titulo: "Serás una gran psicologa mi amor",
+            msg: "Hay mi niña, usted tiene futuro en la psicologia se le nota a leguas mi amor, enfoquesé en usted y todo lo que va lograr yo CONFÍO en ti Y SIEMPRE PERO SIEMPRE ORGULLO DE TI ❤️"
+        },
+        {
+            icono: "😤",
+            tituloGrid: "Tu carita de enojoooona",
+            titulo: "Me mataaaaaa",
+            msg: "No sé cómo explicarlo pero cuando te enojas y pones esa carita me muero jeje Me dan ganas de abrazarte y no soltarte ya que eres demasiado linda hasta cuando estás molesta, mujer 💕."
+        },
+        {
+            icono: "🌺",
+            tituloGrid: "Lo que admiro de ti",
+            titulo: "Lo que más admiro de ti",
+            msg: "Admiro tu fuerza para seguir adelante aunque las cosas estén difíciles la presion constante no es fácil y Admiro tu mente fuerte y como resuelves las cosas, tu sensibilidad con todo , tu forma de ver el mundo y de pensar mi amor. Eres una persona extraordinaria que quiero pasar el resto de mi vida CONTIGO. 💌"
+        },
+        {
+            icono: "🎯",
+            tituloGrid: "Nuestra promesa",
+            titulo: "Te lo prometo de corazon",
+            msg: "No me voy a rendir nunca mi rebe luucharé y lucharé por ti y por lo nuestro porque lo que tenemos vale todo lo bueno de este mundo y tu Te mereces a alguien que se quede, que luche, que te elija todos los días, que te escuche, que te quiera que te valore todo lo que usted vale mi CIELO 💌 . Ese soy yo  mi amor."
+        },
+        {
+            icono: "🌟",
+            tituloGrid: "Lo que me diste",
+            titulo: "Lo que me diste sin saber y cambiaria mi vida",
+            msg: "Me diste paz cuando mi mente estaba revuelta de tantos problemas personales , me diste razones para sonreír cada dia por un lindo motivo y ademas me diste una oportunidad de robarte el corazón y me diste todo tu amoooooor y hasta el momento eso es lo mejor que alguien me ha dado en la vida. 💕"
+        },
+        {
+            icono: "👁️",
+            tituloGrid: "Tus ojos",
+            titulo: "Esos ojos, Dios mío",
+            msg: "Tus ojos tienen algo que no puedo explicar, solo sentir en mi cuerpo y corazón una sensación de sentirme querido que ufff. Con solo verme me ablandas el corazón uff y no hay  ningún lugar en el mundo donde preferiría estar que perdiéndome en esa mirada tuya, mujer preciosa. ME ENCANTASSS 💕" 
+        },
+        {
+            icono: "∞",
+            tituloGrid: "Lo que viene PARA NOSOTROS",
+            titulo: "Lo que nos queda por vivir  y compartir JUNTOS",
+            msg: "Esto que vivimos es solo el comienzo y es un lindo comienzooooo yo de mi parte quiero seguir escribiendo momentos contigo, mi amor. Buenos días siempre, nuestras aventuras, risas, y hasta las peleas que se arreglan con un beso o muchos besitoooos como ayer HUUUUY. Todo eso, contigo. 💕"
+        }
+    ];
+ 
+    let abiertos = 0;
+    const grid = document.getElementById('cofreGrid');
+    const modalBg = document.getElementById('cofreModalBg');
+    const modalEmoji = document.getElementById('cofreModalEmoji');
+    const modalTitulo = document.getElementById('cofreModalTitulo');
+    const modalMsg = document.getElementById('cofreModalMsg');
+    const modalBtn = document.getElementById('cofreModalBtn');
+    const progresoTexto = document.getElementById('cofreProgresoTexto');
+    const barraFill = document.getElementById('cofreBarraFill');
+    const finalMsg = document.getElementById('cofreFinal');
+ 
+    CAJAS.forEach(function(c, i) {
+        var div = document.createElement('div');
+        div.className = 'caja';
+        div.innerHTML =
+            '<span class="caja-lock">\uD83D\uDD12</span>' +
+            '<span class="caja-icono">' + c.icono + '</span>' +
+            '<span class="caja-num">Cajita ' + (i + 1) + '</span>' +
+            '<span class="caja-titulo-mini">' + c.tituloGrid + '</span>';
+ 
+        div.addEventListener('click', function() {
+            if (div.classList.contains('abierta')) return;
+            div.classList.add('abierta');
+            div.querySelector('.caja-lock').textContent = '\uD83D\uDC9D';
+            abiertos++;
+            progresoTexto.textContent = abiertos + ' de 9 descubiertas';
+            barraFill.style.width = (abiertos / 9 * 100) + '%';
+ 
+            if (abiertos === 9) {
+                setTimeout(function() {
+                    lanzarConfeti(200);
+                    finalMsg.classList.add('visible');
+                }, 600);
+            } else {
+                lanzarConfeti(60);
+            }
+ 
+            modalEmoji.textContent = c.icono;
+            modalTitulo.textContent = c.titulo;
+            modalMsg.textContent = c.msg;
+            modalBg.classList.add('visible');
+        });
+ 
+        grid.appendChild(div);
+    });
+ 
+    modalBtn.addEventListener('click', function() { modalBg.classList.remove('visible'); });
+    modalBg.addEventListener('click', function(e) { if (e.target === modalBg) modalBg.classList.remove('visible'); });
+ 
+    /* ── Confeti ── */
+    var canvas = document.getElementById('cofre-confeti-canvas');
+    var ctx = canvas.getContext('2d');
+    var particles = [];
+    var animId = null;
+    var colors = ['#f9a8b8','#f4c2c2','#ffd6e0','#c9b8f4','#b8d4f4','#b8f4c9','#f4e0b8'];
+ 
+    function lanzarConfeti(n) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        for (var i = 0; i < n; i++) {
+            particles.push({
+                x: Math.random() * canvas.width,
+                y: -10,
+                vx: (Math.random() - 0.5) * 4,
+                vy: Math.random() * 3 + 2,
+                size: Math.random() * 8 + 4,
+                color: colors[Math.floor(Math.random() * colors.length)],
+                rot: Math.random() * 360,
+                rv: (Math.random() - 0.5) * 6,
+                life: 1
+            });
+        }
+        if (!animId) tick();
+    }
+ 
+    function tick() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(function(p) {
+            p.x += p.vx; p.y += p.vy;
+            p.rot += p.rv; p.vy += 0.05;
+            p.life -= 0.008;
+            ctx.save();
+            ctx.globalAlpha = Math.max(0, p.life);
+            ctx.translate(p.x, p.y);
+            ctx.rotate(p.rot * Math.PI / 180);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size / 2, -p.size / 4, p.size, p.size / 2);
+            ctx.restore();
+        });
+        particles = particles.filter(function(p) { return p.life > 0 && p.y < canvas.height + 20; });
+        if (particles.length > 0) {
+            animId = requestAnimationFrame(tick);
+        } else {
+            animId = null;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
 })();
