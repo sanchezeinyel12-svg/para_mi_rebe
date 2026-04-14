@@ -1542,3 +1542,281 @@ body {
     width: 100%; height: 100%;
     pointer-events: none; z-index: 999; overflow: hidden;
 }
+
+.cofre-section {
+    width: 100%;
+    padding: 4rem 3.5rem;
+    border-bottom: 1px solid var(--cream-deep);
+}
+ 
+.cofre-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+ 
+.cofre-label {
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--blush);
+    margin-bottom: 6px;
+}
+ 
+.cofre-titulo {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--blush-deep);
+    margin-bottom: 4px;
+}
+ 
+.cofre-sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: clamp(0.88rem, 2vw, 1rem);
+    color: var(--text-light);
+}
+ 
+.cofre-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+}
+ 
+.caja {
+    aspect-ratio: 1;
+    border-radius: 16px;
+    border: 1px solid var(--cream-deep);
+    background: var(--white);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+ 
+.caja:not(.abierta):hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 32px rgba(196,115,122,0.15);
+}
+ 
+.caja.abierta {
+    cursor: default;
+    background: var(--cream);
+}
+ 
+.caja-icono {
+    font-size: 28px;
+    transition: transform 0.4s cubic-bezier(.34,1.56,.64,1);
+}
+ 
+.caja:not(.abierta):hover .caja-icono {
+    transform: scale(1.2) rotate(-5deg);
+}
+ 
+.caja-num {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    font-weight: 500;
+}
+ 
+.caja-lock {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 12px;
+    opacity: 0.35;
+}
+ 
+.caja-titulo-mini {
+    font-size: 12px;
+    color: var(--text-light);
+    text-align: center;
+    padding: 0 8px;
+    font-family: var(--font-sans);
+    line-height: 1.4;
+}
+ 
+/* Barra de progreso */
+.cofre-progreso-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+    max-width: 700px;
+    margin: 0 auto 1.5rem;
+}
+ 
+.cofre-barra-bg {
+    flex: 1;
+    max-width: 220px;
+    height: 4px;
+    background: var(--cream-deep);
+    border-radius: 4px;
+    overflow: hidden;
+}
+ 
+.cofre-barra-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blush), var(--blush-light));
+    border-radius: 4px;
+    transition: width 0.6s cubic-bezier(.22,1,.36,1);
+}
+ 
+.cofre-progreso-texto {
+    font-size: 12px;
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    white-space: nowrap;
+}
+ 
+/* Modal */
+.cofre-modal-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+ 
+.cofre-modal-bg.visible { display: flex; }
+ 
+.cofre-modal-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2.5rem 2rem;
+    max-width: 420px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    animation: cofrePopIn 0.35s cubic-bezier(.34,1.56,.64,1);
+    border: 1px solid var(--cream-deep);
+    box-shadow: 0 24px 64px rgba(196,115,122,0.15);
+}
+ 
+@keyframes cofrePopIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to   { transform: scale(1);   opacity: 1; }
+}
+ 
+.cofre-modal-emoji {
+    font-size: 56px;
+    margin-bottom: 1rem;
+    display: block;
+    animation: cofreBounce 0.6s 0.2s cubic-bezier(.34,1.56,.64,1) both;
+}
+ 
+@keyframes cofreBounce {
+    from { transform: scale(0) rotate(-10deg); }
+    to   { transform: scale(1) rotate(0deg);   }
+}
+ 
+.cofre-modal-titulo {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    color: var(--blush-deep);
+    margin-bottom: 0.75rem;
+}
+ 
+.cofre-modal-msg {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    line-height: 2;
+    color: var(--text-dark);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+ 
+.cofre-modal-firma {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    font-family: var(--font-sans);
+    margin-bottom: 1.5rem;
+}
+ 
+.cofre-modal-btn {
+    background: none;
+    border: 1px solid var(--blush);
+    color: var(--blush);
+    border-radius: 50px;
+    padding: 10px 28px;
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+ 
+.cofre-modal-btn:hover {
+    background: var(--blush);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+ 
+/* Mensaje final */
+.cofre-final {
+    display: none;
+    text-align: center;
+    padding: 2rem;
+    background: var(--sage-pale);
+    border-radius: 16px;
+    margin: 1.5rem auto 0;
+    max-width: 700px;
+    border: 1px solid rgba(90,122,101,0.2);
+    animation: cofreFadeIn 0.8s ease;
+}
+ 
+@keyframes cofreFadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: none; }
+}
+ 
+.cofre-final.visible { display: block; }
+ 
+.cofre-final-titulo {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--sage-deep);
+    margin-bottom: 8px;
+}
+ 
+.cofre-final-sub {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--text-light);
+    line-height: 1.9;
+}
+ 
+/* Confeti */
+#cofre-confeti-canvas {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
+}
+ 
+@media (max-width: 900px) {
+    .cofre-section { padding: 3rem 2rem; }
+}
+ 
+@media (max-width: 600px) {
+    .cofre-section { padding: 2.5rem 1.4rem; }
+    .cofre-grid { grid-template-columns: repeat(2, 1fr); }
+}
