@@ -65,7 +65,7 @@
       <div class="sorp-hearts">❤️ ❤️ ❤️</div>
 
       <!-- 📸 CAMBIA "TU_RUTA_AQUI" POR LA RUTA DE TU FOTO -->
-      <img class="sorp-foto" src="rebe1.jpeg" alt="Foto">
+      <img class="sorp-foto" src="tesoro.jpeg" alt="Foto">
 
       <div class="sorp-titulo">Para ti, mi psicóloga preciosa</div>
       <div class="sorp-sub">Algo que quiero decirte antes que nada amorcito</div>
