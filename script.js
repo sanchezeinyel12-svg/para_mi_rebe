@@ -1055,7 +1055,7 @@ setInterval(spawnParticle, 2200);
 
 
          {
-            photo: "ayer2.jpeg",
+            photo: "ayer.jpeg",
             emoji: "⭐",
             caption: "A TU LADO SIEMPRE SERE FELIZ MI AMOR ❤️",
             note: "Cada día que nos vemos es inolvidable",
