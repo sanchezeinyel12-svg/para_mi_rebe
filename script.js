@@ -65,14 +65,14 @@
       <div class="sorp-hearts">❤️ ❤️ ❤️</div>
 
       <!-- 📸 CAMBIA "TU_RUTA_AQUI" POR LA RUTA DE TU FOTO -->
-      <img class="sorp-foto" src="ayer.jpeg" alt="Foto">
+      <img class="sorp-foto" src="rebe1.jpeg" alt="Foto">
 
       <div class="sorp-titulo">Para ti, mi psicóloga preciosa</div>
       <div class="sorp-sub">Algo que quiero decirte antes que nada amorcito</div>
       <div class="sorp-deco"></div>
       <div class="sorp-msg">
-       Gracias por todos los momentos especiales a tu lado mi amoooor
-       como el de ayer no lo olvidaré NUNCA y me alegra mi corazon sentirme querido por ti mi preciosa❤️.<br>
+       Luche por todo corazón siempre y hagalo con una sonrisota que ilumine su vida y ese corazoncito que nunca pare
+       de soñar que todo lo que usted se ve en unos años, LO TENDRÁ ❤️.<br>
       </div>
       <div class="sorp-firma">— Tu angelito que te quiere muchote</div>
       <button class="sorp-btn" id="sorpresaCerrarBtn">Ir al inicio</button>
@@ -1062,6 +1062,23 @@ setInterval(spawnParticle, 2200);
             color: "#e8d8f8",
             rot: "2deg"
         },
+        {
+            photo: "caderas.jpeg",
+            emoji: "⭐",
+            caption: "ESA MANOOOOOOOO ❤️",
+            note: "Cada día que nos vemos es inolvidable no puedo dejar de verte y enamorarme cada vez que te veooooo ❤️",
+            color: "#e8d8f8",
+            rot: "2deg"
+        },
+        {
+            photo: "tesoro.jpeg",
+            emoji: "⭐",
+            caption: "Otro recuerdo con el AMOR DE MI VIDA ❤️",
+            note: "Cada foto la guardo con todo mi amoooor para nosotros",
+            color: "#e8d8f8",
+            rot: "2deg"
+        },
+        
     ];
 
     const section = document.getElementById("polaroidSection");
@@ -1166,6 +1183,8 @@ setInterval(spawnParticle, 2200);
             ok:   "Esa fecha lo cambio todo mi amooor ❤️",
             fail: "COMOOOOOOO"
         },
+
+        
     ];
 
     const section = document.getElementById("quizSection");
