@@ -71,8 +71,8 @@
       <div class="sorp-sub">Algo que quiero decirte antes que nada amorcito</div>
       <div class="sorp-deco"></div>
       <div class="sorp-msg">
-       Luche por todo corazón siempre y hagalo con una sonrisota que ilumine su vida y ese corazoncito que nunca pare
-       de soñar que todo lo que usted se ve en unos años, LO TENDRÁ ❤️.<br>
+       Recuerda que siempre te querré todos los días de mi vida por que me has enseñado 
+       a ser alguien diferente a tener un rumbo diferente en mi vida ❤️.<br>
       </div>
       <div class="sorp-firma">— Tu angelito que te quiere muchote</div>
       <button class="sorp-btn" id="sorpresaCerrarBtn">Ir al inicio</button>
@@ -1055,7 +1055,7 @@ setInterval(spawnParticle, 2200);
 
 
          {
-            photo: "ayer.jpeg",
+            photo: "ayer2.jpeg",
             emoji: "⭐",
             caption: "A TU LADO SIEMPRE SERE FELIZ MI AMOR ❤️",
             note: "Cada día que nos vemos es inolvidable",
@@ -1920,11 +1920,12 @@ function mostrarReproductor() {
 
     // El texto de la carta — dividido en párrafos para respirar
    const PARRAFOS = [
-    "Hay mi princesa, yo te quiero mucho y me parte el corazón verte así 💔. Sinceramente eres una persona con un corazoncito tan bonito que no merece pasar esos malos ratos.",
-    "Pero rendirse no debe estar en tu pensamiento amor, por más duro que sea el camino hay que seguir 💪. Agarrar fuerzas donde no las haya, dar siempre lo que uno pueda, pero seguir y seguir mi amor... nunca rendirse. Luchar aunque nos caigamos, porque nos levantamos otra vez. 🙌",
-    "Te quiero demasiado y siempre querré lo mejor para ti ❤️. Que te superes, que cumplas tus metas y objetivos, y si es a mi lado, pues yo seré tu mayor fan.",
-    "Ese que aplaude cada uno de tus éxitos y que te da apoyo y consuelo en los momentos difíciles 🫂. Pero nunca estarás sola amor, nunca. Aquí siempre tendrás un hombro donde llorar y desahogarte.",
-    "Te quiere mucho tu ingeniero 👷‍♂️❤️"
+    "Rebeca de mi corazón.",
+    "Agradecer a Dios en mi vida siempre fue una constumbre por todo lo bonito que me da la vida, salud y poder estar con mi familia vale oro 🙌",
+    "Pero algo ha cambiado hoy no solo agradezco eso, ahora agradezco de tener en mi vida, todo lo que por noches le pedi a Dios de ayudarme a encontrar mi otra mitad. de encontrar a alguien que me sume  y no me reste, todas esas noches de llanto en soledad, pensando si el amor era para mi, y ahora cambio todo un rumbo diferente a mi vida ❤️",
+    "Cada dia es un nuevo comienzo. un nuevo agradecerle a Dios por todo lo que me ha dado, siempre , pase de sentirme solo siempre por más amigos que tuviera a sentirme querido en mucho tiempo no sentia esa sensación en mi corazon ❤️ ",
+    "Gracias por estar ahi, gracias por sonreirme como lo haces, gracias por verme como lo haces , gracias por tratarme como lo haces, gracias por ser la novia que eres , GRACIAS POR TODO ❤️",
+    "Te quiere mucho tu ingeniero que a pesar de resolver problemas, nunco pudo resolver el problema de su corazón hasta que llegó la psicológa a curarle el corazón👷‍♂️❤️"
 ];
 
     const TEXTO_COMPLETO = PARRAFOS.join("\n\n");
