@@ -65,14 +65,14 @@
       <div class="sorp-hearts">❤️ ❤️ ❤️</div>
 
       <!-- 📸 CAMBIA "TU_RUTA_AQUI" POR LA RUTA DE TU FOTO -->
-      <img class="sorp-foto" src="tesoro.jpeg" alt="Foto">
+      <img class="sorp-foto" src="pr1.jpeg" alt="Foto">
 
       <div class="sorp-titulo">Para ti, mi psicóloga preciosa</div>
       <div class="sorp-sub">Algo que quiero decirte antes que nada amorcito</div>
       <div class="sorp-deco"></div>
       <div class="sorp-msg">
-       Recuerda que siempre te querré todos los días de mi vida por que me has enseñado 
-       a ser alguien diferente a tener un rumbo diferente en mi vida ❤️.<br>
+       Ayer me hiciste el hombre más feliz de este mundo , cuando me dijiste que si querías ser mi NOVIA y como te brillaban esos ojitos al verme
+       me sentí como un  niño tan feliz, usted me está haciendo tan feliz siempre pero tantooooo❤️.<br>
       </div>
       <div class="sorp-firma">— Tu angelito que te quiere muchote</div>
       <button class="sorp-btn" id="sorpresaCerrarBtn">Ir al inicio</button>
@@ -1078,6 +1078,16 @@ setInterval(spawnParticle, 2200);
             color: "#e8d8f8",
             rot: "2deg"
         },
+
+        {
+            photo: "pr2.jpeg",
+            emoji: "⭐",
+            caption: "NUNCA DEJES DE SONREIR AMOR ❤️",
+            note: "Yo me encargaré que nadie apague ese brillo tan bonito que tienes mi princesa",
+            color: "#e8d8f8",
+            rot: "2deg"
+        },
+        
         
     ];
 
@@ -1920,12 +1930,12 @@ function mostrarReproductor() {
 
     // El texto de la carta — dividido en párrafos para respirar
    const PARRAFOS = [
-    "Rebeca de mi corazón.",
-    "Agradecer a Dios en mi vida siempre fue una constumbre por todo lo bonito que me da la vida, salud y poder estar con mi familia vale oro 🙌",
-    "Pero algo ha cambiado hoy no solo agradezco eso, ahora agradezco de tener en mi vida, todo lo que por noches le pedi a Dios de ayudarme a encontrar mi otra mitad. de encontrar a alguien que me sume  y no me reste, todas esas noches de llanto en soledad, pensando si el amor era para mi, y ahora cambio todo un rumbo diferente a mi vida ❤️",
-    "Cada dia es un nuevo comienzo. un nuevo agradecerle a Dios por todo lo que me ha dado, siempre , pase de sentirme solo siempre por más amigos que tuviera a sentirme querido en mucho tiempo no sentia esa sensación en mi corazon ❤️ ",
-    "Gracias por estar ahi, gracias por sonreirme como lo haces, gracias por verme como lo haces , gracias por tratarme como lo haces, gracias por ser la novia que eres , GRACIAS POR TODO ❤️",
-    "Te quiere mucho tu ingeniero que a pesar de resolver problemas, nunco pudo resolver el problema de su corazón hasta que llegó la psicológa a curarle el corazón👷‍♂️❤️"
+    "Amor de mi vida, novia preciosa de mi corazón.",
+    "Ayer uff dia inolvidable para nosotros dos, verte reir llorar, ese brillo en los ojitos el  abrazoooo tan sincero y nuestros besitooos 🙌",
+    "Me abrieron los ojos para darme cuenta que contigo quiero estar siempre, estoy atrapado en tu sonrisa y soy fan de tus ojos mi amooooor❤️",
+    "Cada dia nuestro amor crece mas y mas de corazon se lo pido que esté siempre a mi lado hagamos las cosas bien por que yo si me veo con usted para muchote tiempooooo❤️ ",
+    "Gracias por ser quien eres mi amor , gracias por tu pureza y sencillez, gracias por darme la oportunidad de ser el novio de una niña tan maravillosa te quieroooo infinitooo❤️",
+   
 ];
 
     const TEXTO_COMPLETO = PARRAFOS.join("\n\n");
@@ -2124,6 +2134,22 @@ function mostrarReproductor() {
             photoEmoji: "✨",
             photoLabel: "No cambies asi  me encantaaaas",
             msg: "Gracias por existir y por estar en mi vida mi amorcito de mi vidaaaaaa."
+        },
+
+
+        {
+            side: "left",
+            special: false,
+            emoji: "✨",
+            nodeDelay: "2.4s",
+            badge: "El dia oficial mi amorcito",
+            date: "17 de abril del 2026",
+            title: "Cada detalle de tu servidor te encanto esos ojitos brillaban de alegria",
+            preview: "No puedo explicar aveces lo que siento por ti y cuando te pedi que fueras mi novia esos ojitos te brillaron de una forma UFF supe en ese momento que contigo quiero estar siempre mi cielito te quierooooo❤️",
+            photo: "pr2.jpeg",
+            photoEmoji: "✨",
+            photoLabel: "Verte salir esas lágrimas de la emoción uff ",
+            msg: "Gracias por existir y formar parte de mi vida mi amor ❤️"
         },
         {
             side: "right",
@@ -2448,4 +2474,48 @@ function mostrarReproductor() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
     }
+})();
+
+(function initAnilloSection() {
+ 
+    /* ── Scroll reveal para las promesas (aparecen una a una) ── */
+    const section = document.getElementById('anilloSection');
+    const items   = document.querySelectorAll('.anillo-promesa-item');
+    if (!section || !items.length) return;
+ 
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                items.forEach((item, i) => {
+                    setTimeout(() => item.classList.add('visible'), i * 130);
+                });
+                observer.unobserve(section);
+            }
+        });
+    }, { threshold: 0.25 });
+ 
+    observer.observe(section);
+ 
+    /* ── Click en el anillo: mini lluvia de corazones ── */
+    const ringSvg = document.querySelector('.anillo-ring-svg');
+    if (ringSvg) {
+        ringSvg.addEventListener('click', () => {
+            const rain = document.getElementById('heartsRain');
+            if (!rain) return;
+            const emojis = ['❤️','💍','💗','✨','💖','🌹'];
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const h = document.createElement('div');
+                    h.className = 'h-drop';
+                    h.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                    h.style.left = Math.random() * 100 + 'vw';
+                    h.style.animationDuration = (1.4 + Math.random() * 1.8) + 's';
+                    h.style.fontSize = (0.9 + Math.random() * 1.2) + 'rem';
+                    rain.appendChild(h);
+                    setTimeout(() => h.remove(), 3200);
+                }, i * 80);
+            }
+        });
+    }
+ 
 })();
