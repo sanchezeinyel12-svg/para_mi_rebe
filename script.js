@@ -71,7 +71,7 @@
       <div class="sorp-sub">Algo que quiero decirte antes que nada amorcito</div>
       <div class="sorp-deco"></div>
       <div class="sorp-msg">
-      Llevo aproximadamente tres semanas, es verdad que algunos dias no se actualiza el enlance pero el resto de dias recordandote lo valiosa que eres para mi
+      Llevo aproximadamente tres semanas, actualizando el enlance mi amor hay dias que  no se actualiza el enlance pero el resto de dias recordandote lo valiosa que eres para mi
       usted ya dejo de ser espectadora , ahora es protagonista de una HISTORIA a mi lado  ❤️.<br>
       </div>
       <div class="sorp-firma">— Tu angelito que te quiere muchote</div>
