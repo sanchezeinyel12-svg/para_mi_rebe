@@ -668,8 +668,23 @@ body.lightbox-open {
   .tl-footer-text { font-size: 0.8rem; line-height: 1.6; }
   .tl-footer-emoji { font-size: 1.8rem; }
 
+/* Ajuste de P6 para móviles */
   .p6-layout { grid-template-columns: 1fr; gap: 30px; padding: 0 20px; }
   .p6-col-center { order: -1; }
-  .video-stack { flex-direction: row; flex-wrap: wrap; justify-content: center; }
-  .p6-video { width: 280px; height: 157px; }
+  
+  /* ESTAS LÍNEAS PERMITEN EL SCROLL VERTICAL EN EL CELULAR */
+  .p6-content { 
+    height: 100vh; 
+    overflow-y: auto; 
+    padding-top: 100px; 
+    padding-bottom: 120px; /* Da espacio al fondo para que no queden pegados los videos */
+    -webkit-overflow-scrolling: touch; /* Hace que deslice suavecito en celulares */
+  }
+  
+  /* Oculta la barrita gris fea de scroll vertical para que se vea elegante */
+  .p6-content::-webkit-scrollbar { width: 0; display: none; }
+
+  /* Ajustamos los videos para que ocupen bien el ancho y se apilen bonito */
+  .video-stack { flex-direction: column; align-items: center; gap: 20px; }
+  .p6-video { width: 90vw; max-width: 320px; height: auto; aspect-ratio: 16/9; }
 }
