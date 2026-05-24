@@ -363,20 +363,20 @@ document.addEventListener('keydown', (e) => {
 // ══════════════════════════════════════
 (() => {
     const POLAROIDS = [
-        { photo:"img/gato.jpeg",   emoji:"", caption:"la primera vez que nos encontramos 😂", note:"Ese día lo cambió todo ❤️" },
-        { photo:"img/beso.jpeg",   emoji:"", caption:"nuestro primer besitooo 🥹",           note:"Me dejaste sin palabras" },
-        { photo:"img/paisaje.jpeg",emoji:"", caption:"Huyy ese dia ese vestidoooo huuuuuy",   note:"No la miré mucho a los ojos ese dia huuuy" },
-        { photo:"img/mano.jpg",    emoji:"", caption:"Amoooor esa cinturitaaaa 😤",           note:"Siempre quiero abrazarte así" },
-        { photo:"img/comida.jpg",  emoji:"", caption:"nuestra cita juntitos comiendo felices 🥺",note:"Verte feliz no tiene precio ❤️" },
-        { photo:"img/rebe4.jpeg",  emoji:"", caption:"Esos ojitos 🥺",                       note:"Me encanta ❤️" },
-        { photo:"img/c3.jpeg",     emoji:"", caption:"Lo preciosa que estás 🥺 Tan feliz contigo ❤️", note:"WOW" },
-        { photo:"img/c1.jpeg",     emoji:"", caption:"Esos besitos ufff",                     note:"Más fotitos así por favor 😅" },
-        { photo:"img/c2.jpeg",     emoji:"", caption:"Nosotros juntitos como debe ser",      note:"Esa foto me encantó" },
-        { photo:"img/c4.jpeg",     emoji:"", caption:"Qué me veas así me deja uff ❤️",      note:"Me enamora esa miradaaa ❤️" },
-        { photo:"img/ayer2.jpeg",  emoji:"", caption:"A TU LADO SIEMPRE SERÉ FELIZ ❤️",      note:"Cada día es inolvidable" },
-        { photo:"img/caderas.jpeg",emoji:"", caption:"ESA MANOOOO ❤️",                       note:"No puedo dejar de enamorarme cada vez que te veo ❤️" },
-        { photo:"img/tesoro.jpeg", emoji:"", caption:" Otro recuerdo con el AMOR DE MI VIDA ❤️",note:"Cada foto la guardo con todo mi amor" },
-        { photo:"img/pr2.jpeg",    emoji:"", caption:"NUNCA DEJES DE SONREÍR AMOR ❤️",      note:"Yo me encargaré de ese brillo tan bonito que tienes" },
+        { photo:"gato.jpeg",   emoji:"", caption:"la primera vez que nos encontramos 😂", note:"Ese día lo cambió todo ❤️" },
+        { photo:"beso.jpeg",   emoji:"", caption:"nuestro primer besitooo 🥹",           note:"Me dejaste sin palabras" },
+        { photo:"paisaje.jpeg",emoji:"", caption:"Huyy ese dia ese vestidoooo huuuuuy",   note:"No la miré mucho a los ojos ese dia huuuy" },
+        { photo:"mano.jpg",    emoji:"", caption:"Amoooor esa cinturitaaaa 😤",           note:"Siempre quiero abrazarte así" },
+        { photo:"comida.jpg",  emoji:"", caption:"nuestra cita juntitos comiendo felices 🥺",note:"Verte feliz no tiene precio ❤️" },
+        { photo:"rebe4.jpeg",  emoji:"", caption:"Esos ojitos 🥺",                       note:"Me encanta ❤️" },
+        { photo:"c3.jpeg",     emoji:"", caption:"Lo preciosa que estás 🥺 Tan feliz contigo ❤️", note:"WOW" },
+        { photo:"c1.jpeg",     emoji:"", caption:"Esos besitos ufff",                     note:"Más fotitos así por favor 😅" },
+        { photo:"c2.jpeg",     emoji:"", caption:"Nosotros juntitos como debe ser",      note:"Esa foto me encantó" },
+        { photo:"c4.jpeg",     emoji:"", caption:"Qué me veas así me deja uff ❤️",      note:"Me enamora esa miradaaa ❤️" },
+        { photo:"ayer2.jpeg",  emoji:"", caption:"A TU LADO SIEMPRE SERÉ FELIZ ❤️",      note:"Cada día es inolvidable" },
+        { photo:"caderas.jpeg",emoji:"", caption:"ESA MANOOOO ❤️",                       note:"No puedo dejar de enamorarme cada vez que te veo ❤️" },
+        { photo:"tesoro.jpeg", emoji:"", caption:" Otro recuerdo con el AMOR DE MI VIDA ❤️",note:"Cada foto la guardo con todo mi amor" },
+        { photo:"pr2.jpeg",    emoji:"", caption:"NUNCA DEJES DE SONREÍR AMOR ❤️",      note:"Yo me encargaré de ese brillo tan bonito que tienes" },
     ];
 
     const section = document.getElementById("polaroidSection");
