@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para mi noviecita Preciosa</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══ PANTALLA DE BIENVENIDA ══ -->
+<div id="welcome-screen">
+  <div class="ws-hearts" id="wsHearts"></div>
+  <div class="ws-glow"></div>
+  <div class="ws-card">
+    <span class="ws-rose">🌹</span>
+    <div class="ws-label">Para ti mi Psicologa Preciosa ❤️ </div>
+    
+    <!-- Aquí agregamos la foto -->
+    <div class="ws-photo-container">
+      <img src="ojazos.jpeg" alt="Nuestra foto" class="ws-photo">
+    </div>
+
+    <h1 class="ws-title">Hola, <em>amor de mi vida</em> 🌊</h1>
+    <p class="ws-msg">
+      Quiero que sepas que te quiero con todo mi corazooooon<br>
+      Cada día más es un sentimiento más y más grande hacia ti<br>
+      siempre estaré para ti en lo que me necesites mi princesita ❤️  <strong style="color:var(--gold)">mi preciosa</strong>. 💛
+    </p>
+    <button class="ws-btn" onclick="enterSite()">Siguiente</button>
+    <span class="ws-hint">Con todo mi amor mi princesa ❤️</span>
+  </div>
+</div>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<div id="progress"></div>
+
+<div id="nav-dots">
+  <div class="dot active" data-panel="0"></div>
+  <div class="dot" data-panel="1"></div>
+  <div class="dot" data-panel="2"></div>
+  <div class="dot" data-panel="3"></div>
+  <div class="dot" data-panel="4"></div>
+  <div class="dot" data-panel="5"></div>
+  <div class="dot" data-panel="6"></div>
+</div>
+
+<div id="panel-label">Algo especial de nosotros</div>
+
+<div id="scroll-wheel"></div>
+
+<div id="arrow-hint">Desliza →</div>
+
+<div id="scroll-info">01 / 07</div>
+
+<div id="floating-phrases"></div>
+
+<canvas id="particles"></canvas>
+
+<div id="track">
+
+  <section class="panel" id="p1">
+    <div class="stars"></div>
+    <div class="horizon-glow"></div>
+    <svg class="ocean-wave" viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C180,100 360,20 540,60 C720,100 900,20 1080,60 C1260,100 1350,40 1440,60 L1440,120 L0,120 Z" fill="rgba(13,33,55,0.8)"/>
+      <path d="M0,80 C200,50 400,110 600,80 C800,50 1000,110 1200,80 C1300,65 1380,90 1440,80 L1440,120 L0,120 Z" fill="#0d2137"/>
+    </svg>
+
+    <div class="shooting-star" style="top:12%;left:20%;animation-delay:0s;"></div>
+    <div class="shooting-star" style="top:25%;left:55%;animation-delay:3s;"></div>
+    <div class="shooting-star" style="top:8%;left:75%;animation-delay:7s;"></div>
+
+    <div class="float-msg">✦ desde el primer momento ✦</div>
+    
+    <div class="p1-content">
+      <div class="p1-text-side">
+        <div class="eyebrow anim-char">✦ nuestra historia</div>
+        <h1 class="hero-title">Para <em>ti,</em><br>Mi Psicologa Preciosa</h1>
+        <p class="hero-sub">cada día contigo, me doy cuenta cada vez más que te quiero PARA TODA LA VIDA</p>
+        
+        <div class="counter-wrap">
+          <div class="counter-item">
+            <span class="counter-num" id="cnt-days">0</span>
+            <span class="counter-label">días</span>
+          </div>
+          <div class="counter-sep">·</div>
+          <div class="counter-item">
+            <span class="counter-num" id="cnt-hours">0</span>
+            <span class="counter-label">horas</span>
+          </div>
+          <div class="counter-sep">·</div>
+          <div class="counter-item">
+            <span class="counter-num" id="cnt-minutes">0</span>
+            <span class="counter-label">minutos</span>
+          </div>
+          <div class="counter-sep">·</div>
+          <div class="counter-item">
+            <span class="counter-num" id="cnt-seconds">0</span>
+            <span class="counter-label">segundos</span>
+          </div>
+        </div>
+        <div class="start-date">juntos desde <span id="start-label">— edita la fecha —</span></div>
+
+        <div class="orbit-ring-wrap">
+          <div class="orbit-ring" id="orbit">
+            <span class="orbit-word" style="--i:0">amor</span>
+            <span class="orbit-word" style="--i:1">risa</span>
+            <span class="orbit-word" style="--i:2">mar</span>
+            <span class="orbit-word" style="--i:3">fe</span>
+            <span class="orbit-word" style="--i:4">tú</span>
+            <span class="orbit-word" style="--i:5">siempre</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p1-photo-side">
+        <div class="p1-photo-frame">
+          <img src="rebe5.jpeg" alt="Nosotros ❤️" onerror="this.src='https://via.placeholder.com/450x600/0d2137/e8c37a?text=Nuestra+Foto+❤️'">
+          <div class="p1-photo-shine"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p2">
+    <h2 class="titulo-sonrisa"> FOTOS DE CADA VEZ QUE LAS VEO ME SACAN UNA SONRISA ❤️ </h2>
+   <p class="texto-romantico">
+Pasan los días y hay momentos que pienso que todo lo que vivimos es un sueño y por que te digo todo esto por que en los sueños uno puede crear cosas bonitas a nuestro gusto
+y contigo asi es cosas bonitas y las estoy viviendo despierto a tu lado mi amor te quiero mi amor ❤️
+  </p>
+    <div class="carousel-film-label"><span>MOMENTOS QUE AMO A TU LADO MI AMOR 🌊</span></div>
+    <div class="carousel-container">
+        <div class="filmstrip-bar" id="filmTop"></div>
+        <div class="carousel-track" id="carouselTrack">
+            <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="novia1.jpeg" alt=""></div><div class="slide-text-side"><div class="slide-num-big">01</div><div class="slide-counter-tag">01 / 09</div><div class="slide-phrase"><p>"Con mi princesita hermosa ❤️"</p><div class="slide-phrase-sub">ERES LO MEJOR DE MI VIDA ❤️</div></div></div></div></div>
+            <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="novia2.jpeg" alt=""></div><div class="slide-text-side"><div class="slide-num-big">02</div><div class="slide-counter-tag">02 / 09</div><div class="slide-phrase"><p>"Esa sonrisa me encanta, feliz siempre la quiero ver ❤️"</p><div class="slide-phrase-sub">Encantado contigo ❤️</div></div></div></div></div>
+            <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="bebe.jpeg" alt=""></div><div class="slide-text-side"><div class="slide-num-big">03</div><div class="slide-counter-tag">03 / 09</div><div class="slide-phrase"><p>"Con mi niña chiquita❤️"</p><div class="slide-phrase-sub">amooooo ❤️</div></div></div></div></div>
+            <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="lb.jpeg" alt=""></div><div class="slide-text-side"><div class="slide-num-big">04</div><div class="slide-counter-tag">04 / 09</div><div class="slide-phrase"><p>"Esos labioooos huy ❤️"</p><div class="slide-phrase-sub">Me encantan❤️</div></div></div></div></div>
+            <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="hy.jpeg" alt=""></div><div class="slide-text-side"><div class="slide-num-big">05</div><div class="slide-counter-tag">05 / 09</div><div class="slide-phrase"><p>"Con mi novia lindota ❤️"</p><div class="slide-phrase-sub">Así siempre, amor ❤️</div></div></div></div></div>
+            <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="hy2.jpeg" alt=""></div><div class="slide-text-side"><div class="slide-num-big">06</div><div class="slide-counter-tag">06 / 09</div><div class="slide-phrase"><p>"Tus caricias me encantan amor mío ❤️"</p><div class="slide-phrase-sub">Mi lugar más feliz ❤️</div></div></div></div></div>
+            <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="cita.jpeg" alt=""></div><div class="slide-text-side"><div class="slide-num-big">07</div><div class="slide-counter-tag">07 / 09</div><div class="slide-phrase"><p>"A tu lado feliz como un niñoooo ❤️"</p><div class="slide-phrase-sub">Juntitos siempre ❤️</div></div></div></div></div>
+            <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="7.jpeg" alt=""></div><div class="slide-text-side"><div class="slide-num-big">08</div><div class="slide-counter-tag">08 / 09</div><div class="slide-phrase"><p>"Eres la razón más bonita de mis días"</p><div class="slide-phrase-sub">cada momento contigo</div></div></div></div></div>
+            <div class="slide"><div class="slide-inner"><div class="photo-frame"><img src="rebe4.jpeg" alt=""></div><div class="slide-text-side"><div class="slide-num-big">09</div><div class="slide-counter-tag">09 / 09</div><div class="slide-phrase"><p>"Esos ojitos me matan solo con verlos"</p><div class="slide-phrase-sub">me enamoran cada día 🌅</div></div></div></div></div>
+        </div>
+        <div class="filmstrip-bar" id="filmBottom"></div>
+        <div class="carousel-side-indicator">
+          <span class="ind-current" id="indCurrent">01</span>
+          <div class="ind-sep"></div>
+          <span class="ind-total">09</span>
+        </div>
+        <button class="carousel-btn prev" id="prevBtn" aria-label="Anterior">‹</button>
+        <button class="carousel-btn next" id="nextBtn" aria-label="Siguiente">›</button>
+        <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </section>
+
+
+    <!-- ══ SECCIÓN: CORAZÓN DE FOTOS ══ -->
+<!-- Agrega esto ANTES del cierre de </div> del #track  
+     (justo antes de la línea </div>  que cierra id="track") -->
+
+  <section class="panel" id="p-heart">
+    <div class="heart-section-bg">
+      <div class="hs-stars"></div>
+      <div class="hs-glow-orb hs-glow-1"></div>
+      <div class="hs-glow-orb hs-glow-2"></div>
+    </div>
+
+    <div class="heart-section-inner">
+
+      <!-- Título / Dedicatoria -->
+      <div class="hs-header reveal-up">
+        <div class="hs-eyebrow">cada foto, un latido mi amor </div>
+        <h2 class="hs-title">Nuestro<br><em>Corazón</em></h2>
+        <p class="hs-dedication">
+          Cada imagen aquí guarda un momento de nosotros juntos inolvidable<br>
+          Eres la foto más bonita que la vida me pudo dar, mi preciosa noviaaaaaa❤️
+        </p>
+      </div>
+
+      <!-- Corazón de fotos (canvas) -->
+      <div class="hs-heart-wrap">
+        <canvas id="heartCanvas"></canvas>
+        <div class="hs-heart-pulse"></div>
+      </div>
+
+      <!-- Firma al pie -->
+      <div class="hs-footer reveal-up">
+        <div class="hs-firma-line"></div>
+        <p class="hs-firma">
+          Si juntara todas estas fotos aún no sería suficiente<br>
+          para capturar cuanto te quiero y cuanto me importas mi amor <span class="hs-name">Mi todooooooo</span>.<br>
+          <em>Te quiero para siempre, tu angelito </em>
+        </p>
+        <div class="hs-firma-line"></div>
+      </div>
+
+    </div>
+  </section>
+
+ <!-- <section class="panel" id="p3">
+    <div class="p3-content">
+      <div class="p3-header">
+        <div class="p3-title reveal-up">
+          Nuestros
+          <em>momentos ESPECIALES</em>
+        </div>
+        <div class="p3-controls">
+          <div class="p3-hint">Nuestra colección especial</div>
+          <button class="add-more-btn" id="addMoreBtn">+ Ver más fotos</button>
+        </div>
+      </div>
+      <div class="gallery-grid" id="galleryGrid">
+        <div class="g-item tall" onclick="openGalleryLightbox(this)">
+          <img src="j2.jpeg" alt="MI AMOR" onerror="this.style.display='none'" data-desc="Verte sonreir, siempre  será el regalo más grande que puedes darme mi AMOR❤️" onerror="this.style.display='none'">>
+          <div class="g-shine"></div>
+        </div>
+        <div class="g-item" onclick="openGalleryLightbox(this)">
+          <img src="cita.jpeg" alt="MI TODO" onerror="this.style.display='none'" data-desc="Esa sonrisa me mata ❤️" onerror="this.style.display='none'">>>
+          <div class="g-shine"></div>
+        </div>
+        <div class="g-item" onclick="openGalleryLightbox(this)">
+          <img src="j5.jpeg" alt="MI NIÑA" onerror="this.style.display='none'" data-desc="Siempre serás mi lugar seguro, con la única persona que quiero estar en esta vida ❤️" onerror="this.style.display='none'">>>
+          <div class="g-shine"></div>
+        </div>
+        <div class="g-item wide" onclick="openGalleryLightbox(this)">
+          <img src="ojazos.jpeg" alt="MI ESPOSITA" onerror="this.style.display='none'" data-desc="Qué esos bellos ojitos siempre iluminen mi vida❤️" onerror="this.style.display='none'">>>
+          <div class="g-shine"></div>
+        </div>
+      </div>
+      <div class="gallery-extra" id="galleryExtra">
+      </div>
+    </div>
+  </section> -->
+
+  <!-- ══ NUEVO PANEL: LIBRO DE RECUERDOS ══ -->
+  <section class="panel" id="p-book">
+    <div class="book-bg">
+      <div class="book-bg-glow book-bg-glow1"></div>
+      <div class="book-bg-glow book-bg-glow2"></div>
+      <div class="book-dust" id="bookDust"></div>
+    </div>
+
+    <div class="book-section-inner">
+      <div class="book-header">
+        <div class="book-eyebrow">Nuestro album de historias y recuerdos mi amor que guardo en el fondo de mi corazón ❤️</div>
+        <h2 class="book-title">Cada foto,<br><em>un pedacito de nosotros</em></h2>
+        <p class="book-subtitle">Cada página guarda un momento que me hace feliz siempre mi amor ❤️</p>
+      </div>
+
+      <div class="book-stage">
+        <!-- EL LIBRO 3D -->
+        <div class="book-3d" id="book3d">
+          <!-- Portada (lado izquierdo fijo) -->
+          <div class="book-cover-left">
+            <div class="book-cover-left-inner">
+              <div class="bcl-ornament">❤</div>
+              <div class="bcl-title">Para<br><em>mi niña chiquita❤️</em></div>
+              <div class="bcl-sub">con todo mi amor</div>
+              <div class="bcl-line"></div>
+              <div class="bcl-firma">— Tu angelito ❤️</div>
+            </div>
+          </div>
+
+          <!-- Páginas que se voltean -->
+          <div class="book-pages" id="bookPages">
+            <!-- Las páginas se generan con JS -->
+          </div>
+
+          <!-- Contraportada (lado derecho fijo) -->
+          <div class="book-cover-right">
+            <div class="book-cover-right-inner">
+              <div class="bcr-heart">❤</div>
+              <div class="bcr-quote">"Te elegiría<br>mil veces más,<br>mi preciosa"</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controles -->
+        <div class="book-controls">
+          <button class="book-btn book-prev" id="bookPrev" aria-label="Página anterior">
+            <span>‹</span>
+          </button>
+          <div class="book-page-info">
+            <span id="bookCurrent">1</span> <span class="book-slash">/</span> <span id="bookTotal">7</span>
+          </div>
+          <button class="book-btn book-next" id="bookNext" aria-label="Página siguiente">
+            <span>›</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <<section class="panel" id="p4">
+    <div class="tl-panel-bg"></div>
+    <div class="tl-panel-inner">
+      <div class="timeline-label">nuestra historia 🌊</div>
+      <div class="timeline-title">Los meses que lo cambiaron todo 💛</div>
+      <div class="timeline-sub">Toca cada momento para revivir nuestra historia, mi amor</div>
+      <div class="tl-axis-wrap" id="tlAxisWrap">
+        <div class="tl-axis"></div>
+        
+        <div class="tl-items" id="tlItems"></div>
+
+        <div class="tl-footer-wrap">
+          <div class="tl-footer-card">
+            <div class="tl-footer-emoji">🌅</div>
+            <div class="tl-footer-text">Y esto que vivimos, amor, solamente es el comienzo de nuestra historiaaaa.<br>Quiero seguir llenando estas páginas de momentos a tu lado mi preciosa,<br>de momentos bonitos y atardeceres juntos contigo.</div>
+            <div class="tl-footer-firma">— Tu angelito que te quiere muchote ❤️</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="p6">
+    <div class="sun"></div>
+    <div class="sun-reflect"></div>
+    <div class="sunset-ocean"></div>
+    <div class="birds" id="birds"></div>
+    <div id="hearts-container"></div>
+    
+    <div class="p6-content">
+      <div class="p6-layout">
+        
+        <div class="p6-col-left reveal-up">
+          <div class="music-player">
+            <div class="player-vinyl">
+              <div class="player-vinyl-hole"></div>
+            </div>
+            <div class="player-info">
+              <div class="p6-eyebrow reveal-up">DEDICADA PARA TI MI AMOR</div>
+              <div class="player-title">ERES</div>
+              <div class="player-artist">Para ti, mi amor ❤️</div>
+            </div>
+            <audio id="myAudio" src="eres.mp3"></audio>
+            
+            <div class="player-controls">
+              <button class="skip-btn" onclick="skipAudio(-10)" title="Retroceder 10s">⏪</button>
+              <button class="play-btn" id="playBtn" onclick="togglePlay()">▶</button>
+              <button class="skip-btn" onclick="skipAudio(10)" title="Adelantar 10s">⏩</button>
+            </div>
+            <div class="progress-container" id="progressContainer" onclick="setProgress(event)">
+              <div class="progress-bar" id="progressBar"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p6-col-center">
+          <div class="p6-eyebrow reveal-up">✦ el horizonte siempre nos espera</div>
+          <h2 class="p6-title reveal-up" style="animation-delay:0.2s">
+            Contigo<br>
+            <em>para siempre</em>
+            <em>ERES MI FELICIDAD</em>
+          </h2>
+          <p class="p6-msg reveal-up" style="animation-delay:0.4s">
+           Nuestro AMOR crecerá dia con dia mes con mes y año con AÑO<br>
+            Te quiero mucho mi niña chiquita❤️
+          </p>
+          <button class="p6-btn" onclick="scrollToTop()">Volver al inicio ↩</button>
+        </div>
+
+        <div class="p6-col-right reveal-up" style="animation-delay:0.4s">
+          <div class="video-stack">
+            <div class="p6-eyebrow reveal-up">PARA TI MI ESPOSITA</div>
+            <video src="1.mp4" class="p6-video" controls playsinline preload="metadata"></video>
+            <video src="4.mp4" class="p6-video" controls playsinline preload="metadata"></video>
+            <video src="5.mp4" class="p6-video" controls playsinline preload="metadata"></video>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+
+
+
+</div>
+
+<div id="lightbox" class="lightbox">
+  <button class="lb-close" onclick="closeLightbox()">×</button>
+  <button class="lb-nav lb-prev" onclick="lbNav(-1)">‹</button>
+  <button class="lb-nav lb-next" onclick="lbNav(1)">›</button>
+  <div class="lb-img-wrap"><img id="lbImg" src="" alt=""></div>
+  <div class="lb-caption" id="lbCaption"></div>
+  <div class="lb-desc" id="lbDesc"></div> 
+</div>
+
+<div id="lbOverlay" class="lb-overlay">
+  <div class="lb-card">
+    <button id="lbClose" class="lb-close">✕</button>
+    <div id="lbImgWrap" class="lb-img-wrap">
+      <img id="lbPhotoImg" src="" alt="" style="display:none; width:100%; height:100%; object-fit:cover;">
+      <span id="lbEmoji" style="font-size:3rem;"></span>
+    </div>
+    <div id="lbCaptionPol" class="lb-caption"></div>
+    <div id="lbNote" class="lb-note" style="text-align:center; font-size:0.8rem; color:var(--gold); margin-top:5px; padding-top:20px;"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
