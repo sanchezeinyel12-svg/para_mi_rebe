@@ -368,7 +368,9 @@ body.lightbox-open {
 .lb-desc { position: fixed; bottom: 22px; left: 50%; transform: translateX(-50%); color: var(--text-light); font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 15px; z-index: 1000000; text-align: center; width: 90%; max-width: 600px; text-shadow: 0 2px 8px rgba(0,0,0,0.9); }
 
 /* ─── P6: CIERRE ATARDECER ─── */
-#p6 { background: linear-gradient(to top, #c8723a 0%, #d4697a 30%, #9b89b8 55%, #5c2795 75%, #280a3a 100%); position: relative; }
+#p6 { 
+  background: linear-gradient(to top, #c8723a 0%, #d4697a 30%, #9b89b8 55%, #5c2795 75%, #280a3a 100%); 
+  position: relative; }
 .sunset-ocean { position: absolute; bottom: 0; left: 0; right: 0; height: 35%; background: linear-gradient(to bottom, rgba(40,10,58,0.5), #280a3a); z-index: 5; }
 .sun { position: absolute; bottom: 28%; left: 50%; transform: translateX(-50%); width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle, #fff8e0 0%, #e8a857 40%, #c8723a 70%); box-shadow: 0 0 60px rgba(232,168,87,0.6); z-index: 4; }
 .sun-reflect { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 4px; height: 28%; background: linear-gradient(to bottom, rgba(232,168,87,0.6), transparent); filter: blur(2px); z-index: 4; }
@@ -647,14 +649,27 @@ body.lightbox-open {
    ════════════════════════════════════════ */
 .p6-layout {
   display: grid;
-  grid-template-columns: 1fr 1.2fr 1fr;
+  /* Cambiamos a 2 columnas distribuidas equitativamente */
+  grid-template-columns: 1fr 1fr; 
   align-items: center;
   justify-items: center;
-  gap: 30px;
+  gap: 40px;
   width: 100%;
-  max-width: 1350px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 40px;
+}
+
+.p6-title { 
+  font-family: 'Fraunces', serif; 
+  font-style: italic; 
+  /* Reducimos el tamaño de la fuente para que se adapte bien a su columna */
+  font-size: clamp(32px, 4vw, 64px); 
+  color: #fff8e0; 
+  margin-bottom: 24px; 
+  text-align: center; 
+  line-height: 1.2; /* Añadimos line-height para un mejor espaciado entre las frases */
+  text-shadow: 0 4px 40px rgba(255,200,150,0.4), 0 0 100px rgba(255,248,224,0.15); 
 }
 
 .p6-col-center {
@@ -775,6 +790,10 @@ body.lightbox-open {
   #nav-dots { right: 10px; }
   #arrow-hint { bottom: 15px; right: 15px; font-size: 10px; }
   #panel-label { left: 15px; top: 15px; }
+
+  .p6-title { 
+      font-size: clamp(32px, 8vw, 48px); 
+  }
 
   .p1-content { grid-template-columns: 1fr; grid-template-rows: auto auto; gap: 30px; padding: 60px 20px 20px; justify-items: center; text-align: center; align-items: start; }
   .p1-text-side { align-items: center; text-align: center; }
